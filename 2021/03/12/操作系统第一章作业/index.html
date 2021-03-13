@@ -1,51 +1,380 @@
-<!doctype html>
-<html lang=en>
-
+<!DOCTYPE html>
+<html lang=zh>
 <head>
-    <meta charset=UTF-8>
-    <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
-    <meta http-equiv=X-UA-Compatible content="ie=edge">
-    <link rel="shortcut icon" href=/static/favicon.ico>
-    <title>
-        Lhxone
-    </title>
-    <style>
-        #jz {
-            margin: auto;
-            width: 100%;
-            height: 100px;
-            border: 1px solid black;
-            align-content: center;
-            align-items: center;
-            align-self: center;
-        }
-    </style>
-    <link href=/static/css/app.c64eadfc8d3abfc9d85514dba4054813.css rel=stylesheet>
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?5373525350199b6e58376fd8b50bacab";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();
-        </script>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="3.19操作系统作业分时操作系统与实时操作系统的比较简介 计算机操作系统从20世纪50年代中期第二代计算机的单道批处理系统到20世纪60年代中期第三代计算机的多道批处理系统（IBM公司研发的OS&#x2F;360系统是第一个能运行多道程序的批处理系统），都主要致力于提高资源利用率和系统吞吐量。但人们对人机交互的需求却一直未能得到有效解决，因此一种新型OS——分时OS就应运而生了，紧接着实时OS也在工业、军事">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统第一章作业">
+<meta property="og:url" content="http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/index.html">
+<meta property="og:site_name" content="Lhxone 的博客">
+<meta property="og:description" content="3.19操作系统作业分时操作系统与实时操作系统的比较简介 计算机操作系统从20世纪50年代中期第二代计算机的单道批处理系统到20世纪60年代中期第三代计算机的多道批处理系统（IBM公司研发的OS&#x2F;360系统是第一个能运行多道程序的批处理系统），都主要致力于提高资源利用率和系统吞吐量。但人们对人机交互的需求却一直未能得到有效解决，因此一种新型OS——分时OS就应运而生了，紧接着实时OS也在工业、军事">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-12T06:47:05.000Z">
+<meta property="article:modified_time" content="2021-03-13T12:09:06.496Z">
+<meta property="article:author" content="Lhxone">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+    
+    
+      
         
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>操作系统第一章作业</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/enble" title="Lhxone 的博客" type="application/atom+xml" />
+    
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
 
-<body>
-    <div id=app></div>
-    <script type=text/javascript src=/static/js/manifest.992b63bf2abbf3194771.js></script>
-    <script type=text/javascript src=/static/js/vendor.e12dc8c9af1f7aa12436.js></script>
-    <script type=text/javascript src=/static/js/app.bc036f9167871d39aecf.js></script>
-    <div id="jz">
-        <script type="text/javascript" id="clustrmaps" width="0.5 * device-width"
-            src="//clustrmaps.com/map_v2.js?d=a3uILRfRwZVEhDDi55KVW0c3kWqpBAatpOkf4WtbJ68&cl=ffffff&w=a"></script>
-    </div>
-</body>
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/about/">关于我</a></li>
+         
+          <li><a href="/archives/">文章列表</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2021/03/11/Java%E6%8C%87%E5%8C%97/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&text=操作系统第一章作业"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&title=操作系统第一章作业"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&is_video=false&description=操作系统第一章作业"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=操作系统第一章作业&body=Check out this article: http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&title=操作系统第一章作业"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&title=操作系统第一章作业"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&title=操作系统第一章作业"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&title=操作系统第一章作业"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&name=操作系统第一章作业&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&t=操作系统第一章作业"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-19%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A"><span class="toc-number">1.</span> <span class="toc-text">3.19操作系统作业</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">1.1.</span> <span class="toc-text">分时操作系统与实时操作系统的比较</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">简介</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number"></span> <span class="toc-text">分时操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E8%A7%A3%E5%86%B3%E6%89%B9%E5%A4%84%E7%90%86%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%97%A0%E4%BA%A4%E4%BA%92%E6%89%8B%E6%AE%B5%E3%80%81%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E5%9B%B0%E9%9A%BE%E7%AD%89%E7%BC%BA%E7%82%B9%EF%BC%8C%E5%87%BA%E7%8E%B0%E4%BA%86%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%82"><span class="toc-number">0.0.1.</span> <span class="toc-text">为解决批处理系统中无交互手段、调试程序困难等缺点，出现了分时操作系统。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-number">0.1.</span> <span class="toc-text">工作方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0%EF%BC%88%E6%9D%A1%E4%BB%B6%EF%BC%89"><span class="toc-number">0.2.</span> <span class="toc-text">分时操作系统实现（条件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%89%87"><span class="toc-number">0.3.</span> <span class="toc-text">时间片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E6%B3%95"><span class="toc-number">0.4.</span> <span class="toc-text">时间片轮转法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-number">0.5.</span> <span class="toc-text">特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number"></span> <span class="toc-text">实时操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%83%BD%E5%8F%8A%E6%97%B6%E5%93%8D%E5%BA%94%E5%A4%96%E9%83%A8%E4%BA%8B%E4%BB%B6%E7%9A%84%E8%AF%B7%E6%B1%82%EF%BC%8C%E5%9C%A8%E8%A7%84%E5%AE%9A%E6%97%B6%E9%99%90%E5%86%85%E5%AE%8C%E6%88%90%E5%AF%B9%E8%AF%A5%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%A4%84%E7%90%86%E3%80%82"><span class="toc-number">0.0.1.</span> <span class="toc-text">能及时响应外部事件的请求，在规定时限内完成对该事件的处理。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">0.1.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E8%BF%BD%E6%B1%82%E7%9B%AE%E6%A0%87"><span class="toc-number">0.2.</span> <span class="toc-text">主要追求目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E7%82%B9-1"><span class="toc-number">0.3.</span> <span class="toc-text">特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%97%B6%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AE%9E%E6%97%B6%E7%B3%BB%E7%BB%9F%E6%AF%94%E8%BE%83"><span class="toc-number"></span> <span class="toc-text">分时系统与实时系统比较</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        操作系统第一章作业
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Lhxone</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-03-12T06:47:05.000Z" itemprop="datePublished">2021-03-12</time>
+        
+        (Updated: <time datetime="2021-03-13T12:09:06.496Z" itemprop="dateModified">2021-03-13</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="3-19操作系统作业"><a href="#3-19操作系统作业" class="headerlink" title="3.19操作系统作业"></a>3.19操作系统作业</h2><h3 id="分时操作系统与实时操作系统的比较"><a href="#分时操作系统与实时操作系统的比较" class="headerlink" title="分时操作系统与实时操作系统的比较"></a>分时操作系统与实时操作系统的比较</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><blockquote>
+<p>计算机操作系统从20世纪50年代中期第二代计算机的单道批处理系统到20世纪60年代中期第三代计算机的多道批处理系统（IBM公司研发的OS/360系统是第一个能运行多道程序的批处理系统），都主要致力于提高资源利用率和系统吞吐量。但人们对人机交互的需求却一直未能得到有效解决，因此一种新型OS——分时OS就应运而生了，紧接着实时OS也在工业、军事等领域的需求下也随之诞生。现在我们所使用的操作系统都属于这两类。</p>
+</blockquote>
+<hr>
+<h1 id="分时操作系统"><a href="#分时操作系统" class="headerlink" title="分时操作系统"></a>分时操作系统</h1><h4 id="为解决批处理系统中无交互手段、调试程序困难等缺点，出现了分时操作系统。"><a href="#为解决批处理系统中无交互手段、调试程序困难等缺点，出现了分时操作系统。" class="headerlink" title="为解决批处理系统中无交互手段、调试程序困难等缺点，出现了分时操作系统。"></a>为解决批处理系统中无交互手段、调试程序困难等缺点，出现了分时操作系统。</h4><h3 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h3><ul>
+<li>一台主机连接了若干个终端</li>
+<li>每个终端（近程或远程）有一个用户在使用</li>
+<li>每个用户交互式地向系统提出命令请求</li>
+<li>系统接收每个用户的命令</li>
+<li>采用<code>时间片轮转</code>方式处理各用户的服务请求</li>
+<li>通过交互方式在终端上向用户显示结果</li>
+<li>用户根据上步结果发出下道命令</li>
+</ul>
+<h3 id="分时操作系统实现（条件）"><a href="#分时操作系统实现（条件）" class="headerlink" title="分时操作系统实现（条件）"></a>分时操作系统实现（条件）</h3><p>关键：及时接受、及时处理</p>
+<ul>
+<li>系统中配置多路卡，以便主机及时接收各用户输入的命令或数据</li>
+<li>每个终端配备缓存，以便暂存用户数据</li>
+<li>用户作业直接输入内存，可确保系统及时响应用户要求</li>
+<li>采用时间片轮转法，使一台主机同时为多个用户服务，且保证足够快的响应时间</li>
+</ul>
+<h3 id="时间片"><a href="#时间片" class="headerlink" title="时间片"></a>时间片</h3><p>操作系统将CPU的时间划分成若干各片段，称为时间片</p>
+<h3 id="时间片轮转法"><a href="#时间片轮转法" class="headerlink" title="时间片轮转法"></a>时间片轮转法</h3><p>操作系统以时间片为单位，轮流为每个终端用户服务，每次服务一个时间片。其特点是利用人的错觉，使人感觉不到。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>多路性</li>
+<li>交互性</li>
+<li>独立性</li>
+<li>及时性</li>
+</ul>
+<blockquote>
+<p>典型的分时系统是MUTICS和UNIX</p>
+</blockquote>
+<hr>
+<h1 id="实时操作系统"><a href="#实时操作系统" class="headerlink" title="实时操作系统"></a>实时操作系统</h1><h4 id="能及时响应外部事件的请求，在规定时限内完成对该事件的处理。"><a href="#能及时响应外部事件的请求，在规定时限内完成对该事件的处理。" class="headerlink" title="能及时响应外部事件的请求，在规定时限内完成对该事件的处理。"></a>能及时响应外部事件的请求，在规定时限内完成对该事件的处理。</h4><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol>
+<li>第一类：实施过程控制系统<blockquote>
+<p>工业控制、军事控制</p>
+</blockquote>
+</li>
+<li>第二类：实时通信（信息）处理系统<blockquote>
+<p>电讯、银行、飞机订票、股市行情</p>
+</blockquote>
+</li>
+<li>多媒体系统<blockquote>
+<p>将文本、图像、音频、视频等信息集中在一个文件中，形成多媒体文件。多媒体播放系统必须为实时处理系统。</p>
+</blockquote>
+</li>
+<li>嵌入式系统<blockquote>
+<p>嵌入在各智能仪器和设备中的芯片，可对设备进行控制或对其中信息做处理，需要实时控制或处理。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="主要追求目标"><a href="#主要追求目标" class="headerlink" title="主要追求目标"></a>主要追求目标</h3><ul>
+<li>对外部请求在严格时间范围内作出反应（及时响应）</li>
+<li>高可靠性（采用双工制：两台完全相同的计算机）</li>
+<li>安全性</li>
+<li>完整性</li>
+</ul>
+<h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>多路性</li>
+<li>交互性</li>
+<li>独立性</li>
+<li>及时性</li>
+<li>可靠性</li>
+</ul>
+<hr>
+<h1 id="分时系统与实时系统比较"><a href="#分时系统与实时系统比较" class="headerlink" title="分时系统与实时系统比较"></a>分时系统与实时系统比较</h1><ul>
+<li><p>多路性：两者都具有多路性。软实时与分时系统中的多路性表现为系统按分时原则为多个任务终端用户服务；硬实时则指系统周期性地对多路现场信息进行采集以及对多个对象或多个执行机构进行控制。</p>
+</li>
+<li><p>独立性：两者都具有独立性。每个终端用户在向分时系统提出服务请求时，是彼此独立的操作，互不干扰；而在实时控制系统中信息的采集和对对象的控制，也彼此互不干扰。</p>
+</li>
+<li><p>及时性：实时信息系统对实时性的要求与分时系统类似，都是以人所能接受的等待时间来确定；而实时控制系统的及时性，则是以控制对象所要求的开始截止时间或完成截止时间来确定的，一般为秒级、百毫秒级直至毫秒级，甚至有的要低于100微秒。</p>
+</li>
+<li><p>交互性：实时信息处理系统具有交互性，但这里人与系统的交互，仅限于访问系统中某些特定的专用服务程序。它不像分时系统那样能向终端用户提供数据处理服务、资源共享等服务。</p>
+</li>
+<li><p>可靠性：分时系统要求系统可靠，相比之下，实时系统则要求系统高度可靠。因为任何差错都可能带来巨大的经济损失甚至无法预料的灾难性后果。因此，在实时系统中，采取了多级容错措施来保证系统的安全及数据的安全。</p>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/about/">关于我</a></li>
+         
+          <li><a href="/archives/">文章列表</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-19%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A"><span class="toc-number">1.</span> <span class="toc-text">3.19操作系统作业</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">1.1.</span> <span class="toc-text">分时操作系统与实时操作系统的比较</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">简介</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number"></span> <span class="toc-text">分时操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E8%A7%A3%E5%86%B3%E6%89%B9%E5%A4%84%E7%90%86%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%97%A0%E4%BA%A4%E4%BA%92%E6%89%8B%E6%AE%B5%E3%80%81%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E5%9B%B0%E9%9A%BE%E7%AD%89%E7%BC%BA%E7%82%B9%EF%BC%8C%E5%87%BA%E7%8E%B0%E4%BA%86%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%82"><span class="toc-number">0.0.1.</span> <span class="toc-text">为解决批处理系统中无交互手段、调试程序困难等缺点，出现了分时操作系统。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-number">0.1.</span> <span class="toc-text">工作方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0%EF%BC%88%E6%9D%A1%E4%BB%B6%EF%BC%89"><span class="toc-number">0.2.</span> <span class="toc-text">分时操作系统实现（条件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%89%87"><span class="toc-number">0.3.</span> <span class="toc-text">时间片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E6%B3%95"><span class="toc-number">0.4.</span> <span class="toc-text">时间片轮转法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-number">0.5.</span> <span class="toc-text">特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number"></span> <span class="toc-text">实时操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%83%BD%E5%8F%8A%E6%97%B6%E5%93%8D%E5%BA%94%E5%A4%96%E9%83%A8%E4%BA%8B%E4%BB%B6%E7%9A%84%E8%AF%B7%E6%B1%82%EF%BC%8C%E5%9C%A8%E8%A7%84%E5%AE%9A%E6%97%B6%E9%99%90%E5%86%85%E5%AE%8C%E6%88%90%E5%AF%B9%E8%AF%A5%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%A4%84%E7%90%86%E3%80%82"><span class="toc-number">0.0.1.</span> <span class="toc-text">能及时响应外部事件的请求，在规定时限内完成对该事件的处理。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">0.1.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E8%BF%BD%E6%B1%82%E7%9B%AE%E6%A0%87"><span class="toc-number">0.2.</span> <span class="toc-text">主要追求目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E7%82%B9-1"><span class="toc-number">0.3.</span> <span class="toc-text">特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%97%B6%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AE%9E%E6%97%B6%E7%B3%BB%E7%BB%9F%E6%AF%94%E8%BE%83"><span class="toc-number"></span> <span class="toc-text">分时系统与实时系统比较</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&text=操作系统第一章作业"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&title=操作系统第一章作业"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&is_video=false&description=操作系统第一章作业"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=操作系统第一章作业&body=Check out this article: http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&title=操作系统第一章作业"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&title=操作系统第一章作业"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&title=操作系统第一章作业"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&title=操作系统第一章作业"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&name=操作系统第一章作业&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lhxone.top/2021/03/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/&t=操作系统第一章作业"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2021
+    Lhxone
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/about/">关于我</a></li>
+         
+          <li><a href="/archives/">文章列表</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?f606c44d5b48ce2fea7b8a2dcc32d89f";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
 </html>
