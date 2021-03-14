@@ -298,6 +298,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
          
           <li><a href="/archives/">文章列表</a></li>
         
+        <li><a href="#fav" title="收藏本站" onclick="Bookmark()" rel="noffolow"><i class="fa fa-star"></i>收藏本站</a></li>
       </ul>
     </nav>
   </div>
@@ -370,5 +371,30 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <!-- Disqus Comments -->
 
 
+
+<script>
+  function Bookmark(){
+	if (document.all && !window.opera) {
+		if (typeof window.external == "object") {
+			window.external.AddFavorite (document.location, document.title); return false;
+	} else return false;}
+
+	else {
+		var ua = navigator.userAgent.toLowerCase();
+		var isWebkit = (ua.indexOf('webkit') != - 1);
+		var isMac = (ua.indexOf('mac') != - 1);
+		if (isWebkit || isMac) {
+            alert('按下组合键: "' + (isMac ? 'Command/Cmd' : 'CTRL') + ' + D" 将本站添加到书签中');
+            return false;
+		}
+		else {
+			x.href=document.location;
+			x.title=document.title;
+			x.rel = "sidebar";
+			return true;
+		}
+	}
+}
+</script>
 </body>
 </html>
