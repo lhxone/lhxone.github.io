@@ -52,7 +52,7 @@
     <!-- rss -->
     
     
-      <link rel="alternate" href="/enble" title="Lhxone 的博客" type="application/atom+xml" />
+      <link rel="alternate" href="/disabled" title="Lhxone 的博客" type="application/atom+xml" />
     
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
@@ -61,6 +61,7 @@
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
+  
     
       <div id="header-post">
   <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
@@ -327,6 +328,8 @@
 
 <script>
   function Bookmark(){
+    console.log(document.location.href);
+    console.log(document.title);
 	if (document.all && !window.opera) {
 		if (typeof window.external == "object") {
 			window.external.AddFavorite (document.location, document.title); return false;
