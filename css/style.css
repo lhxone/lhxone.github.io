@@ -1154,7 +1154,7 @@ article .content blockquote footer cite:before {
 }
 article .content .pullquote {
   margin: 0;
-  width: 45%;
+  width: 100%;
   text-align: left;
 }
 article .content .pullquote.left {
