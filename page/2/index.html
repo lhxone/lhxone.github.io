@@ -133,145 +133,18 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p><code>presto系列软件的安装与使用</code></p>
-<h2 id="fftw"><a href="#fftw" class="headerlink" title="fftw"></a>fftw</h2><p>安装</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># float</span></span><br><span class="line">./configure --enable-float --prefix=/es01/yeesuan/yeesuan003/software/fftw CC=gcc F77=gfortran --enable-shared --enable-static --enable-sse --enable-sse2 --enable-avx --enable-avx2 --enable-fma --enable-mpi --enable-threads --enable-openmp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">make -j &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">make clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># double</span></span><br><span class="line">./configure --prefix=/es01/yeesuan/yeesuan003/software/fftw3d CC=gcc F77=gfortran --enable-shared --enable-static --enable-sse2 --enable-avx --enable-avx2 --enable-fma --enable-mpi --enable-threads --enable-openmp</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        
 
-<p>环境变量配置</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=/es01/yeesuan/yeesuan003/software/fftw/bin<span class="variable">$&#123;PATH:+:<span class="variable">$&#123;PATH&#125;</span>&#125;</span></span><br><span class="line"><span class="built_in">export</span> PATH=/es01/yeesuan/yeesuan003/software/fftw3d/bin<span class="variable">$&#123;PATH:+:<span class="variable">$&#123;PATH&#125;</span>&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/es01/yeesuan/yeesuan003/software/fftw/lib</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/es01/yeesuan/yeesuan003/software/fftw3d/lib</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> C_INCLUDE_PATH=<span class="variable">$C_INCLUDE_PATH</span>:/es01/yeesuan/yeesuan003/software/fftw/include</span><br><span class="line"><span class="built_in">export</span> C_INCLUDE_PATH=<span class="variable">$C_INCLUDE_PATH</span>:/es01/yeesuan/yeesuan003/software/fftw3d/include</span><br></pre></td></tr></table></figure>
+          
+          <div class="entry-summary">
+          presto系列软件的安装与使用
+fftw
 
-<p>测试fftw</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;fftw3.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 5</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    fftw_complex *in,*out;</span><br><span class="line">    fftw_plan p;</span><br><span class="line">    in = (fftw_complex*)<span class="built_in">fftw_malloc</span>(<span class="built_in">sizeof</span> (fftw_complex) * N);</span><br><span class="line">    out= (fftw_complex*)<span class="built_in">fftw_malloc</span>(<span class="built_in">sizeof</span> (fftw_complex) * N);</span><br><span class="line">    p= <span class="built_in">fftw_plan_dft_1d</span>(N, in, out, FFTW_FORWARD, FFTW_ESTIMATE);</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="keyword">for</span> (n= <span class="number">0</span>; n &lt; N; n++)</span><br><span class="line">    &#123;</span><br><span class="line">        in[n][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        in[n][<span class="number">1</span>]= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">fftw_execute</span>(p);</span><br><span class="line">    <span class="built_in">fftw_destroy_plan</span>(p) ;</span><br><span class="line">    <span class="keyword">for</span> (n = <span class="number">0</span>; n &lt; N ;n++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%3.2lf + %3.2lfi\t&quot;</span>, out[n][<span class="number">0</span>],out[n][<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="built_in">fftw_free</span>(in); <span class="built_in">fftw_free</span>(out);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>编译运行</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[yeesuan003@spack <span class="built_in">test</span>]$ gcc -o fftwtest fftwtest.c -I/es01/yeesuan/yeesuan003/software/fftw/include -I/es01/yeesuan/yeesuan003/software/fftw3d/include -L/es01/yeesuan/yeesuan003/software/fftw/lib -L/es01/yeesuan/yeesuan003/software/fftw3d/lib -lfftw3 -lfftw3f</span><br><span class="line">[yeesuan003@spack <span class="built_in">test</span>]$ ./fftwtest</span><br><span class="line">5.00 + 10.00i   0.00 + 0.00i    0.00 + 0.00i    0.00 + 0.00i    0.00 + 0.00i</span><br></pre></td></tr></table></figure>
-
-<h2 id="pgplot"><a href="#pgplot" class="headerlink" title="pgplot"></a>pgplot</h2><p>修改<code>drivers.list</code>（去掉一些注释）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"> 17 ! GCDRIV 0 /GENICOM   Genicom 4410 dot-matrix printer, landscape</span><br><span class="line"> 18 !             Caution: use of GIDRIV may require a license from Unisys:</span><br><span class="line"> 19   GIDRIV 1 /GIF       GIF-format file, landscape</span><br><span class="line"> 20   GIDRIV 2 /VGIF      GIF-format file, portrait</span><br><span class="line"> 21 ! GLDRIV 1 /HPGL      Hewlett-Packard HP-GL plotters, landscape         Std F77</span><br><span class="line"></span><br><span class="line">···</span><br><span class="line">···</span><br><span class="line">···</span><br><span class="line"></span><br><span class="line"> 36 ! MFDRIV 0 /FILE      PGPLOT graphics metafile</span><br><span class="line"> 37 ! NEDRIV 0 /NEXT      Computers running NeXTstep operating system</span><br><span class="line"> 38   NUDRIV 0 /NULL      Null device (no output)                           Std F77</span><br><span class="line"> 39 ! PGDRIV 0 /PGMF      PGPLOT metafile (new format, experimental)        Std F77</span><br><span class="line"> 40 ! PNDRIV 1 /PNG       Portable Network Graphics file                    C</span><br><span class="line"> 41 ! PNDRIV 2 /TPNG      Portable Network Graphics file - transparent background C</span><br><span class="line"> 42 ! PPDRIV 1 /PPM       Portable Pixel Map file, landscape</span><br><span class="line"> 43 ! PPDRIV 2 /VPPM      Portable PIxel Map file, portrait</span><br><span class="line"> 44   PSDRIV 1 /PS        PostScript printers, monochrome, landscape        Std F77</span><br><span class="line"> 45   PSDRIV 2 /VPS       Postscript printers, monochrome, portrait         Std F77</span><br><span class="line"> 46   PSDRIV 3 /CPS       PostScript printers, color, landscape             Std F77</span><br><span class="line"> 47   PSDRIV 4 /VCPS      PostScript printers, color, portrait              Std F77</span><br><span class="line"> 48 ! PXDRIV 0 /PRINTRONI Printronix P300 or P600 dot-matrix printer</span><br><span class="line"> 49 ! QMDRIV 1 /QMS       QUIC devices (QMS and Talaris), landscape         Std F77</span><br><span class="line"></span><br><span class="line">···</span><br><span class="line">···</span><br><span class="line">···</span><br><span class="line"></span><br><span class="line"> 67 ! WDDRIV 1 /WD        X Window dump file, landscape</span><br><span class="line"> 68 ! WDDRIV 2 /VWD       X Window dump file, portrait</span><br><span class="line"> 69 ! WSDRIV 0 /WS        VAX workstations running VWS software             VMS</span><br><span class="line"> 70 ! X2DRIV 0 /XDISP     PGDISP or FIGDISP server for X workstations       C</span><br><span class="line"> 71   XWDRIV 1 /XWINDOW   Workstations running X Window System              C</span><br><span class="line"> 72   XWDRIV 2 /XSERVE    Persistent window on X Window System              C</span><br><span class="line"> 73 ! ZEDRIV 0 /ZETA      Zeta 8 Digital Plotter</span><br><span class="line"> 74 !</span><br><span class="line"> 75 ! The following drivers can only be used in PGPLOT installations on MS-DOS</span><br><span class="line"> 76 ! systems with appropriate hardware and software. Do not select these</span><br><span class="line"> 77 ! on UNIX or VMS systems.</span><br></pre></td></tr></table></figure>
-
-<p>将driver.list拷贝到安装目录下</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> drivers.list ~/software/pgplot/</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># manual</span></span><br><span class="line"><span class="built_in">export</span> PGPLOT_DIR=/es01/yeesuan/yeesuan003/software/pgplot</span><br><span class="line"><span class="built_in">export</span> PGPLOT_DEV=/Xserve</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/es01/yeesuan/yeesuan003/software/pgplot/lib</span><br><span class="line"><span class="built_in">export</span> C_INCLUDE_PATH=<span class="variable">$C_INCLUDE_PATH</span>:/es01/yeesuan/yeesuan003/software/pgplot/include</span><br><span class="line"><span class="built_in">export</span> PGPLOT_FONT=/es01/yeesuan/yeesuan003/software/pgplot/grfont.dat</span><br><span class="line"><span class="built_in">export</span> PGPLOT_LIB=<span class="string">&quot;-L/es01/jnist/software/common/linux-centos7-skylake_avx512/gcc-8.5.0/libx11-1.7.0-2ovdqwa5f77pnonzmft6ttzmblxxibbe/lib -lX11 -L/es01/yeesuan/yeesuan003/software/pgplot/lib -lpgplot&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># spack</span></span><br><span class="line"><span class="built_in">export</span> PGPLOT_DIR=/es01/yeesuan/yeesuan003/software/pgplot</span><br><span class="line"><span class="built_in">export</span> PGPLOT_DEV=/Xserve</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/es01/yeesuan/yeesuan003/lhxone-test/spack/software/linux-centos7-skylake_avx512/gcc-8.5.0/pgplot-5.2.2-nwyu3d24mn4mrjgrg2khh34gwxsiegnc/lib/</span><br><span class="line"><span class="built_in">export</span> C_INCLUDE_PATH=<span class="variable">$C_INCLUDE_PATH</span>:/es01/yeesuan/yeesuan003/lhxone-test/spack/software/linux-centos7-skylake_avx512/gcc-8.5.0/pgplot-5.2.2-nwyu3d24mn4mrjgrg2khh34gwxsiegnc/include</span><br><span class="line"><span class="built_in">export</span> PGPLOT_FONT=/es01/yeesuan/yeesuan003/software/pgplot/grfont.dat</span><br><span class="line"><span class="built_in">export</span> PGPLOT_LIB=<span class="string">&quot;-L/es01/jnist/software/common/linux-centos7-skylake_avx512/gcc-8.5.0/libx11-1.7.0-2ovdqwa5f77pnonzmft6ttzmblxxibbe/lib -lX11 -L/es01/yeesuan/yeesuan003/software/pgplot/lib -lpgplot&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-<p>测试，执行<code>./pgdemo1</code>出现下图</p>
-<p><img src="/pgplot.png"></p>
-<h2 id="tempo2"><a href="#tempo2" class="headerlink" title="tempo2"></a>tempo2</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/es01/yeesuan/yeesuan003/software/tempo2</span><br><span class="line">make -j &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-
-<p>环境变量</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> TEMPO2=/es01/yeesuan/yeesuan003/software/tempo2</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/es01/yeesuan/yeesuan003/software/tempo2/lib</span><br><span class="line"><span class="built_in">export</span> C_INCLUDE_PATH=<span class="variable">$C_INCLUDE_PATH</span>:/es01/yeesuan/yeesuan003/software/tempo2/include</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="libffi"><a href="#libffi" class="headerlink" title="libffi"></a>libffi</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/es01/yeesuan/yeesuan003/software/libffi</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LIBFFI=/es01/yeesuan/yeesuan003/software/libffi</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/es01/yeesuan/yeesuan003/software/libffi/lib64</span><br><span class="line"><span class="built_in">export</span> C_INCLUDE_PATH=<span class="variable">$C_INCLUDE_PATH</span>:/es01/yeesuan/yeesuan003/software/libffi/include</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="glib"><a href="#glib" class="headerlink" title="glib"></a>glib</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xz -d glib-2.48.1.tar.xz</span><br><span class="line">tar xvf glib-2.48.1.tar</span><br><span class="line"><span class="built_in">cd</span> glib-2.48.1</span><br><span class="line">./configure --prefix=/es01/yeesuan/yeesuan003/software/glib</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> /es01/yeesuan/yeesuan003/software/glib/lib/glib-2.0/include/glibconfig.h /es01/yeesuan/yeesuan003/software/glib/include/glib-2.0</span><br><span class="line"><span class="built_in">export</span> GLIB=/es01/yeesuan/yeesuan003/software/glib</span><br><span class="line"><span class="built_in">export</span> PATH=/es01/yeesuan/yeesuan003/software/glib/bin<span class="variable">$&#123;PATH:+:<span class="variable">$&#123;PATH&#125;</span>&#125;</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/es01/yeesuan/yeesuan003/software/glib/lib</span><br><span class="line"><span class="built_in">export</span> C_INCLUDE_PATH=<span class="variable">$C_INCLUDE_PATH</span>:/es01/yeesuan/yeesuan003/software/glib/include</span><br></pre></td></tr></table></figure>
-
-
-<p>测试</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//glibtest.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;glib.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    g_printf(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -o glibtest glibtest.c -I/es01/yeesuan/yeesuan003/software/glib/include/glib-2.0 -L/es01/yeesuan/yeesuan003/software/glib/lib -lglib-2.0</span><br><span class="line">./glibtest</span><br></pre></td></tr></table></figure>
-
-<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/es01/yeesuan/yeesuan003/software/curl</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=/es01/yeesuan/yeesuan003/software/curl/bin<span class="variable">$&#123;PATH:+:<span class="variable">$&#123;PATH&#125;</span>&#125;</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/es01/yeesuan/yeesuan003/software/curl/lib</span><br><span class="line"><span class="built_in">export</span> C_INCLUDE_PATH=<span class="variable">$C_INCLUDE_PATH</span>:/es01/yeesuan/yeesuan003/software/curl/include</span><br></pre></td></tr></table></figure>
-
-<h2 id="cfitsio"><a href="#cfitsio" class="headerlink" title="cfitsio"></a>cfitsio</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/es01/yeesuan/yeesuan003/software/cfitsio</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> CFITSIO=/es01/yeesuan/yeesuan003/software/cfitsio</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/es01/yeesuan/yeesuan003/software/cfitsio/lib</span><br><span class="line"><span class="built_in">export</span> C_INCLUDE_PATH=<span class="variable">$C_INCLUDE_PATH</span>:/es01/yeesuan/yeesuan003/software/cfitsio/include</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// cfitsiotest.cpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;fitsio.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    fitsfile *fptr;         </span><br><span class="line">    <span class="type">char</span> card[FLEN_CARD]; </span><br><span class="line">    <span class="type">int</span> status = <span class="number">0</span>,  nkeys, ii;  <span class="comment">/* MUST initialize status */</span></span><br><span class="line">    <span class="built_in">fits_open_file</span>(&amp;fptr, argv[<span class="number">1</span>], READONLY, &amp;status);</span><br><span class="line">    <span class="built_in">fits_get_hdrspace</span>(fptr, &amp;nkeys, <span class="literal">NULL</span>, &amp;status);</span><br><span class="line">    <span class="keyword">for</span> (ii = <span class="number">1</span>; ii &lt;= nkeys; ii++)  &#123; </span><br><span class="line">      <span class="built_in">fits_read_record</span>(fptr, ii, card, &amp;status); <span class="comment">/* read keyword */</span></span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, card);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;END\n\n&quot;</span>);  <span class="comment">/* terminate listing with END */</span></span><br><span class="line">    <span class="built_in">fits_close_file</span>(fptr, &amp;status);</span><br><span class="line">    <span class="keyword">if</span> (status)          <span class="comment">/* print any error messages */</span></span><br><span class="line">        <span class="built_in">fits_report_error</span>(stderr, status);</span><br><span class="line">    <span class="keyword">return</span>(status);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">g++ -o cfitsiotest cfitsiotest.cpp -L/es01/yeesuan/yeesuan003/software/cfitsio/lib -L/es01/yeesuan/yeesuan003/software/curl/lib -I/es01/yeesuan/yeesuan003/software/cfitsio/include -lm -lcfitsio -lcurl</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试样例  https://www.cv.nrao.edu/~sransom/Parkes_70cm_PSR.fits</span></span><br><span class="line">./cfitsiotest Parkes_70cm_PSR.fits</span><br></pre></td></tr></table></figure>
-
-<h2 id="zlib"><a href="#zlib" class="headerlink" title="zlib"></a>zlib</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/es01/yeesuan/yeesuan003/software/zlib</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ZLIB=/es01/yeesuan/yeesuan003/software/zlib</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/es01/yeesuan/yeesuan003/software/zlib/lib</span><br><span class="line"><span class="built_in">export</span> C_INCLUDE_PATH=<span class="variable">$C_INCLUDE_PATH</span>:/es01/yeesuan/yeesuan003/software/zlib/include</span><br></pre></td></tr></table></figure>
-
-<h2 id="libpng"><a href="#libpng" class="headerlink" title="libpng"></a>libpng</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/es01/yeesuan/yeesuan003/software/libpng LDFLAGS=<span class="string">&quot;-L/es01/yeesuan/yeesuan003/software/zlib/lib -lz&quot;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LIBPNG=/es01/yeesuan/yeesuan003/software/libpng</span><br><span class="line"><span class="built_in">export</span> PATH=/es01/yeesuan/yeesuan003/software/libpng/bin<span class="variable">$&#123;PATH:+:<span class="variable">$&#123;PATH&#125;</span>&#125;</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/es01/yeesuan/yeesuan003/software/libpng/lib</span><br><span class="line"><span class="built_in">export</span> C_INCLUDE_PATH=<span class="variable">$C_INCLUDE_PATH</span>:/es01/yeesuan/yeesuan003/software/libpng/include</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="X11"><a href="#X11" class="headerlink" title="X11"></a>X11</h2><blockquote>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;./configure --prefix=/es01/yeesuan/yeesuan003/software/X11</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>报错缺少pixman</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;wget https://gitlab.freedesktop.org/pixman/pixman/-/archive/master/pixman-master.tar.gz</span><br><span class="line">&gt;&gt;./configure --prefix=/es01/yeesuan/yeesuan003/software/pixman</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>报错缺少autoconf</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;wget http://mirrors.kernel.org/gnu/autoconf/autoconf-latest.tar.gz</span><br><span class="line">&gt;&gt;&gt;./configure --prefix=/es01/yeesuan/yeesuan003/software/autoconf</span><br><span class="line">&gt;&gt;&gt;<span class="built_in">export</span> PATH=/es01/yeesuan/yeesuan003/software/autoconf/bin<span class="variable">$&#123;PATH:+:<span class="variable">$&#123;PATH&#125;</span>&#125;</span></span><br></pre></td></tr></table></figure>
-<p>最后的解决办法：<br>在另一台电脑上yum install x11，然后把&#x2F;usr&#x2F;lib64&#x2F;X11文件打包拷贝过来</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="presto-c"><a href="#presto-c" class="headerlink" title="presto-c"></a>presto-c</h2><p>配置环境变量</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PRESTO=/es01/yeesuan/yeesuan003/source/presto-4.0</span><br><span class="line"><span class="built_in">export</span> PYTHONPATH=/es01/yeesuan/yeesuan003/source/presto-4.0/lib/python</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/es01/yeesuan/yeesuan003/source/presto-4.0/lib</span><br><span class="line"><span class="built_in">export</span> C_INCLUDE_PATH=<span class="variable">$C_INCLUDE_PATH</span>:/es01/yeesuan/yeesuan003/source/presto-4.0/include</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="libpgplot-so-undefined"><a href="#libpgplot-so-undefined" class="headerlink" title="libpgplot.so:undefined"></a>libpgplot.so:undefined</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 尝试更换PGPLOTINC与PGPLOTLINK，使用源码编译安装或spack安装</span></span><br><span class="line"><span class="comment"># Include and link information for PGPLOT v5.X (including shared libs!)</span></span><br><span class="line"><span class="comment"># Typically you need to have your PGPLOT_DIR environment variable set</span></span><br><span class="line">PGPLOTINC = -I/es01/yeesuan/yeesuan003/software/pgplot/<span class="keyword">include</span></span><br><span class="line">PGPLOTLINK = -L/es01/yeesuan/yeesuan003/software/pgplot/lib -lcpgplot -lpgplot <span class="variable">$(X11LINK)</span> <span class="variable">$(PNGLINK)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="slalib-报错-未解决-但是编译成功了"><a href="#slalib-报错-未解决-但是编译成功了" class="headerlink" title="slalib 报错(未解决,但是编译成功了)"></a>slalib 报错(未解决,但是编译成功了)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">tps2c.f(1): remark #15009: sla_tps2c_ has been targeted for automatic cpu dispatch</span><br><span class="line">tpv2c.f(1): remark #15009: sla_tpv2c_ has been targeted for automatic cpu dispatch</span><br><span class="line">ue2pv.f(1): remark #15009: sla_ue2pv_ has been targeted for automatic cpu dispatch</span><br><span class="line">unpcd.f(1): remark #15009: sla_unpcd_ has been targeted for automatic cpu dispatch</span><br><span class="line">v2tp.f(1): remark #15009: sla_v2tp_ has been targeted for automatic cpu dispatch</span><br><span class="line">vdv.f(1): remark #15009: sla_vdv_ has been targeted for automatic cpu dispatch</span><br><span class="line">vn.f(1): remark #15009: sla_vn_ has been targeted for automatic cpu dispatch</span><br><span class="line">vxv.f(1): remark #15009: sla_vxv_ has been targeted for automatic cpu dispatch</span><br><span class="line">xy2xy.f(1): remark #15009: sla_xy2xy_ has been targeted for automatic cpu dispatch</span><br><span class="line">zd.f(1): remark #15009: sla_zd_ has been targeted for automatic cpu dispatch</span><br><span class="line">gresid.F(2): remark #15009: sla_gresid_ has been targeted for automatic cpu dispatch</span><br><span class="line">rm slalib/sla_test.o</span><br><span class="line">cd slalib ; mpiifort -shared -o /es01/yeesuan/yeesuan003/source/presto-4.0/lib/libsla.so -fno-second-underscore *.o</span><br><span class="line">ifort: command line warning #10006: ignoring unknown option &#x27;-fno-second-underscore&#x27;</span><br><span class="line">cd slalib ; mpiifort -o sla_test sla_test.f -fno-second-underscore -L/es01/yeesuan/yeesuan003/source/presto-4.0/lib -lsla</span><br><span class="line">ifort: command line warning #10006: ignoring unknown option &#x27;-fno-second-underscore&#x27;</span><br><span class="line">sla_test.f(901): remark #15009: t_bear_ has been targeted for automatic cpu dispatch</span><br><span class="line">sla_test.f(4397): remark #15009: t_planet_ has been targeted for automatic cpu dispatch</span><br><span class="line">sla_test.f(5561): remark #15009: t_sep_ has been targeted for automatic cpu dispatch</span><br><span class="line">sla_test.f(5770): remark #15009: t_svd_ has been targeted for automatic cpu dispatch</span><br><span class="line">sla_test.f(6205): remark #15009: t_vecmat_ has been targeted for automatic cpu dispatch</span><br><span class="line">slalib/sla_test</span><br><span class="line"> sla_GMSTA test   fails:</span><br><span class="line">   expected =      3.907497135648731579</span><br><span class="line">   actual =        3.907497135670340072</span><br><span class="line"> sla_PA test zenith fails:</span><br><span class="line">   expected =      0.000000000000000000</span><br><span class="line">   actual =        3.141592653589793116</span><br><span class="line"> SLALIB validation failed!</span><br><span class="line">make: *** [slalib] Error 1</span><br></pre></td></tr></table></figure>
-
-<h4 id="undefined-reference-to-‘cpg-’-undefined-reference-to-XSync’（未解决）"><a href="#undefined-reference-to-‘cpg-’-undefined-reference-to-XSync’（未解决）" class="headerlink" title="undefined reference to ‘cpg***’ &amp;&amp; undefined reference to &#96;XSync’（未解决）"></a>undefined reference to ‘cpg***’ &amp;&amp; undefined reference to &#96;XSync’（未解决）</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mpif90 -g -fPIC -Wl,-rpath,/es01/yeesuan/yeesuan003/source/presto-4.0/lib -fopenmp -o /es01/yeesuan/yeesuan003/source/presto-4.0/bin/psrorbit powerplot.o xyline.o psrorbit.o -L/es01/yeesuan/yeesuan003/software/cfitsio/lib -L/es01/yeesuan/yeesuan003/software/curl/lib -lm -lcfitsio -lcurl -L/es01/yeesuan/yeesuan003/source/presto-4.0/lib -lpresto -L/es01/yeesuan/yeesuan003/software/fftw/lib -L/es01/yeesuan/yeesuan003/software/fftw3d/lib  -lfftw3f -lfftw3 -L/es01/yeesuan/yeesuan003/software/pgplot/lib  -lpgplot -L/usr/lib64/X11 -L/es01/yeesuan/yeesuan003/software/libpng/lib -lm</span><br><span class="line">/es01/jnist/software/common/linux-centos7-haswell/gcc-4.8.5/binutils-2.37-7zolnrfrz4erct4f54lkgdpne3p6xj3z/bin/ld: psrorbit.o: in function `main&#x27;:</span><br><span class="line">/es01/yeesuan/yeesuan003/source/presto-4.0/src/psrorbit.c:205: undefined reference to `cpgend&#x27;</span><br><span class="line">/es01/jnist/software/common/linux-centos7-haswell/gcc-4.8.5/binutils-2.37-7zolnrfrz4erct4f54lkgdpne3p6xj3z/bin/ld: powerplot.o: in function `powerplot&#x27;:</span><br><span class="line">/es01/yeesuan/yeesuan003/source/presto-4.0/src/powerplot.c:27: undefined reference to `cpgenv&#x27;</span><br><span class="line">/es01/jnist/software/common/linux-centos7-haswell/gcc-4.8.5/binutils-2.37-7zolnrfrz4erct4f54lkgdpne3p6xj3z/bin/ld: /es01/yeesuan/yeesuan003/source/presto-4.0/src/powerplot.c:30: undefined reference to `cpgscf&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">···</span><br><span class="line">···</span><br><span class="line">···</span><br><span class="line">···</span><br><span class="line"></span><br><span class="line">/es01/jnist/software/common/linux-centos7-haswell/gcc-4.8.5/binutils-2.37-7zolnrfrz4erct4f54lkgdpne3p6xj3z/bin/ld: /es01/yeesuan/yeesuan003/software/pgplot/lib/libpgplot.so: undefined reference to `XGetSelectionOwner&#x27;</span><br><span class="line">/es01/jnist/software/common/linux-centos7-haswell/gcc-4.8.5/binutils-2.37-7zolnrfrz4erct4f54lkgdpne3p6xj3z/bin/ld: /es01/yeesuan/yeesuan003/software/pgplot/lib/libpgplot.so: undefined reference to `XCloseDisplay&#x27;</span><br><span class="line">/es01/jnist/software/common/linux-centos7-haswell/gcc-4.8.5/binutils-2.37-7zolnrfrz4erct4f54lkgdpne3p6xj3z/bin/ld: /es01/yeesuan/yeesuan003/software/pgplot/lib/libpgplot.so: undefined reference to `XSync&#x27;</span><br><span class="line">/es01/jnist/software/common/linux-centos7-haswell/gcc-4.8.5/binutils-2.37-7zolnrfrz4erct4f54lkgdpne3p6xj3z/bin/ld: /es01/yeesuan/yeesuan003/software/pgplot/lib/libpgplot.so: undefined reference to `XMapRaised&#x27;</span><br><span class="line">/es01/jnist/software/common/linux-centos7-haswell/gcc-4.8.5/binutils-2.37-7zolnrfrz4erct4f54lkgdpne3p6xj3z/bin/ld: /es01/yeesuan/yeesuan003/software/pgplot/lib/libpgplot.so: undefined reference to `XPutImage&#x27;</span><br><span class="line">collect2: error: ld returned 1 exit status</span><br><span class="line">make: *** [psrorbit] Error 1</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>尝试使用spack load pgplot，无效</li>
-<li>尝试更换pgplot版本（原版本pgplot5.2），更换为<a href="ftp://ftp.astro.caltech.edu/pub/pgplot/pgplot522.tar.gzpgplot">552版本</a>，无效</li>
-<li>尝试从源码编译x11，无效，找不到<code>X11/Xos.h</code></li>
-</ol>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">(base) [yeesuan003@spack bin]$ ./readfile</span><br><span class="line">   [-page] [-byte] [-b] [-<span class="built_in">float</span>] [-f] [-double] [-d] [-fcomplex] [-<span class="built_in">fc</span>] [-dcomplex] [-dc] [-short] [-s] [-int] [-i] [-long] [-l] [-rzwcand] [-rzw] [-bincand] [-bin] [-position] [-pos] [-pkmb] [-bcpm] [-wapp] [-spigot] [-filterbank] [-psrfits] [-fortran] [-index [index]] [-nph nph] [--] file</span><br><span class="line">      Reads raw data from a binary file and displays it on stdout.</span><br><span class="line">          -page: Paginate the output like <span class="string">&#x27;more&#x27;</span></span><br><span class="line">          -byte: Raw data <span class="keyword">in</span> byte format</span><br><span class="line">             -b: Raw data <span class="keyword">in</span> byte format</span><br><span class="line">         -<span class="built_in">float</span>: Raw data <span class="keyword">in</span> floating point format</span><br><span class="line">             -f: Raw data <span class="keyword">in</span> floating point format</span><br><span class="line">        -double: Raw data <span class="keyword">in</span> double precision format</span><br><span class="line">             -d: Raw data <span class="keyword">in</span> double precision format</span><br><span class="line">      -fcomplex: Raw data <span class="keyword">in</span> float-complex format</span><br><span class="line">            -<span class="built_in">fc</span>: Raw data <span class="keyword">in</span> float-complex format</span><br><span class="line">      -dcomplex: Raw data <span class="keyword">in</span> double-complex format</span><br><span class="line">            -dc: Raw data <span class="keyword">in</span> double-complex format</span><br><span class="line">         -short: Raw data <span class="keyword">in</span> short format</span><br><span class="line">             -s: Raw data <span class="keyword">in</span> short format</span><br><span class="line">           -int: Raw data <span class="keyword">in</span> <span class="built_in">integer</span> format</span><br><span class="line">             -i: Raw data <span class="keyword">in</span> <span class="built_in">integer</span> format</span><br><span class="line">          -long: Raw data <span class="keyword">in</span> long format</span><br><span class="line">             -l: Raw data <span class="keyword">in</span> long format</span><br><span class="line">       -rzwcand: Raw data <span class="keyword">in</span> rzw search candidate format</span><br><span class="line">           -rzw: Raw data <span class="keyword">in</span> rzw search candidate format</span><br><span class="line">       -bincand: Raw data <span class="keyword">in</span> bin search candidate format</span><br><span class="line">           -bin: Raw data <span class="keyword">in</span> bin search candidate format</span><br><span class="line">      -position: Raw data <span class="keyword">in</span> position struct format</span><br><span class="line">           -pos: Raw data <span class="keyword">in</span> position struct format</span><br><span class="line">          -pkmb: Raw data <span class="keyword">in</span> Parkes Multibeam format</span><br><span class="line">          -bcpm: Raw data <span class="keyword">in</span> BCPM format</span><br><span class="line">          -wapp: Raw data <span class="keyword">in</span> WAPP format</span><br><span class="line">        -spigot: Raw data <span class="keyword">in</span> Spigot Card format</span><br><span class="line">    -filterbank: Raw data <span class="keyword">in</span> SIGPROC filterbank format</span><br><span class="line">       -psrfits: Raw data <span class="keyword">in</span> PSRFITS format</span><br><span class="line">       -fortran: Raw data was written by a fortran program</span><br><span class="line">         -index: The range of objects to display</span><br><span class="line">                 0...2 int values between -1 and oo</span><br><span class="line">                 default: `0<span class="string">&#x27; ` -1&#x27;</span></span><br><span class="line">           -nph: 0th FFT bin amplitude (<span class="keyword">for</span> <span class="string">&#x27;RZW&#x27;</span> data)</span><br><span class="line">                 1 double value</span><br><span class="line">                 default: `1.0<span class="string">&#x27;</span></span><br><span class="line"><span class="string">           file: Input data file name.</span></span><br><span class="line"><span class="string">                 1 value</span></span><br><span class="line"><span class="string">  version: 12Mar10</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
-
-
-
-
-<h2 id="pySLALIB"><a href="#pySLALIB" class="headerlink" title="pySLALIB"></a>pySLALIB</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://files.pythonhosted.org/packages/3e/e1/e731f0b69d9145faa2aa321a82ff27d6da1d929ac02d7206ca5ae6ec23e3/pySLALIB-1.0.4.tar.gz</span><br></pre></td></tr></table></figure>
-
-
-
-
-<h2 id="presto-python"><a href="#presto-python" class="headerlink" title="presto-python"></a>presto-python</h2><p>修改<code>setup.py</code></p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">ppgplot_libraries = [<span class="string">&quot;gfortran&quot;</span>, <span class="string">&quot;cpgplot&quot;</span>, <span class="string">&quot;pgplot&quot;</span>, <span class="string">&quot;X11&quot;</span>, <span class="string">&quot;png&quot;</span>, <span class="string">&quot;m&quot;</span>]</span><br><span class="line">ppgplot_library_dirs = [<span class="string">&quot;/usr/lib64&quot;</span>, <span class="string">&quot;/es01/jnist/software/common/linux-centos7-skylake_avx512/gcc-8.5.0/libx11-1.7.0-2ovdqwa5f77pnonzmft6ttzmblxxibbe/lib&quot;</span>]</span><br><span class="line"></span><br><span class="line">presto_libraries = [<span class="string">&quot;presto&quot;</span>, <span class="string">&quot;fftw3&quot;</span>, <span class="string">&quot;m&quot;</span>]</span><br><span class="line">presto_library_dirs = [<span class="string">&quot;/es01/yeesuan/yeesuan003/software/fftw/lib&quot;</span>, <span class="string">&quot;/es01/jnist/software/common/linux-centos7-skylake_avx512/gcc-8.5.0/libx11-1.7.0-2ovdqwa5f77pnonzmft6ttzmblxxibbe/lib&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">####  ~Lines~  #####</span></span><br><span class="line"><span class="comment">####  ~Lines~  #####</span></span><br><span class="line"><span class="comment">####  ~Lines~  #####</span></span><br><span class="line"><span class="comment">####  ~Lines~  #####</span></span><br><span class="line"><span class="comment">####  ~Lines~  #####</span></span><br><span class="line"></span><br><span class="line">setup(name=<span class="string">&quot;presto&quot;</span>,</span><br><span class="line">      version=version,</span><br><span class="line">      install_requires=[<span class="string">&#x27;numpy&#x27;</span>, <span class="string">&#x27;future&#x27;</span>, <span class="string">&#x27;six&#x27;</span>, <span class="string">&#x27;scipy&#x27;</span>, <span class="string">&#x27;matplotlib&#x27;</span>, <span class="string">&#x27;astropy&#x27;</span>, <span class="string">&#x27;pyslalib&#x27;</span>],</span><br><span class="line">      <span class="comment"># scripts=scripts,</span></span><br><span class="line">      description=<span class="string">&quot;Python interfaces to PGPLOT and PRESTO&quot;</span>,</span><br><span class="line">      author=<span class="string">&quot;Scott Ransom (ppgplot from Nick Patavlis)&quot;</span>,</span><br><span class="line">      author_email=<span class="string">&quot;sransom@nrao.edu&quot;</span>,</span><br><span class="line">      url=<span class="string">&quot;https://github.com/scottransom/presto&quot;</span>,</span><br><span class="line">      packages=[<span class="string">&#x27;presto&#x27;</span>, <span class="string">&#x27;presto.ppgplot&#x27;</span>, <span class="string">&#x27;presto.presto&#x27;</span>, <span class="string">&#x27;presto.singlepulse&#x27;</span>],</span><br><span class="line">      package_dir=&#123;<span class="string">&#x27;presto.ppgplot&#x27;</span>: <span class="string">&#x27;python/ppgplot_src&#x27;</span>,</span><br><span class="line">                   <span class="string">&#x27;presto.presto&#x27;</span>: <span class="string">&#x27;python/presto_src&#x27;</span>,</span><br><span class="line">                   <span class="string">&#x27;presto&#x27;</span>: <span class="string">&#x27;python/presto&#x27;</span>,</span><br><span class="line">                   <span class="string">&#x27;presto.singlepulse&#x27;</span>: <span class="string">&#x27;python/presto/singlepulse&#x27;</span>,</span><br><span class="line">                   &#125;,</span><br><span class="line">      package_data=&#123;<span class="string">&#x27;presto&#x27;</span>: [<span class="string">&#x27;*.json&#x27;</span>]&#125;,</span><br><span class="line">      ext_modules=[ext_ppgplot, ext_presto, ext_fftfit])</span><br></pre></td></tr></table></figure>
-
-<p>执行以下命令安装</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CC=<span class="string">&#x27;gcc -std=c99&#x27;</span> python3 setup.py install --home=<span class="variable">$&#123;PRESTO&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>环境变量配置</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> <span class="built_in">export</span> PYTHONPATH=/es01/yeesuan/yeesuan003/source/presto-4.0/lib/python/presto-4.0-py3.9-linux-x86_64.egg</span><br></pre></td></tr></table></figure>
-
-<p>测试</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">(base) [yeesuan003@spack presto-4.0]$ <span class="built_in">cd</span> bin/</span><br><span class="line">(base) [yeesuan003@spack bin]$ ./DDplan.py</span><br><span class="line"></span><br><span class="line">    usage:  DDplan.py [options] [raw PSRFITS or filterbank file]</span><br><span class="line">  [-h, --<span class="built_in">help</span>]                    : Display this <span class="built_in">help</span></span><br><span class="line">  [-o outfile, --outfile=outfile] : Output .eps plot file (default is xwin)</span><br><span class="line">  [-l loDM, --loDM=loDM]          : Low DM to search   (default = 0 pc cm-3)</span><br><span class="line">  [-d hiDM, --hiDM=HIDM]          : High DM to search  (default = 1000 pc cm-3)</span><br><span class="line">  [-f fctr, --fctr=fctr]          : Center frequency   (default = 1400MHz)</span><br><span class="line">  [-b BW, --bw=bandwidth]         : Bandwidth <span class="keyword">in</span> MHz   (default = 300MHz)</span><br><span class="line">  [-n <span class="comment">#chan, --numchan=#chan]     : Number of channels (default = 1024)</span></span><br><span class="line">  [-k blocklen, --blocklen=<span class="comment">#spec] : Spectra per subint (for downsampling) (default = 1024)</span></span><br><span class="line">  [-c cDM, --cohdm=cDM]           : Coherent DM <span class="keyword">in</span> each chan  (default = 0.0)</span><br><span class="line">  [-t dt, --dt=dt]                : Sample time (s)    (default = 0.000064 s)</span><br><span class="line">  [-s subbands, --subbands=nsub]  : Number of subbands (default = <span class="comment">#chan)</span></span><br><span class="line">  [-r resolution, --res=res]      : Acceptable time resolution (ms)</span><br><span class="line">  [-w, --write]                   : Write a dedisp.py file <span class="keyword">for</span> the plan</span><br><span class="line"></span><br><span class="line">  The program generates a good plan <span class="keyword">for</span> de-dispersing raw data.  It</span><br><span class="line">  trades a small amount of sensitivity <span class="keyword">in</span> order to save computation costs.</span><br><span class="line">  It will determine the observation parameters from the raw data file</span><br><span class="line">  <span class="keyword">if</span> it exists.</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="fitsio"><a href="#fitsio" class="headerlink" title="fitsio"></a>fitsio</h2><p>地址：<code>https://github.com/esheldon/fitsio</code></p>
-<p>解压并进入<code>cfitsio3490</code>目录，执行<code>./configure</code>,<code>make</code>,<code>make install</code></p>
-<p>进入上层目录，执行<code>python3 setup.py install</code></p>
-<h2 id="mpi4py"><a href="#mpi4py" class="headerlink" title="mpi4py"></a>mpi4py</h2><p>安装</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install mpi4py</span><br></pre></td></tr></table></figure>
-
-<p>测试</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mpi_helloworld.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> mpi4py <span class="keyword">import</span> MPI</span><br><span class="line"></span><br><span class="line">comm = MPI.COMM_WORLD</span><br><span class="line">size = comm.Get_size()</span><br><span class="line">rank = comm.Get_rank()</span><br><span class="line">node_name = MPI.Get_processor_name() <span class="comment"># get the name of the node</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Hello world from process &#123;0&#125; at &#123;1&#125;.&#x27;</span>.<span class="built_in">format</span>(rank, node_name))</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mpiexec -n 3 python3 test.py</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="presto-c的spack安装代码"><a href="#presto-c的spack安装代码" class="headerlink" title="presto-c的spack安装代码"></a>presto-c的spack安装代码</h2><figure class="highlight python"><figcaption><span>package.py</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> spack <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PrestoC</span>(<span class="title class_ inherited__">MakefilePackage</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;presto-c By lhxone&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># <span class="doctag">FIXME:</span> Add a proper url for your package&#x27;s homepage here.</span></span><br><span class="line">    homepage = <span class="string">&quot;https://blog.lhxone.com&quot;</span></span><br><span class="line">    url      = <span class="string">&quot;file:///es01/yeesuan/yeesuan003/source/presto-c.tar.gz&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># <span class="doctag">FIXME:</span> Add a list of GitHub accounts to</span></span><br><span class="line">    <span class="comment"># notify when the package is updated.</span></span><br><span class="line">    <span class="comment"># maintainers = [&#x27;github_user1&#x27;, &#x27;github_user2&#x27;]</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    version(<span class="string">&#x27;1.2.4&#x27;</span>, <span class="string">&#x27;c7d69f3eb8680a54541d3525fbe46159539037aa6a5fb5ae59fb210a9e0034b1&#x27;</span>)</span><br><span class="line"> </span><br><span class="line">    variant(<span class="string">&#x27;mpi&#x27;</span>, default=<span class="literal">False</span>, description=<span class="string">&#x27;Enable MPI&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    depends_on(<span class="string">&#x27;libx11&#x27;</span>)</span><br><span class="line">    depends_on(<span class="string">&#x27;cfitsio&#x27;</span>)</span><br><span class="line">    depends_on(<span class="string">&#x27;pgplot&#x27;</span>)</span><br><span class="line">    depends_on(<span class="string">&#x27;libpng&#x27;</span>)</span><br><span class="line">    depends_on(<span class="string">&#x27;fftw&#x27;</span>)</span><br><span class="line">    depends_on(<span class="string">&#x27;curl&#x27;</span>)</span><br><span class="line">    depends_on(<span class="string">&#x27;mpi&#x27;</span>, when = <span class="string">&#x27;+mpi&#x27;</span>)</span><br><span class="line">    depends_on(<span class="string">&#x27;gglib&#x27;</span>, <span class="built_in">type</span>=(<span class="string">&#x27;build&#x27;</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">setup_build_environment</span>(<span class="params">self, env</span>):</span><br><span class="line">        env.append_path(<span class="string">&#x27;LD_LIBRARY_PATH&#x27;</span>, self.stage.source_path + <span class="string">&#x27;/lib&#x27;</span>)</span><br><span class="line">        env.<span class="built_in">set</span>(<span class="string">&#x27;PRESTO&#x27;</span>, self.stage.source_path)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">edit</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">with</span> working_dir(<span class="string">&#x27;src&#x27;</span>):</span><br><span class="line">            makefile = FileFilter(<span class="string">&#x27;Makefile&#x27;</span>)</span><br><span class="line">            makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*X11LINK\s*:=.*&#x27;</span>,  <span class="string">&#x27;X11LINK := -L&#x27;</span> + spec[<span class="string">&#x27;libx11&#x27;</span>].prefix.lib +<span class="string">&#x27; -lX11&#x27;</span>)</span><br><span class="line">            makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*PNGLINK\s*:=.*&#x27;</span>, <span class="string">&#x27;PNGLINK := -L&#x27;</span> + spec[<span class="string">&#x27;libpng&#x27;</span>].prefix.lib + <span class="string">&#x27; -lpng&#x27;</span>)</span><br><span class="line">            </span><br><span class="line">            makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*PGPLOTINC\s*=.*&#x27;</span>, <span class="string">&#x27;PGPLOTINC = -I&#x27;</span> + spec[<span class="string">&#x27;pgplot&#x27;</span>].prefix.include)</span><br><span class="line">            makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*PGPLOTLINK\s*=.*&#x27;</span>,  <span class="string">&#x27;PGPLOTLINK = -L&#x27;</span>  + spec[<span class="string">&#x27;pgplot&#x27;</span>].prefix.lib + <span class="string">&#x27; -lcpgplot -lpgplot $(X11LINK) $(PNGLINK)&#x27;</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># makefile.filter(r&#x27;^\s*FFTINC\s*:=.*&#x27;,  &#x27;FFTINC := -I&#x27;  + spec[&#x27;fftw&#x27;].prefix.include)</span></span><br><span class="line">            <span class="comment"># makefile.filter(r&#x27;^\s*FFTLINK\s*:=.*&#x27;,  &#x27;FFTLINK := -L&#x27;  + spec[&#x27;fftw&#x27;].prefix.lib + &#x27; -lfftw3 -lfftw3f&#x27;)</span></span><br><span class="line">            makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*FFTINC\s*:=.*&#x27;</span>,  <span class="string">&#x27;FFTINC := -I/es01/yeesuan/yeesuan003/software/fftw/include&#x27;</span>)</span><br><span class="line">            makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*FFTLINK\s*:=.*&#x27;</span>,  <span class="string">&#x27;FFTLINK := -L/es01/yeesuan/yeesuan003/software/fftw/lib -lfftw3 -lfftw3f&#x27;</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># makefile.filter(r&#x27;^\s*CFITSIOINC\s*:=.*&#x27;, &#x27;CFITSIOINC := -I/es01/yeesuan/yeesuan003/software/cfitsio/include&#x27;)</span></span><br><span class="line">            <span class="comment"># makefile.filter(r&#x27;^\s*CFITSIOLINK\s*:=.*&#x27;, &#x27;CFITSIOLINK := -L/es01/yeesuan/yeesuan003/software/cfitsio/lib &#x27;)</span></span><br><span class="line">            makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*CFITSIOINC\s*:=.*&#x27;</span>, <span class="string">&#x27;CFITSIOINC := -I&#x27;</span> + spec[<span class="string">&#x27;cfitsio&#x27;</span>].prefix.include)</span><br><span class="line">            makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*CFITSIOLINK\s*:=.*&#x27;</span>, <span class="string">&#x27;CFITSIOLINK := -L&#x27;</span> + spec[<span class="string">&#x27;cfitsio&#x27;</span>].prefix.lib + <span class="string">&#x27; -L&#x27;</span> + spec[<span class="string">&#x27;curl&#x27;</span>].prefix.lib + <span class="string">&#x27; -lm -lcfitsio -lcurl&#x27;</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="comment">#如果使用spec[&#x27;glib&#x27;]会报错</span></span><br><span class="line">            <span class="comment"># ==&gt; [2022-04-07-11:11:19.715615] Releasing read lock on fftw-3.3.10-sm7gxt7rfyvosnyv5nztr2ynnai2uv3d</span></span><br><span class="line">            <span class="comment"># ==&gt; [2022-04-07-11:11:19.716372] Error: presto-c-1.2.3-y6i7lvlmsuxopndcmd5voa5i75dkqwu7: Package was not installed</span></span><br><span class="line">            <span class="comment"># ==&gt; [2022-04-07-11:11:19.716511] InstallError: Installation request failed.  Refer to reported errors for failing package(s).</span></span><br><span class="line">            <span class="comment"># ==&gt; [2022-04-07-11:11:19.716556] Error: Installation request failed.  Refer to reported errors for failing package(s).</span></span><br><span class="line">            makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*GLIBINC\s*:=.*&#x27;</span>, <span class="string">&#x27;GLIBINC := -I&#x27;</span> + spec[<span class="string">&#x27;gglib&#x27;</span>].prefix.include + <span class="string">&#x27;/glib-2.0&#x27;</span>)</span><br><span class="line">            makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*GLIBLINK\s*:=.*&#x27;</span>, <span class="string">&#x27;GLIBLINK := -L&#x27;</span> + spec[<span class="string">&#x27;gglib&#x27;</span>].prefix.lib + <span class="string">&#x27; -lglib-2.0&#x27;</span>)</span><br><span class="line">            <span class="comment"># makefile.filter(r&#x27;^\s*GLIBINC\s*:=.*&#x27;, &#x27;GLIBINC := -I/es01/yeesuan/yeesuan003/software/glib/include/glib-2.0&#x27;)</span></span><br><span class="line">            <span class="comment"># makefile.filter(r&#x27;^\s*GLIBLINK\s*:=.*&#x27;, &#x27;GLIBLINK := -L/es01/yeesuan/yeesuan003/software/glib/lib -lglib-2.0&#x27;)</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># Enable mpi</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;+mpi&#x27;</span> <span class="keyword">in</span> self.spec:</span><br><span class="line">                makefile.<span class="built_in">filter</span>(<span class="string">&#x27;(mpicc)&#x27;</span>, <span class="string">&#x27;mpiicc&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">build</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">        <span class="keyword">with</span> working_dir(<span class="string">&#x27;src&#x27;</span>):</span><br><span class="line">            make(<span class="string">&#x27;makewisdom&#x27;</span>)</span><br><span class="line">            make(<span class="string">&#x27;prep&#x27;</span>)</span><br><span class="line">            make()</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;+mpi&#x27;</span> <span class="keyword">in</span> self.spec:</span><br><span class="line">                make(<span class="string">&#x27;mpi&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">install</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">        mkdir(prefix.<span class="built_in">bin</span>)</span><br><span class="line">        <span class="keyword">with</span> working_dir(<span class="string">&#x27;bin&#x27;</span>):</span><br><span class="line">            install(<span class="string">&#x27;*&#x27;</span>, prefix.<span class="built_in">bin</span>)</span><br><span class="line"></span><br><span class="line">        mkdir(prefix.lib)</span><br><span class="line">        <span class="keyword">with</span> working_dir(<span class="string">&#x27;lib&#x27;</span>):</span><br><span class="line">            install(<span class="string">&#x27;*&#x27;</span>, prefix.lib)</span><br><span class="line"></span><br><span class="line">        mkdir(prefix.include)</span><br><span class="line">        <span class="keyword">with</span> working_dir(<span class="string">&#x27;include&#x27;</span>):</span><br><span class="line">            install(<span class="string">&#x27;*&#x27;</span>, prefix.include)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2022/03/31/presto%E7%B3%BB%E5%88%97%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/#more">Continue Reading →</a>
+          </p>
+        </div>
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -279,81 +152,6 @@
       
   <span class="ico-tags"></span>
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/presto-c/" rel="tag">presto-c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8C%97/" rel="tag">安装指北</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/" rel="tag">实习日记</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-毕设杂记"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2022/03/15/%E6%AF%95%E8%AE%BE%E6%9D%82%E8%AE%B0/">毕设杂记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2022/03/15/%E6%AF%95%E8%AE%BE%E6%9D%82%E8%AE%B0/" class="article-date">
-	  <time datetime="2022-03-15T12:32:19.000Z" itemprop="datePublished">March 15, 2022</time>
-	</a>
-
-       
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一些idea"><a href="#一些idea" class="headerlink" title="一些idea"></a>一些idea</h2><ul>
-<li><p>slurm作业调度</p>
-</li>
-<li><p>并行计算在数学建模中的应用(以雅各布迭代&#x2F;Matlab为例)</p>
-</li>
-<li><p>使用Spack软件包管理器构建高性能计算软件环境</p>
-</li>
-</ul>
-<h2 id="并行计算"><a href="#并行计算" class="headerlink" title="并行计算"></a>并行计算</h2><p>并行计算(parallelcomputing）是指在并行计算机上，将一个应应用分解成多个子任务，分配给不同的处理器，各个处理器之间相互协同，并行地执行子任务，从而达到加快求解速度，或者提高求解应用问题规模的目的。</p>
-<p>并行计算机是相对串行计算机而言的,是拥有多个处理单元顺序执行计算程序的计算机。如果处理单元之间使用消息传递的方式(MPI)来实现相互通信,则称为多计算机(MuiltcomPuters),其是当今最流行的并行计算机。</p>
-<p>所谓的并行计算,其实就是利用并行机将一个应用分解成多个子任务的一种计算模式。而通过利用不同处理器进行不同子任务的计算,并且实现各处理器的相互协调,则能够使子任务得到并行执行,继而使应用求解速度得到提升。所以在求解具有一定规模的应用问题时,通常可以采取并行计算。就目前来看,想要开展并行计算,还需要满足三方面的条件,即并行机、应用问题的并行度和并行编程。</p>
-<hr>
-<h2 id="基本条件与目标"><a href="#基本条件与目标" class="headerlink" title="基本条件与目标"></a>基本条件与目标</h2><p>为了成功开展并行计算，必须具备了3个基本条件：</p>
-<ol>
-<li><p>并行计算机。并行计算机至少包含两台或两台以上处理机，这些处理机通过互联网络相互连接，相互通信。</p>
-</li>
-<li><p>应用问题必领具有并行度．也就是说，应用可以分解为多个子任务，这些子任务可以并行地执行．将一个应用分解为多个子任务的过程，称为并行算法的设计。</p>
-</li>
-<li><p>并行编程。在并行计算机提供的并行编程环境上，具体实现并行算法，编制并行程序并运行该程序，从而达到并行求解应用问题的目的。</p>
-</li>
-</ol>
-<p>对于具体的应用问题,利用并行计算技术可以达成两个主要的研究目标:</p>
-<ol>
-<li><p>加速求解问题的速度。</p>
-</li>
-<li><p>提高求解问题的规模。</p>
-</li>
-</ol>
-<h2 id="Jacobi迭代法"><a href="#Jacobi迭代法" class="headerlink" title="Jacobi迭代法"></a>Jacobi迭代法</h2><p>尝试使用并行方法重写Jacobi迭代</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mpi.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//#define DEBUG 1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TRUE 1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FALSE 0</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> bool int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_N 100 <span class="comment">//允许的最大未知数个数</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_A (MAX_N * MAX_N) <span class="comment">//允许最大的系数的个数</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_ITERATION 100000000 <span class="comment">//最大迭代次数</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TOLERANCE 0.000001 <span class="comment">//误差</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> pID, pSize; <span class="comment">//pID：当前进程ID，pSize：总的进程数</span></span><br><span class="line"><span class="type">int</span> n, iteration = <span class="number">0</span>; <span class="comment">//n：未知数的个数，iteration：迭代的次数</span></span><br><span class="line"><span class="type">float</span> x[MAX_N], new_x[MAX_N], result_x[MAX_N]; <span class="comment">//x：表示上一次迭代的结果，new_x：表示这一次迭代的结果，result_x：表示归约之后得到的总的结果</span></span><br><span class="line"><span class="type">float</span> a[MAX_N][MAX_N]; <span class="comment">//系数</span></span><br><span class="line"><span class="type">float</span> b[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="comment">//输入</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">input</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line"></span><br><span class="line">    n = <span class="number">3</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The n is %d\n&quot;</span>, n);</span><br><span class="line">    <span class="built_in">fflush</span>(stdout);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;/Users/lhxone/Documents/CLionProjects/demo/data.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, stdin);</span><br><span class="line">    <span class="comment">//输入系数</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Input a[%d][0] to a[%d][n-1]:\n&quot;</span>, i, i);</span><br><span class="line">        <span class="built_in">fflush</span>(stdout);</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%f&quot;</span>, &amp;a[i][j]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输入b</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Input b[0] to b[n-1]:\n&quot;</span>);</span><br><span class="line">    <span class="built_in">fflush</span>(stdout);</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%f&quot;</span>, &amp;b[j]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出结果</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">output</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Total iteration : %d&quot;</span>, iteration);</span><br><span class="line">    <span class="keyword">if</span> (iteration &gt; MAX_ITERATION)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;, that is out of the limit of iteration!&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;x[%d] is %f\n&quot;</span>, i, result_x[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断精度是否满足要求，满足要求则返回TRUE，否则，返回FALSE</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">tolerance</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//有一个不满足误差的，则返回FALSE</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        <span class="keyword">if</span> (result_x[i] - x[i] &gt; TOLERANCE || x[i] - result_x[i] &gt; TOLERANCE)</span><br><span class="line">            <span class="keyword">return</span> FALSE;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> DEBUG</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;TRUE From %d\n&quot;</span>, pID);</span><br><span class="line">    <span class="built_in">fflush</span>(stdout);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//全部满足误差，返回TRUE</span></span><br><span class="line">    <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//入口，主函数</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> </span>&#123;</span><br><span class="line"><span class="comment">//    MPI_Status status;</span></span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line">    <span class="type">float</span> sum;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化</span></span><br><span class="line">    <span class="built_in">MPI_Init</span>(&amp;argc, &amp;argv);</span><br><span class="line">    <span class="built_in">MPI_Comm_rank</span>(MPI_COMM_WORLD, &amp;pID);</span><br><span class="line">    <span class="built_in">MPI_Comm_size</span>(MPI_COMM_WORLD, &amp;pSize);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//每个进程对应一个未知数</span></span><br><span class="line">    n = pSize;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//根进程负责输入</span></span><br><span class="line">    <span class="keyword">if</span> (!pID)</span><br><span class="line">        <span class="built_in">input</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//广播系数</span></span><br><span class="line">    <span class="built_in">MPI_Bcast</span>(a, MAX_A, MPI_FLOAT, <span class="number">0</span>, MPI_COMM_WORLD);</span><br><span class="line">    <span class="comment">//广播b</span></span><br><span class="line">    <span class="built_in">MPI_Bcast</span>(b, MAX_N, MPI_FLOAT, <span class="number">0</span>, MPI_COMM_WORLD);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> DEBUG</span></span><br><span class="line">    <span class="comment">//打印a, b</span></span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%f &quot;</span>, b[j]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; From pID: %d\n&quot;</span>, pID);</span><br><span class="line">    <span class="built_in">fflush</span>(stdout);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化x的值</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        x[i] = b[i];</span><br><span class="line">        new_x[i] = b[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//当前进程处理的元素为该进程的ID</span></span><br><span class="line">    i = pID;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//迭代求x[i]的值</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="comment">//迭代次数加1</span></span><br><span class="line">        iteration++;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将上一轮迭代的结果作为本轮迭代的起始值，并设置新的迭代结果为0</span></span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">            x[j] = result_x[j];</span><br><span class="line">            new_x[j] = <span class="number">0</span>;</span><br><span class="line">            result_x[j] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//同步等待</span></span><br><span class="line">        <span class="built_in">MPI_Barrier</span>(MPI_COMM_WORLD);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> DEBUG</span></span><br><span class="line">        <span class="comment">//打印本轮迭代的初始值</span></span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%f &quot;</span>, x[j]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; From pID: %d\n&quot;</span>, pID);</span><br><span class="line">        <span class="built_in">fflush</span>(stdout);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//求和</span></span><br><span class="line">        sum = -a[i][i] * x[i];</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++) sum += a[i][j] * x[j];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//求新的x[i]</span></span><br><span class="line">        new_x[i] = (b[i] - sum) / a[i][i];</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> DEBUG</span></span><br><span class="line">        <span class="comment">//打印本轮迭代的结果</span></span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%f &quot;</span>, new_x[j]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; From pID: %d\n&quot;</span>, pID);</span><br><span class="line">        <span class="built_in">fflush</span>(stdout);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//使用归约的方法，同步所有计算结果</span></span><br><span class="line">        <span class="built_in">MPI_Allreduce</span>(new_x, result_x, n, MPI_FLOAT, MPI_SUM, MPI_COMM_WORLD);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> DEBUG</span></span><br><span class="line">        <span class="comment">//打印归约后的结果</span></span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%f &quot;</span>, result_x[j]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; From pID: %d\n&quot;</span>, pID);</span><br><span class="line">        <span class="built_in">fflush</span>(stdout);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//如果迭代次数超过了最大迭代次数则退出</span></span><br><span class="line">        <span class="keyword">if</span> (iteration &gt; MAX_ITERATION) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">while</span> (!<span class="built_in">tolerance</span>()); <span class="comment">//精度不满足要求继续迭代</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//根进程负责输出结果</span></span><br><span class="line">    <span class="keyword">if</span> (!pID) <span class="built_in">output</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//结束</span></span><br><span class="line">    <span class="built_in">MPI_Finalize</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BA%E6%96%87/" rel="tag">论文</a></li></ul>
 
       
     </footer>
@@ -396,8 +194,7 @@
           <div class="entry-summary">
           FVCOM编译&amp;测试FVCOM介绍：
 
-FVCOM 是由 UMASSD-WHOI 联合开发的预测性、非结构化网格、有限体积、自由表面、3-D 原始方程沿海海洋环流模型。该模型由动量、连续性、温度、盐度和密度方程组成，并使用湍流闭合子模型进行物理和数学闭合。水平网格由非结构化三角形单元组成，不规则底部使用广义地形跟踪坐标呈现。由德国 Burchard 研究小组（Burchard，2002 年）开发的通用海洋湍流模型 (GOTM) 已添加到 FVCOM 中，以提供可选的垂直湍流闭合方案。FVCOM 是通过在非结构化三角形网格上以控制方程的积分形式进行的二阶精确离散通量计算来数值求解的。这种方法结合了有限元方法（网格灵活性）和有限差分方法（数值效率和代码简单性）的最佳特性，并提供了更好的局部和全局动量、质量、盐、热和示踪剂守恒的数值表示. 除了非结构化网格提供的拓扑灵活性和编码结构的简单性之外，FVCOM 准确求解标量守恒方程的能力使 FVCOM 非常适合许多沿海和跨学科科学应用。
-
+FVCOM 是由 UMASSD-WHOI 联合开发的预测性、非结构化网格、有限体积、自由表面、3-D 原始方程沿海海洋环流模型。
 
         
           <p class="article-more-link">
@@ -447,45 +244,17 @@ FVCOM 是由 UMASSD-WHOI 联合开发的预测性、非结构化网格、有限�
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="直接编译blas"><a href="#直接编译blas" class="headerlink" title="直接编译blas"></a>直接编译blas</h1><p>首先从netlib官网下载源码,然后进入blas目录,修改make.inc文件最后一行,将其改为<code>BLASLIB      = libblas.a</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.netlib.org/blas/blas-3.10.0.tgz</span><br><span class="line">tar xzvf blas-3.10.0.tgz</span><br><span class="line">cd BLAS-3.10.0</span><br><span class="line">vim make.inc</span><br></pre></td></tr></table></figure>
+        
 
-<p>修改完成后,执行<code>make all</code>即可在当前目录下编译生成<code>libblas.a</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make all</span><br><span class="line">find libblas.a</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">libblas.a</span></span><br></pre></td></tr></table></figure>
+          
+          <div class="entry-summary">
+          直接编译blas首先从netlib官网下载源码,然后进入blas目录,修改make.inc文件最后一行,将其改为BLASLIB      = libblas.a
 
-<h1 id="使用spack脚本编译blas"><a href="#使用spack脚本编译blas" class="headerlink" title="使用spack脚本编译blas"></a>使用spack脚本编译blas</h1><h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><ul>
-<li><p><code>spack create [-n name] [-t TEMPLATE, --template TEMPLATE] [url]</code></p>
-<p>创建一个以[template]为模版的包,并生成对应目录和package.py</p>
-</li>
-<li><p><code>spack info [name]</code></p>
-<p>显示一个包的信息</p>
-</li>
-<li><p><code>spack edit [name]</code></p>
-<p>快速编辑某个包目录下的package.py文件</p>
-</li>
-<li><pre><code class="spack">
-安装某个包,-v参数可以显示安装编译过程的详细日志
-</code></pre>
-</li>
-</ul>
-<h3 id="开始编译"><a href="#开始编译" class="headerlink" title="开始编译"></a>开始编译</h3><p>首先创建一个包,并编辑package.py文件.值得注意的是,包名不可以为blas,这会与现有规则冲突(<code>$spack/etc/spack/defaults/packages.yaml</code>)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 执行此命令会在创建完成后进入编辑package.py,加入--skip-editor以跳过</span><br><span class="line">spack create netlib-blas</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在package.py中修改以下内容</span></span><br><span class="line"><span class="keyword">from</span> spack <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># netlib-blas -&gt; NetlibBlas</span></span><br><span class="line"><span class="comment"># 3dm -&gt; _3dm</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NetlibBlas</span>(<span class="title class_ inherited__">MakefilePackage</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;FIXME: Put a proper description of your package here.&quot;&quot;&quot;</span></span><br><span class="line">    homepage = <span class="string">&quot;https://www.example.com&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 指定url、版本以及哈希值</span></span><br><span class="line">    url      = <span class="string">&quot;file:///es01/yeesuan/yeesuan003/mirror/blasblas-3.10.0.tgz&quot;</span></span><br><span class="line">    version(<span class="string">&#x27;3.10.0&#x27;</span>, sha256=<span class="string">&#x27;2e360d99c9bdc8407a61888c40aa853fb4219420ebb8264db486cb8860468ab3&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">edit</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">        <span class="comment"># 文件操作函数filter_file(regex, repl, *filenames, **kwargs)</span></span><br><span class="line">        <span class="comment"># 使用正则表达式修改编译生成的文件名称</span></span><br><span class="line">        makefile = FileFilter(<span class="string">&#x27;make.inc&#x27;</span>)</span><br><span class="line">        makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*BLASLIB\s*=.*&#x27;</span>,  <span class="string">&#x27;BLASLIB      = libblas.a&#x27;</span>)  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">install</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">        <span class="comment"># 生成lib目录</span></span><br><span class="line">        mkdir(prefix.lib)</span><br><span class="line">        install(<span class="string">&quot;libblas.a&quot;</span>,prefix.lib)</span><br></pre></td></tr></table></figure>
-
-<p>编辑完成后,执行<code>spack install netlib-blas</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[yeesuan003@spack ~]$ spack install netlib-blas</span><br><span class="line">==&gt; Installing netlib-blas-3.10.0-lvh47amv4vn23kti7cwdkbe4izugjsr4</span><br><span class="line">==&gt; No binary for netlib-blas-3.10.0-lvh47amv4vn23kti7cwdkbe4izugjsr4 found: installing from source</span><br><span class="line">==&gt; Using cached archive: /es01/yeesuan/yeesuan003/lhxone-test/spack/var/spack/cache/_source-cache/archive/2e/2e360d99c9bdc8407a61888c40aa853fb4219420ebb8264db486cb8860468ab3.tgz</span><br><span class="line">==&gt; No patches needed for netlib-blas</span><br><span class="line">==&gt; netlib-blas: Executing phase: &#x27;edit&#x27;</span><br><span class="line">==&gt; netlib-blas: Executing phase: &#x27;build&#x27;</span><br><span class="line">==&gt; netlib-blas: Executing phase: &#x27;install&#x27;</span><br><span class="line">==&gt; netlib-blas: Successfully installed netlib-blas-3.10.0-lvh47amv4vn23kti7cwdkbe4izugjsr4</span><br><span class="line">  Fetch: 0.00s.  Build: 1.08s.  Total: 1.09s.</span><br><span class="line">[+] /es01/yeesuan/yeesuan003/lhxone-test/spack/software/linux-centos7-haswell/gcc-4.8.5/netlib-blas-3.10.0-lvh47amv4vn23kti7cwdkbe4izugjsr4</span><br><span class="line">[yeesuan003@spack ~]$ tree /es01/yeesuan/yeesuan003/lhxone-test/spack/software/linux-centos7-haswell/gcc-4.8.5/netlib-blas-3.10.0-lvh47amv4vn23kti7cwdkbe4izugjsr4</span><br><span class="line">/es01/yeesuan/yeesuan003/lhxone-test/spack/software/linux-centos7-haswell/gcc-4.8.5/netlib-blas-3.10.0-lvh47amv4vn23kti7cwdkbe4izugjsr4</span><br><span class="line">└── lib</span><br><span class="line">    └── libblas.a</span><br><span class="line"></span><br><span class="line">1 directory, 1 file</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">depends_on(<span class="string">&#x27;gmake&#x27;</span>, <span class="built_in">type</span>=<span class="string">&#x27;build&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h4 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">edit</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">    env[<span class="string">&#x27;PREFIX&#x27;</span>] = prefix</span><br><span class="line">    env[<span class="string">&#x27;BLASLIB&#x27;</span>] = spec[<span class="string">&#x27;blas&#x27;</span>].libs.ld_flags</span><br></pre></td></tr></table></figure>
-
-<h4 id="编辑Makefile"><a href="#编辑Makefile" class="headerlink" title="编辑Makefile"></a>编辑Makefile</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">edit</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">    makefile = FileFilter(<span class="string">&#x27;Makefile&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*CC\s*=.*&#x27;</span>,  <span class="string">&#x27;CC = &#x27;</span>  + spack_cc)</span><br><span class="line">    makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*CXX\s*=.*&#x27;</span>, <span class="string">&#x27;CXX = &#x27;</span> + spack_cxx)</span><br><span class="line">    makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*F77\s*=.*&#x27;</span>, <span class="string">&#x27;F77 = &#x27;</span> + spack_f77)</span><br><span class="line">    makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*FC\s*=.*&#x27;</span>,  <span class="string">&#x27;FC = &#x27;</span>  + spack_fc)</span><br></pre></td></tr></table></figure>
-
-<h4 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">install</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">    mkdir(prefix.<span class="built_in">bin</span>)</span><br><span class="line">    install(<span class="string">&#x27;foo&#x27;</span>, prefix.<span class="built_in">bin</span>)</span><br><span class="line">    install_tree(<span class="string">&#x27;lib&#x27;</span>, prefix.lib)</span><br></pre></td></tr></table></figure>
-
+        
+          <p class="article-more-link">
+            <a href="/2022/03/07/%E5%9F%BA%E4%BA%8Espack%E7%9A%84blas%E7%BC%96%E8%AF%91/#more">Continue Reading →</a>
+          </p>
+        </div>
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -529,59 +298,19 @@ FVCOM 是由 UMASSD-WHOI 联合开发的预测性、非结构化网格、有限�
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="vasp编译-测试"><a href="#vasp编译-测试" class="headerlink" title="vasp编译&amp;测试"></a>vasp编译&amp;测试</h1><p>vasp介绍：</p>
-<blockquote>
-<p>原子尺度材料模拟的计算机程序包，更知名为VASP，是用于执行从头计算量子力学的分子动力学(MD)使用Vanderbilt泛函，或投增强波的方法和一个平面波基组的程序包。理论基础是密度泛函理论(DFT)，但该程序还允许使用后-DFT更正，如混合函数混合密度泛函理论和哈特里–福克交换，多体扰动理论(GW近似)和随机相位近似方法内的动态电子相关。</p>
-</blockquote>
-<h2 id="编译前准备"><a href="#编译前准备" class="headerlink" title="编译前准备"></a>编译前准备</h2><ul>
-<li>执行以下命令以确保环境中含有<code>icc</code>,<code>icpc</code>,<code>mpiifort</code>等</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spack load openmpi@4.1.1</span><br><span class="line">spack load intel-oneapi-mpi@2021.4.0%gcc@4.8.5</span><br><span class="line">spack load intel-mpi@2019.10.317%gcc@4.8.5</span><br><span class="line">spack load intel-parallel-studio@cluster.2019.5</span><br></pre></td></tr></table></figure>
+        
 
+          
+          <div class="entry-summary">
+          vasp编译&amp;测试vasp介绍：
 
-<ul>
-<li>源码在<code>/es01/jnist/mirror</code>下可以找到,本次安装的版本为<code>5.4.4</code></li>
-</ul>
-<h3 id="mkl-Math-Kernel-Library"><a href="#mkl-Math-Kernel-Library" class="headerlink" title="mkl(Math Kernel Library)"></a>mkl(Math Kernel Library)</h3><p>其地址在<code>/es01/jnist/software/general/linux-centos7-cascadelake/gcc-10.2.0/intel-parallel-studio-cluster.2018.1-yn56mgyhtg5knpfmpgtcax3o3wfonhhp/compilers_and_libraries_2018.1.163/linux/mkl</code>,在使用前需载入<code>intel-parallel-studio@cluster.2019.5</code></p>
-<h3 id="并行fftw"><a href="#并行fftw" class="headerlink" title="并行fftw"></a>并行fftw</h3><p>这里选择自行编译并行fftw</p>
-<p>将<code>fftw</code>源码解压到<code>/es01/yeesuan/yeesuan003/source/</code>之下,执行以下命令进行编译并行fftw</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/es01/yeesuan/yeesuan003/lhxone-test/software/fftw-3.3.9 CC=icc F77=ifort MPICC=mpiicc --enable-mpi</span><br><span class="line">make -j 30</span><br><span class="line">make install</span><br><span class="line">cd /es01/yeesuan/yeesuan003/lhxone-test/software</span><br><span class="line">mv fftw-3.3.9 fftw-mpi</span><br></pre></td></tr></table></figure>
+原子尺度材料模拟的计算机程序包，更知名为VASP，
 
-
-
-<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><h3 id="获取源码"><a href="#获取源码" class="headerlink" title="获取源码"></a>获取源码</h3><p>源码在<code>/es01/jnist/mirror</code>下可以找到,本次安装的版本为<code>5.4.4</code>,将源码移到<code>~/source</code>并解压</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp vasp/vasp.5.4.4.tgz ~/source</span><br><span class="line">tar xzvf vasp.5.4.4.tgz</span><br></pre></td></tr></table></figure>
-
-
-
-
-<h3 id="makefile配置"><a href="#makefile配置" class="headerlink" title="makefile配置"></a>makefile配置</h3><p>在<code>vasp.5.4.4/arch</code>之下,提供了不同的<code>makefile</code>模版,这里使用<code>makefile.include.linux_intel</code>,并在此基础上对其进行修改</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp arch/makefile.include.linux_intel makefile.include</span><br></pre></td></tr></table></figure>
-
-
-<p>在<code>makefile.include</code>中,修改以下路径</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">24 $(MKLROOT) = /es01/jnist/software/general/linux-centos7-cascadelake/gcc-10.2.0/intel-parallel-studio-cluster.2018.1-yn56mgyhtg5knpfmpgtcax3o3wfonhhp/compilers_and_libraries_2018.1.163/linux/mkl</span><br><span class="line">25 MKL_PATH   = $(MKLROOT)/lib/intel64</span><br><span class="line">26 BLAS       = -L$(MKL_PATH) -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread</span><br><span class="line">27 LAPACK     = -L$(MKL_PATH) -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread</span><br><span class="line">28 </span><br><span class="line">29 </span><br><span class="line">30 <span class="comment">#BLACS      = -L$(MKL_PATH) -lmkl_blacs_openmpi_lp64</span></span><br><span class="line">31 BLACS       = -lmkl_blacs_intelmpi_lp64</span><br><span class="line">32 </span><br><span class="line">33 </span><br><span class="line">34 <span class="comment">#SCALAPACK  = $(MKL_PATH)/libmkl_scalapack_lp64.a $(BLACS)</span></span><br><span class="line">35 SCALAPACK   = $(MKL_PATH)/libmkl_scalapack_lp64.a $(BLACS)</span><br><span class="line">36 OBJECTS    = fftmpiw.o fftmpi_map.o fft3dlib.o fftw3d.o</span><br><span class="line">37 </span><br><span class="line">38 INCS       =-I/es01/yeesuan/yeesuan003/lhxone-test/software/fftw-mpi/include</span><br><span class="line">39 </span><br><span class="line">40 LLIBS      = $(SCALAPACK) $(LAPACK) $(BLAS)</span><br></pre></td></tr></table></figure>
-
-<p>我的makefile.include<a target="_blank" rel="noopener" href="http://124.222.217.156/static/file/makefile.include">下载地址</a></p>
-<p>编译完成后,在<code>bin</code>目录下生成<code>vasp_std</code>,<code>vasp_gam</code>以及<code>vasp_ncl</code>.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bin</span><br><span class="line">├── vasp_gam</span><br><span class="line">├── vasp_ncl</span><br><span class="line">└── vasp_std</span><br></pre></td></tr></table></figure>
-
-<p>将其添加到环境变量</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">vasp</span></span><br><span class="line">export PATH=&quot;/es01/yeesuan/yeesuan003/source/vasp.5.4.4/bin:$PATH&quot;</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="测试运行"><a href="#测试运行" class="headerlink" title="测试运行"></a>测试运行</h2><p><a target="_blank" rel="noopener" href="http://124.222.217.156/static/file/vasp_suanli.tar.gz">测试样例下载地址</a></p>
-<h3 id="本地运行"><a href="#本地运行" class="headerlink" title="本地运行"></a>本地运行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://124.222.217.156/static/file/vasp_suanli.tar.gz</span><br><span class="line">tar xzvf vasp_suanli.tar.gz</span><br><span class="line">cd vasp_suanli</span><br><span class="line">vasp_std</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用slurm提交作业"><a href="#使用slurm提交作业" class="headerlink" title="使用slurm提交作业"></a>使用slurm提交作业</h3><p>这里采用<code>sbatch</code>提交作业的方式,脚本为<code>submit.sh</code>,其内容如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cd vasp_suanli</span><br><span class="line">vim submit.sh</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">SBATCH -J vasp_job</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">SBATCH -o vasp_on_slurm_%j.log</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">SBATCH -e vasp_on_slurm_error_%j.log</span></span><br><span class="line">echo Running on hosts</span><br><span class="line">echo Time is `date`</span><br><span class="line">echo Directory is $PWD</span><br><span class="line">echo This job runs on the following nodes:</span><br><span class="line">echo $SLURM_JOB_NODELIST</span><br><span class="line">echo Starting</span><br><span class="line">vasp_std</span><br><span class="line">:wq</span><br><span class="line">sbatch -n1  submit.sh</span><br></pre></td></tr></table></figure>
-
-<p>输出日志文件为<code>vasp_on_slurm_381.log</code>,<code>vasp_on_slurm_error_381.log</code></p>
-<p><code>vasp_on_slurm_381.log</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">Running on hosts</span><br><span class="line">Time is 2022年 03月 02日 星期三 15:27:23 CST</span><br><span class="line">Directory is /es01/yeesuan/yeesuan003/vasp_suanli</span><br><span class="line">This job runs on the following nodes:</span><br><span class="line">node1</span><br><span class="line">Starting</span><br><span class="line"> running on    1 total cores</span><br><span class="line"> distrk:  each k-point on    1 cores,    1 groups</span><br><span class="line"> distr:  one band on    1 cores,    1 groups</span><br><span class="line"> using from now: INCAR     </span><br><span class="line"> vasp.5.4.4.18Apr17-6-g9f103f2a35 (build Mar 02 2022 10:43:08) complex          </span><br><span class="line">  </span><br><span class="line"> POSCAR found type information on POSCAR  C  H </span><br><span class="line"> POSCAR found :  2 types and       8 ions</span><br><span class="line"> scaLAPACK will be used</span><br><span class="line"> LDA part: xc-table for Pade appr. of Perdew</span><br><span class="line"> POSCAR, INCAR and KPOINTS ok, starting setup</span><br><span class="line"> FFT: planning ...</span><br><span class="line"> WAVECAR not read</span><br><span class="line"> WARNING: random wavefunctions but no delay for mixing, default for NELMDL</span><br><span class="line"> prediction of wavefunctions initialized - no I/O</span><br><span class="line"> entering main loop</span><br><span class="line">       N       E                     dE             d eps       ncg     rms          rms(c)</span><br><span class="line">RMM:   1     0.158376549325E+03    0.15838E+03   -0.25387E+03    12   0.538E+02</span><br><span class="line">RMM:   2     0.724768511531E+02   -0.85900E+02   -0.98209E+02    12   0.133E+02</span><br><span class="line">RMM:   3     0.203902846357E+02   -0.52087E+02   -0.57350E+02    12   0.108E+02</span><br><span class="line">RMM:   4    -0.269785606514E+02   -0.47369E+02   -0.32864E+02    12   0.101E+02</span><br><span class="line">RMM:   5    -0.402228244268E+02   -0.13244E+02   -0.12484E+02    12   0.730E+01</span><br><span class="line">RMM:   6    -0.440000594840E+02   -0.37772E+01   -0.34955E+01    12   0.429E+01</span><br><span class="line">RMM:   7    -0.450389920389E+02   -0.10389E+01   -0.10145E+01    12   0.245E+01</span><br><span class="line">RMM:   8    -0.453706927154E+02   -0.33170E+00   -0.32172E+00    12   0.140E+01</span><br><span class="line">RMM:   9    -0.455134036475E+02   -0.14271E+00   -0.14058E+00    25   0.810E+00</span><br><span class="line">RMM:  10    -0.455323634295E+02   -0.18960E-01   -0.18213E-01    28   0.256E+00</span><br><span class="line">RMM:  11    -0.455326567164E+02   -0.29329E-03   -0.26452E-03    25   0.296E-01</span><br><span class="line">RMM:  12    -0.455326951120E+02   -0.38396E-04   -0.37298E-04    26   0.975E-02    0.106E+01</span><br><span class="line">RMM:  13    -0.413835805330E+02    0.41491E+01   -0.75991E+00    24   0.145E+01    0.551E+00</span><br><span class="line">RMM:  14    -0.405264166634E+02    0.85716E+00   -0.24824E+00    24   0.803E+00    0.266E+00</span><br><span class="line">RMM:  15    -0.403450150777E+02    0.18140E+00   -0.28285E-01    24   0.318E+00    0.295E-01</span><br><span class="line">RMM:  16    -0.403393957409E+02    0.56193E-02   -0.30123E-02    24   0.957E-01    0.265E-01</span><br><span class="line">RMM:  17    -0.403475645736E+02   -0.81688E-02   -0.92386E-03    24   0.542E-01    0.149E-01</span><br><span class="line">RMM:  18    -0.403517032644E+02   -0.41387E-02   -0.15901E-02    24   0.693E-01    0.233E-01</span><br><span class="line">RMM:  19    -0.403523808258E+02   -0.67756E-03   -0.94824E-03    24   0.498E-01    0.648E-02</span><br><span class="line">RMM:  20    -0.403532027230E+02   -0.82190E-03   -0.20094E-04    24   0.104E-01    0.430E-02</span><br><span class="line">RMM:  21    -0.403533437443E+02   -0.14102E-03   -0.38563E-04    24   0.100E-01    0.107E-02</span><br><span class="line">RMM:  22    -0.403534062939E+02   -0.62550E-04   -0.37874E-05    24   0.324E-02    0.583E-03</span><br><span class="line">RMM:  23    -0.403534085406E+02   -0.22467E-05   -0.56604E-06    23   0.123E-02    0.123E-03</span><br><span class="line">RMM:  24    -0.403534159726E+02   -0.74320E-05   -0.23326E-06    18   0.860E-03    0.143E-03</span><br><span class="line">RMM:  25    -0.403534159979E+02   -0.25234E-07   -0.23628E-07    17   0.353E-03</span><br><span class="line">    1 T=   292. E= -.40167351E+02 F= -.40431391E+02 E0= -.40431391E+02  EK= 0.26404E+00 SP= 0.00E+00 SK= 0.00E+00</span><br><span class="line"> bond charge predicted</span><br><span class="line">       N       E                     dE             d eps       ncg     rms          rms(c)</span><br><span class="line">RMM:   1    -0.403421091978E+02    0.11307E-01   -0.80579E-01    24   0.774E+00    0.216E-01</span><br><span class="line">RMM:   2    -0.403419842052E+02    0.12499E-03   -0.58599E-03    24   0.583E-01    0.140E-01</span><br><span class="line">RMM:   3    -0.403417880987E+02    0.19611E-03   -0.27993E-03    24   0.315E-01    0.487E-02</span><br><span class="line">RMM:   4    -0.403417097041E+02    0.78395E-04   -0.15132E-04    24   0.776E-02    0.282E-02</span><br><span class="line">RMM:   5    -0.403417288527E+02   -0.19149E-04   -0.16732E-04    24   0.709E-02    0.165E-02</span><br><span class="line">RMM:   6    -0.403417179833E+02    0.10869E-04   -0.50066E-05    24   0.373E-02    0.484E-03</span><br><span class="line">RMM:   7    -0.403417237679E+02   -0.57845E-05   -0.66094E-06    22   0.157E-02    0.408E-03</span><br><span class="line">RMM:   8    -0.403417231446E+02    0.62322E-06   -0.11301E-06    17   0.615E-03</span><br><span class="line">    2 T=   167. E= -.40267330E+02 F= -.40418524E+02 E0= -.40418524E+02  EK= 0.15119E+00 SP= 0.00E+00 SK= 0.00E+00</span><br><span class="line"> bond charge predicted</span><br><span class="line"> prediction of wavefunctions</span><br><span class="line">       N       E                     dE             d eps       ncg     rms          rms(c)</span><br><span class="line">RMM:   1    -0.403217475988E+02    0.19976E-01   -0.20868E-01    24   0.394E+00    0.937E-02</span><br><span class="line">RMM:   2    -0.403217564222E+02   -0.88234E-05   -0.12861E-03    24   0.266E-01    0.593E-02</span><br><span class="line">RMM:   3    -0.403217118401E+02    0.44582E-04   -0.31401E-04    24   0.112E-01    0.111E-02</span><br><span class="line">RMM:   4    -0.403217092852E+02    0.25549E-05   -0.10095E-05    25   0.231E-02    0.729E-03</span><br><span class="line">RMM:   5    -0.403217105375E+02   -0.12523E-05   -0.84718E-06    24   0.157E-02    0.320E-03</span><br><span class="line">RMM:   6    -0.403217105390E+02   -0.14845E-08   -0.25112E-06    18   0.877E-03</span><br><span class="line">    3 T=   206. E= -.40211156E+02 F= -.40397468E+02 E0= -.40397468E+02  EK= 0.18631E+00 SP= 0.00E+00 SK= 0.00E+00</span><br><span class="line"> bond charge predicted</span><br><span class="line"> prediction of wavefunctions</span><br><span class="line">       N       E                     dE             d eps       ncg     rms          rms(c)</span><br><span class="line">RMM:   1    -0.403117808886E+02    0.99296E-02   -0.39721E-01    24   0.537E+00    0.158E-01</span><br><span class="line">RMM:   2    -0.403117625130E+02    0.18376E-04   -0.29369E-03    24   0.398E-01    0.104E-01</span><br><span class="line">RMM:   3    -0.403116565207E+02    0.10599E-03   -0.11484E-03    24   0.208E-01    0.277E-02</span><br><span class="line">RMM:   4    -0.403116311378E+02    0.25383E-04   -0.55540E-05    24   0.497E-02    0.164E-02</span><br><span class="line">RMM:   5    -0.403116387094E+02   -0.75717E-05   -0.65271E-05    24   0.434E-02    0.890E-03</span><br><span class="line">RMM:   6    -0.403116363827E+02    0.23268E-05   -0.17024E-05    24   0.217E-02    0.378E-03</span><br><span class="line">RMM:   7    -0.403116417002E+02   -0.53175E-05   -0.29605E-06    19   0.107E-02    0.349E-03</span><br><span class="line">RMM:   8    -0.403116414128E+02    0.28742E-06   -0.12248E-06    17   0.640E-03</span><br><span class="line">    4 T=   196. E= -.40208892E+02 F= -.40385911E+02 E0= -.40385911E+02  EK= 0.17702E+00 SP= 0.00E+00 SK= 0.00E+00</span><br><span class="line"> bond charge predicted</span><br><span class="line"> prediction of wavefunctions</span><br><span class="line">       N       E                     dE             d eps       ncg     rms          rms(c)</span><br><span class="line">RMM:   1    -0.403062082681E+02    0.54334E-02   -0.16770E-02    24   0.119E+00    0.417E-02</span><br><span class="line">RMM:   2    -0.403061969844E+02    0.11284E-04   -0.15896E-04    24   0.916E-02    0.270E-02</span><br><span class="line">RMM:   3    -0.403061936019E+02    0.33826E-05   -0.10873E-04    24   0.615E-02    0.101E-02</span><br><span class="line">RMM:   4    -0.403061899714E+02    0.36305E-05   -0.84127E-06    24   0.170E-02    0.621E-03</span><br><span class="line">RMM:   5    -0.403061909422E+02   -0.97076E-06   -0.89813E-06    24   0.161E-02</span><br><span class="line">    5 T=   201. E= -.40196935E+02 F= -.40379213E+02 E0= -.40379213E+02  EK= 0.18228E+00 SP= 0.00E+00 SK= 0.00E+00</span><br><span class="line"> bond charge predicted</span><br><span class="line"> prediction of wavefunctions</span><br><span class="line"> wavefunctions rotated</span><br></pre></td></tr></table></figure>
-
-
-
+        
+          <p class="article-more-link">
+            <a href="/2022/03/02/vasp%E7%BC%96%E8%AF%91-%E6%B5%8B%E8%AF%95/#more">Continue Reading →</a>
+          </p>
+        </div>
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -740,84 +469,17 @@ plumed（如果开启plumed）
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="安装spack"><a href="#安装spack" class="headerlink" title="安装spack"></a>安装spack</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone -c feature.manyFiles=true https://github.com/spack/spack.git</span><br><span class="line">cd spack/bin</span><br><span class="line">./spack install zlib</span><br></pre></td></tr></table></figure>
+        
 
-<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p>常用命令如下：</p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-<th>例子</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>spack list</td>
-<td>列出可用spack安装的全部软件</td>
-<td></td>
-</tr>
-<tr>
-<td>spack info</td>
-<td>查询可安装软件的基本信息</td>
-<td>spack info vasp</td>
-</tr>
-<tr>
-<td>spack find</td>
-<td>查询已安装的软件</td>
-<td>spack find gcc</td>
-</tr>
-<tr>
-<td>spack load</td>
-<td>加载已安装软件的环境变量</td>
-<td>spack load cmake</td>
-</tr>
-<tr>
-<td>spack unload</td>
-<td>卸载加载的软件的环境变量</td>
-<td>spack unload cmake</td>
-</tr>
-<tr>
-<td>spack install</td>
-<td>安装软件</td>
-<td>spack install gromacs</td>
-</tr>
-</tbody></table>
-<h3 id="加载spack包管理器环境变量"><a href="#加载spack包管理器环境变量" class="headerlink" title="加载spack包管理器环境变量"></a>加载spack包管理器环境变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source spack/share/spack/setup-env.sh</span><br></pre></td></tr></table></figure>
+          
+          <div class="entry-summary">
+          安装spack123git clone -c feature.manyFiles=true https://github.com/spack/spack.gitcd spack/bin./spack install zlib
 
-<h3 id="将编译器加入spack编译器配置"><a href="#将编译器加入spack编译器配置" class="headerlink" title="将编译器加入spack编译器配置"></a>将编译器加入spack编译器配置</h3><p>执行<code>spack compiler find</code>可以将当前环境变量的编译器加载到spack编译器配置中,默认的配置文件在 <code>$HOME/.spack/linux/compilers.yaml</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spack find gcc</span><br><span class="line">spack load gcc@8.5.0</span><br><span class="line">spack compiler find</span><br></pre></td></tr></table></figure>
-
-<h3 id="纳入已安装的软件到spack"><a href="#纳入已安装的软件到spack" class="headerlink" title="纳入已安装的软件到spack"></a>纳入已安装的软件到spack</h3><p>执行<code>spack exteranl find</code>可以将当前环境变量中包含bin目录的软件纳入spack管理，默认的配 置文件在<code>$HOME/.spack/packages.yaml</code></p>
-<h3 id="添加软件源码镜像仓库"><a href="#添加软件源码镜像仓库" class="headerlink" title="添加软件源码镜像仓库"></a>添加软件源码镜像仓库</h3><p>执行<code>spack mirror add &lt;name&gt; &lt;path&gt;</code>,例如添加软件源码镜像仓库<code>spack mirror add local /es01/jnist/mirror</code>,我们默认添加了这个镜像仓库</p>
-<h3 id="其他基础配置"><a href="#其他基础配置" class="headerlink" title="其他基础配置"></a>其他基础配置</h3><p>通过<code>spack config get config &gt; config.yaml</code>生成一份spack基础配置到<code>$HOME/.spack</code>下</p>
-<h1 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h1><h3 id="查询可安装软件"><a href="#查询可安装软件" class="headerlink" title="查询可安装软件"></a>查询可安装软件</h3><p>执行<code>spack list</code>可以查询可由spack安装的全部软件.有的时候,所需的软件的名字可能在spack软件列表不同,比如数学库blas、lapack、scalapack的实现会有好多种,下面我们展示下所有lapack的实现, 只需要在<code>list</code>后加<code>-d</code>参数</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spack list -d lapack</span><br></pre></td></tr></table></figure>
-
-<h3 id="查询可安装软件的基本信息"><a href="#查询可安装软件的基本信息" class="headerlink" title="查询可安装软件的基本信息"></a>查询可安装软件的基本信息</h3><p>执行<code>spack info &lt;package&gt;</code>可以查询可安装软件的基本信息.例如,查询<code>vasp</code>的基本信息:<code>spack info vasp</code>这样会打印出：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">spack info vasp</span><br><span class="line">MakefilePackage:   vasp</span><br><span class="line"></span><br><span class="line">Description:</span><br><span class="line">     The Vienna Ab initio Simulation Package (VASP) is a computer program</span><br><span class="line">    for atomic scale materials modelling, e.g. electronic structure</span><br><span class="line">    calculations and quantum-mechanical molecular dynamics, from first</span><br><span class="line">    principles.</span><br><span class="line"></span><br><span class="line">Homepage: https://vasp.at</span><br><span class="line"></span><br><span class="line">Externally Detectable: </span><br><span class="line">    False</span><br><span class="line"></span><br><span class="line">Tags: </span><br><span class="line">    None</span><br><span class="line"></span><br><span class="line">Preferred version:  </span><br><span class="line">    6.1.1        file:///es01/yeesuan/yeesuan003/vasp.6.1.1.tgz</span><br><span class="line"></span><br><span class="line">Safe versions:  </span><br><span class="line">    6.1.1        file:///es01/yeesuan/yeesuan003/vasp.6.1.1.tgz</span><br><span class="line">    5.4.4.pl2    file:///es01/yeesuan/yeesuan003/vasp.5.4.4.pl2.tgz</span><br><span class="line">    5.4.4        file:///es01/yeesuan/yeesuan003/vasp.5.4.4.tgz</span><br><span class="line"></span><br><span class="line">Deprecated versions:  </span><br><span class="line">    None</span><br><span class="line"></span><br><span class="line">Variants:</span><br><span class="line">    Name [Default]     When    Allowed values    Description</span><br><span class="line">    ===============    ====    ==============    =============================================================</span><br><span class="line"></span><br><span class="line">    cuda [off]         --      on, off           Enables running on Nvidia GPUs</span><br><span class="line">    scalapack [off]    --      on, off           Enables build with SCALAPACK</span><br><span class="line">    vaspsol [off]      --      on, off           Enable VASPsol implicit solvation model</span><br><span class="line">                                                 https://github.com/henniggroup/VASPsol</span><br><span class="line"></span><br><span class="line">Installation Phases:</span><br><span class="line">    edit    build    install</span><br><span class="line"></span><br><span class="line">Build Dependencies:</span><br><span class="line">    blas  cuda  fftw  lapack  mpi  netlib-scalapack  qd  rsync</span><br><span class="line"></span><br><span class="line">Link Dependencies:</span><br><span class="line">    blas  cuda  fftw  lapack  mpi  netlib-scalapack  qd</span><br><span class="line"></span><br><span class="line">Run Dependencies:</span><br><span class="line">    mpi</span><br><span class="line"></span><br><span class="line">Virtual Packages: </span><br><span class="line">    None</span><br></pre></td></tr></table></figure>
-
-<h3 id="查询已安装软件"><a href="#查询已安装软件" class="headerlink" title="查询已安装软件"></a>查询已安装软件</h3><p>执行<code>spack find</code>可以查询使用spack安装好的全部软件</p>
-<p>在<code>find</code>后加入<code>-d</code>(取依赖的英语单词dependencies的首字母)参数可以查看软件使用的依赖,例 如查看<code>vasp6.1.0</code>使用的依赖</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[yeesuan003@spack ~]$ spack find -d vasp@6.1.0</span><br><span class="line">==&gt; 1 installed package</span><br><span class="line">-- linux-centos7-cascadelake / intel@19.0.5.281 -----------------</span><br><span class="line">vasp@6.1.0</span><br><span class="line">    fftw@3.3.10</span><br><span class="line">        intel-mpi@2019.5.281</span><br><span class="line">    intel-mkl@2019.5.281</span><br><span class="line">    netlib-scalapack@2.1.0</span><br></pre></td></tr></table></figure>
-
-<h1 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h1><h3 id="加载软件的环境变量"><a href="#加载软件的环境变量" class="headerlink" title="加载软件的环境变量"></a>加载软件的环境变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spack load &lt;package&gt;</span><br></pre></td></tr></table></figure>
-
-<p>有时候我们需要加载多个软件的环境变量，我们可以使用<code>spack load &lt;package1&gt; &lt;package2&gt; ...</code>例如加载<code>intel2019</code>和<code>gcc6.5.0</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spack load intel-parallel-studio@cluster.2019.5 gcc@6.5.0</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用hash值加载软件的环境变量"><a href="#使用hash值加载软件的环境变量" class="headerlink" title="使用hash值加载软件的环境变量"></a>使用hash值加载软件的环境变量</h3><p>有时候我们想加载某个软件，但它存在多个同名的软件时直接加载会报错,可以使用<code>spack load /&lt;hash&gt;</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">spack load gcc</span><br><span class="line">==&gt; Error: gcc matches multiple packages.</span><br><span class="line">  Matching packages:</span><br><span class="line">    io5n6ud gcc@6.5.0%gcc@4.8.5 arch=linux-centos7-haswell</span><br><span class="line">    x4guukb gcc@7.5.0%gcc@4.8.5 arch=linux-centos7-haswell</span><br><span class="line">    k63wbs4 gcc@8.5.0%gcc@4.8.5 arch=linux-centos7-haswell</span><br><span class="line">    6icy7ve gcc@10.2.0%gcc@4.8.5 arch=linux-centos7-haswell</span><br><span class="line">  Use a more specific spec.</span><br><span class="line">spack load /k63wbs4</span><br></pre></td></tr></table></figure>
-
-<h3 id="查看加载的环境变量"><a href="#查看加载的环境变量" class="headerlink" title="查看加载的环境变量"></a>查看加载的环境变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spack load --sh &lt;package&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="获取软件安装位置和可执行文件名字"><a href="#获取软件安装位置和可执行文件名字" class="headerlink" title="获取软件安装位置和可执行文件名字"></a>获取软件安装位置和可执行文件名字</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spack location -i &lt;package&gt;</span><br></pre></td></tr></table></figure>
-
-<p>当然也可以使用hash值获取,</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spack location -i /&lt;hash&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spack install &lt;package&gt;</span><br></pre></td></tr></table></figure>
-<p>通常,我们需要指定编译软件所需要的编译器,使用<code>spack compilers</code>可以查看spack可以使用的编译器</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2022/02/21/spack%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/#more">Continue Reading →</a>
+          </p>
+        </div>
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -836,7 +498,7 @@ plumed（如果开启plumed）
 <!-- Table of Contents -->
 
   
-    <article id="post-运输层"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-Matlab实验3-1"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -844,7 +506,7 @@ plumed（如果开启plumed）
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/12/14/%E8%BF%90%E8%BE%93%E5%B1%82/">计算机网络作业2</a>
+      <a class="article-title" href="/2021/04/22/Matlab%E5%AE%9E%E9%AA%8C3-1/">Matlab实验3-1</a>
     </h1>
   
 
@@ -852,8 +514,8 @@ plumed（如果开启plumed）
     
     <div class="article-meta">
       
-	<a href="/2021/12/14/%E8%BF%90%E8%BE%93%E5%B1%82/" class="article-date">
-	  <time datetime="2021-12-14T05:10:53.000Z" itemprop="datePublished">December 14, 2021</time>
+	<a href="/2021/04/22/Matlab%E5%AE%9E%E9%AA%8C3-1/" class="article-date">
+	  <time datetime="2021-04-22T09:39:00.000Z" itemprop="datePublished">April 22, 2021</time>
 	</a>
 
        
@@ -861,330 +523,25 @@ plumed（如果开启plumed）
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h1><h2 id="运输协议描述"><a href="#运输协议描述" class="headerlink" title="运输协议描述"></a>运输协议描述</h2><h3 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h3><ul>
-<li><p>运输层为应用层进程之间的逻辑通信</p>
-</li>
-<li><p>屏蔽作用</p>
-</li>
-<li><p>可靠信道</p>
-<ul>
-<li>全双工TCP</li>
-</ul>
-</li>
-<li><p>不可靠信道</p>
-<ul>
-<li>无连接UDP</li>
-</ul>
-</li>
-</ul>
-<h3 id="主要协议"><a href="#主要协议" class="headerlink" title="主要协议"></a>主要协议</h3><ul>
-<li><p>TCP</p>
-<ul>
-<li>提供可靠的、面向连接的运输服务。</li>
-<li>不提供广播或多播服务。</li>
-<li>开销较多。</li>
-</ul>
-</li>
-<li><p>UDP</p>
-<ul>
-<li>传送数据之前不需要先建立连接。</li>
-<li>收到 UDP 报后，不需要给出任何确认。</li>
-<li>不提供可靠交付，但是一种最有效的工作方式。</li>
-</ul>
-</li>
-<li><p>用户数据报协议 UDP (User Datagram Protocol)</p>
-</li>
-<li><p>传输控制协议 TCP (Transmission Control Protocol)</p>
-</li>
-<li><p>TPDU</p>
-<ul>
-<li>两个对等运输实体在通信时传送的数据单位叫作运输协议数据单元 TPDU (Transport Protocol Data Unit)。</li>
-<li>TCP 传送的数据单位协议是 TCP 报文段 (segment)。</li>
-<li>UDP 传送的数据单位协议是 UDP 报文或用户数据报。</li>
-</ul>
-</li>
-</ul>
-<h3 id="运输层端口"><a href="#运输层端口" class="headerlink" title="运输层端口"></a>运输层端口</h3><ul>
-<li><p>运输层从 IP 层收到发送给应用进程的数据后，必须分别交付给指明的各应用进程。</p>
-</li>
-<li><p>应用进程都可以通过运输层再传送到 IP 层（网络层</p>
-</li>
-<li><p>解决方法：在运输层使用协议端口号 (protocol port number)，或通常简称为端口 (port)。把端口设为通信的抽象终点</p>
-<ul>
-<li>端口用一个 16 位端口号进行标志，允许有 65,535 个不同的端口号。</li>
-<li>端口号只具有本地意义，只是为了标志本计算机应用层中的各进程。</li>
-<li>在互联网中，不同计算机的相同端口号没有联系。</li>
-</ul>
-</li>
-</ul>
-<h2 id="用户数协议UDP"><a href="#用户数协议UDP" class="headerlink" title="用户数协议UDP"></a>用户数协议UDP</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><ul>
-<li>UDP 只在 IP 的数据报服务之上增加了一些功能：</li>
-<li>复用和分用</li>
-<li>差错检测</li>
-</ul>
-<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
-<li>无连接。发送数据之前不需要建立连接。</li>
-<li>使用尽最大努力交付。即不保证可靠交付。</li>
-<li>面向报文。UDP 一次传送和交付一个完整的报文。 </li>
-<li>没有拥塞控制。网络出现的拥塞不会使源主机的发送速率降低。很适合多媒体通信的要求。 </li>
-<li>支持一对一、一对多、多对一、多对多等交互通信。</li>
-<li>首部开销小，只有 8 个字节。</li>
-</ul>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><ul>
-<li>UDP 通信的特点：简单方便，但不可靠。</li>
-</ul>
-<h3 id="面向报文"><a href="#面向报文" class="headerlink" title="面向报文"></a>面向报文</h3><ul>
-<li><p>发送方 UDP 对应用层交下来的报文，既不合并，也不拆分，按照样发送。</p>
-<ul>
-<li>接收方 UDP 对 IP 层交上来的 UDP 用户数据报，去除首部后就原封不动地交付上层的应用进程，一次交付一个完整的报文。</li>
-</ul>
-</li>
-<li><p>应用程序必须选择合适大小的报文。</p>
-<ul>
-<li>若报文太长，IP 层在传送时可能要进行分片，降低 IP 层的效率。</li>
-<li>若报文太短，会使 IP 数据报的首部的相对长度太大，降低 IP 层的效率。</li>
-</ul>
-</li>
-<li><p>复用：将 UDP 用户数据报组装成不同的 IP 数据报，发送到互联网。</p>
-</li>
-<li><p>分用：根据 UDP 用户数据报首部中的目的端口号，将数据报分别传送到相应的端口，以便应用进程到端口读取数据。</p>
-</li>
-</ul>
-<h3 id="首部格式"><a href="#首部格式" class="headerlink" title="首部格式"></a>首部格式</h3><ul>
-<li>伪首部</li>
-</ul>
-<h2 id="传输控制协议TCP"><a href="#传输控制协议TCP" class="headerlink" title="传输控制协议TCP"></a>传输控制协议TCP</h2><h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><ul>
-<li><p>TCP 是面向连接的运输层协议，在无连接的、不可靠的 IP 网络服务基础之上提供可靠交付的服务。为此，在 IP 的数据报服务基础之上，增加了保证可靠性的一系列措施。</p>
-</li>
-<li><p>TCP 是面向连接的运输层协议。</p>
-<ul>
-<li>每一条 TCP 连接只能有两个端点 (endpoint)，每一条 TCP 连接只能是点对点的（一对一）。 </li>
-<li>TCP 提供可靠交付的服务。</li>
-<li>TCP 提供全双工通信。</li>
-</ul>
-</li>
-<li><p>面向字节流</p>
-<ul>
-<li><p>TCP 中的“流”(stream) 指的是流入或流出进程的字节序列。</p>
-</li>
-<li><p>面向字节流：虽然应用程序和 TCP 的交互是一次一个数据块，但 TCP 把应用程序交下来的数据看成仅仅是一连串无结构的字节流。</p>
-</li>
-<li><p>特点</p>
-<ul>
-<li>TCP 不保证接收方应用程序所收到的数据块和发送方应用程序所发出的数据块具有对应大小的关系。</li>
-<li>但接收方应用程序收到的字节流必须和发送方应用程序发出的字节流完全一样。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><ul>
-<li><p>连接端点</p>
-<ul>
-<li><p>套接字socket</p>
-<ul>
-<li><p>（IP地址：端口号）</p>
-</li>
-<li><p>（192.169.1.20:2028）例子</p>
-</li>
-<li><p>每一条 TCP 连接唯一地被通信两端的两个端点（即两个套接字）所确定</p>
-<ul>
-<li>TCP 连接 ::&#x3D; {socket1, socket2} &#x3D; {(IP1: port1)，(IP2: port2)}</li>
-</ul>
-</li>
-<li><p>实现API</p>
-<ul>
-<li>应用编程接口  API  称为 socket API, 简称为 socket。</li>
-<li>socket API 中使用的一个函数名也叫作 socket。</li>
-<li>调用 socket 函数的端点称为 socket。</li>
-<li>调用 socket 函数时其返回值称为 socket 描述符，可简称为 socket。</li>
-<li>在操作系统内核中连网协议的 Berkeley 实现，称为 socket 实现</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>插口</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="TCP首部格式"><a href="#TCP首部格式" class="headerlink" title="TCP首部格式"></a>TCP首部格式</h3><h3 id="TCP可靠传输实现"><a href="#TCP可靠传输实现" class="headerlink" title="TCP可靠传输实现"></a>TCP可靠传输实现</h3><ul>
-<li><p>超时重传</p>
-<ul>
-<li><p>RTO (Retransmission Time-Out) 应略大于加权平均往返时间 RTTS 。</p>
-</li>
-<li><p>RFC 6298 建议 RTO：</p>
-<ul>
-<li>其中：RTTD 是 RTT 偏差的加权平均值。</li>
-<li>RTO &#x3D; RTTS + 4  RTTD</li>
-</ul>
-</li>
-<li><p>RFC 6298 建议 RTTD ：</p>
-<ul>
-<li>其中： 是个小于 1 的系数，其推荐值是 1&#x2F;4，即 0.25。</li>
-<li>新的 RTTD &#x3D; (1   )  (旧的 RTTD)  +    RTTS  新的 RTT 样本</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>选择确认SACK</p>
-</li>
-</ul>
-<h3 id="TCP流量控制"><a href="#TCP流量控制" class="headerlink" title="TCP流量控制"></a>TCP流量控制</h3><h3 id="TCP拥塞控制"><a href="#TCP拥塞控制" class="headerlink" title="TCP拥塞控制"></a>TCP拥塞控制</h3><ul>
-<li><p>算法</p>
-<ul>
-<li><p>慢开始 (slow-start)</p>
-<ul>
-<li><p>目的：探测网络的负载能力或拥塞程度。</p>
-</li>
-<li><p>算法：由小到大逐渐增大注入到网络中的数据字节，即：由小到大逐渐增大拥塞窗口数值。</p>
-</li>
-<li><p>2 个控制变量：</p>
-<ul>
-<li>拥塞窗口cwnd</li>
-<li>慢开始门限ssthresh</li>
-</ul>
-</li>
-<li><p>拥塞窗口 cwnd 增大：在每收到一个对新的报文段的确认，就把拥塞窗口增加最多一个发送方的最大报文段 SMSS  (Sender Maximum Segment Size) 的数值。</p>
-</li>
-<li><pre><code>  其中 N 是原先未被确认的、但现在被刚收到的确认报文段所确认的字节数
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>拥塞避免 (congestion avoidance)</p>
-</li>
-<li><p>快重传 (fast retransmit)</p>
-</li>
-<li><p>快恢复 (fast recovery)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="TCP运输连接管理"><a href="#TCP运输连接管理" class="headerlink" title="TCP运输连接管理"></a>TCP运输连接管理</h3><ul>
-<li><p>过程</p>
-<ul>
-<li><p>建立</p>
-</li>
-<li><p>连接释放</p>
-<ul>
-<li><p>第一，保证发送的最后一个 ACK 报文段能够到达 B。</p>
-</li>
-<li><p>第二，防止“已失效的连接请求报文段”出现在本连接中。</p>
-</li>
-<li><p>保活计时器</p>
-<ul>
-<li>用来防止在 TCP 连接出现长时期空闲。</li>
-<li>通常设置为 2 小时 。</li>
-<li>若服务器过了 2 小时还没有收到客户的信息，它就发送探测报文段。</li>
-<li>若发送了 10 个探测报文段（每一个相隔 75 秒）还没有响应，就假定客户出了故障，因而就终止该连接。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>有限状态机</p>
-</li>
-</ul>
-</li>
-<li><p>模式</p>
-<ul>
-<li>TCP 连接的建立采用客户服务器方式。</li>
-<li>主动发起连接建立的应用进程叫做客户 (client)。</li>
-<li>被动等待连接建立的应用进程叫做服务器 (server)。</li>
-</ul>
-</li>
-<li><p>握手</p>
-<ul>
-<li>TCP 建立连接的过程叫做握手。</li>
-<li>采用三报文握手：在客户和服务器之间交换三个 TCP 报文段，以防止已失效的连接请求报文段突然又传送到了，因而产生 TCP 连接建立错误。</li>
-</ul>
-</li>
-</ul>
-<h2 id="可靠运输的工作原理"><a href="#可靠运输的工作原理" class="headerlink" title="可靠运输的工作原理"></a>可靠运输的工作原理</h2><h3 id="停止等待协议"><a href="#停止等待协议" class="headerlink" title="停止等待协议"></a>停止等待协议</h3><ul>
-<li><p>概念</p>
-<ul>
-<li>每发送完一个分组就停止发送，等待对方的确认。在收到确认后再发送下一个分组。</li>
-<li>全双工通信的双方既是发送方也是接收方。</li>
-<li>假设仅考虑 A 发送数据，而 B 接收数据并发送确认。因此 A 叫做发送方，而 B 叫做接收方。</li>
-</ul>
-</li>
-<li><p>状态情况</p>
-<ul>
-<li><p>无差错</p>
-</li>
-<li><p>有差错</p>
-<ul>
-<li>两种情况：</li>
-<li>B 接收 M1 时检测出了差错，就丢弃 M1，其他什么也不做（不通知 A 收到有差错的分组）。</li>
-<li>M1 在传输过程中丢失了，这时 B 当然什么都不知道，也什么都不做。</li>
-</ul>
-</li>
-<li><p>解决办法</p>
-<ul>
-<li><p>超时重传</p>
-<ul>
-<li>A 为每一个已发送的分组设置一个超时计时器。</li>
-<li>A 只要在超时计时器到期之前收到了相应的确认，就撤销该超时计时器，继续发送下一个分组 M2 。</li>
-<li>若 A 在超时计时器规定时间内没有收到 B 的确认，就认为分组错误或丢失，就重发该分组。</li>
-</ul>
-</li>
-<li><p>确认丢失</p>
-<ul>
-<li><p>若 B 所发送的对 M1 的确认丢失了，那么 A 在设定的超时重传时间内将不会收到确认，因此 A 在超时计时器到期后重传 M1。</p>
-</li>
-<li><p>假定 B 正确收到了 A 重传的分组 M1。这时 B 应采取两个行动：</p>
-<ul>
-<li>(1) 丢弃这个重复的分组 M1，不向上层交付。</li>
-<li>(2) 向 A 发送确认。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>确认迟到</p>
-<ul>
-<li>B 对分组 M1 的确认迟到了，因此 A 在超时计时器到期后重传 M1。</li>
-<li>B 会收到重复的 M1，丢弃重复的 M1，并重传确认分组。</li>
-<li>A 会收到重复的确认。对重复的确认的处理：丢弃。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>信道利用率</p>
-<ul>
-<li></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>要点</p>
-<ul>
-<li>停止等待。发送方每次只发送一个分组。在收到确认后再发送下一个分组。</li>
-<li>暂存：在发送完一个分组后，发送方必须暂存已发送的分组的副本，以备重发。</li>
-<li>编号。对发送的每个分组和确认都进行编号。</li>
-<li>超时重传。发送方为发送的每个分组设置一个超时计时器。若超时计时器超时位收到确认，发送方会自动超时重传分组。</li>
-<li>超时计时器的重传时间应当比数据在分组传输的平均往返时间更长一些，防止不必要的重传。</li>
-</ul>
-</li>
-<li><p>进化，流水线传输</p>
-</li>
-</ul>
-<h3 id="连续ARQ协议"><a href="#连续ARQ协议" class="headerlink" title="连续ARQ协议"></a>连续ARQ协议</h3><ul>
-<li><p>概念结构</p>
-<ul>
-<li>发送窗口：发送方维持一个发送窗口，位于发送窗口内的分组都可被连续发送出去，而不需要等待对方的确认。</li>
-<li>发送窗口滑动：发送方每收到一个确认，就把发送窗口向前滑动一个分组的位置。</li>
-<li>累积确认：接收方对按序到达的最后一个分组发送确认，表示：到这个分组为止的所有分组都已正确收到了。</li>
-</ul>
-</li>
-</ul>
+        
 
+          
+          <div class="entry-summary">
+          矩阵特征多项式、特征值、特征向量，稀疏矩阵
+测试函数poly, poly2str, eig
+
+        
+          <p class="article-more-link">
+            <a href="/2021/04/22/Matlab%E5%AE%9E%E9%AA%8C3-1/#more">Continue Reading →</a>
+          </p>
+        </div>
       
     </div>
     <footer class="entry-meta entry-footer">
       
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matlab/" rel="tag">Matlab</a></li></ul>
 
       
     </footer>
@@ -1196,7 +553,7 @@ plumed（如果开启plumed）
 <!-- Table of Contents -->
 
   
-    <article id="post-无线局域网技术读书报告"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-Java矩形类"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -1204,7 +561,7 @@ plumed（如果开启plumed）
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/10/26/%E6%97%A0%E7%BA%BF%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E8%AF%BB%E4%B9%A6%E6%8A%A5%E5%91%8A/">无线局域网技术读书报告</a>
+      <a class="article-title" href="/2021/04/22/Java%E7%9F%A9%E5%BD%A2%E7%B1%BB/">Java矩形类</a>
     </h1>
   
 
@@ -1212,8 +569,8 @@ plumed（如果开启plumed）
     
     <div class="article-meta">
       
-	<a href="/2021/10/26/%E6%97%A0%E7%BA%BF%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E8%AF%BB%E4%B9%A6%E6%8A%A5%E5%91%8A/" class="article-date">
-	  <time datetime="2021-10-26T02:16:35.000Z" itemprop="datePublished">October 26, 2021</time>
+	<a href="/2021/04/22/Java%E7%9F%A9%E5%BD%A2%E7%B1%BB/" class="article-date">
+	  <time datetime="2021-04-22T09:23:06.000Z" itemprop="datePublished">April 22, 2021</time>
 	</a>
 
        
@@ -1221,22 +578,76 @@ plumed（如果开启plumed）
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="无线局域网-Wireless-Local-Area-Network-技术读书报告"><a href="#无线局域网-Wireless-Local-Area-Network-技术读书报告" class="headerlink" title="无线局域网(Wireless Local Area Network)技术读书报告"></a>无线局域网(Wireless Local Area Network)技术读书报告</h1><p>便携站:便于移动,但在工作时位置不变<br>移动站:不仅可以移动,还可以在移动过程中进行通信</p>
-<h2 id="无线局域网的组成"><a href="#无线局域网的组成" class="headerlink" title="无线局域网的组成"></a>无线局域网的组成</h2><p>可分为两大类:有固定基础设施的和无固定基础设施的.</p>
-<h3 id="1-IEE802-11"><a href="#1-IEE802-11" class="headerlink" title="1.IEE802.11"></a>1.IEE802.11</h3><p>802.11时无线以太网的标准,它使用星形拓扑,其中心点叫做接入点AP(Access Point),在Mac层使用CSMA&#x2F;CA协议.</p>
-<p>802.11标准规定无线局域网的最小构件是基本服务集BSS(Basic Service Set),一个基本服务集BSS包括一个基站和若干个移动站.所有站在BSS以内都可以直接通信,但在BSS以外的站想要通信必须经过本站BSS基站,接入点AP就是基本服务集内的基站.</p>
-<p>当管理员安装AP时,必须为该AP分配一个不超过32字节的服务集标识符SSID(Service Set IDentifier)和一个通信信道.</p>
-<p>一个基本服务集可以是孤立的,也可以通过接入点AP连接到一个分配系统DS(Distribution System),然后再连接到另一个基本服务集,这样就构成了一个扩展的服务集ESS(Extend Service Set).</p>
-<h3 id="2-移动自组网络"><a href="#2-移动自组网络" class="headerlink" title="2.移动自组网络"></a>2.移动自组网络</h3><p>无固定基础设施的无线局域网叫做自组网络.服务范围通常时受限的,而且自组网络一般也不和外界的其他网络相连接.</p>
+        
 
+          
+          <div class="entry-summary">
+          项目结构1234567$ tree -C -L 3.└── top    └── lhxone        ├── Main.java        └── myRect
+
+        
+          <p class="article-more-link">
+            <a href="/2021/04/22/Java%E7%9F%A9%E5%BD%A2%E7%B1%BB/#more">Continue Reading →</a>
+          </p>
+        </div>
       
     </div>
     <footer class="entry-meta entry-footer">
       
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
 
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-C-学生成绩"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/04/13/C-%E5%AD%A6%E7%94%9F%E6%88%90%E7%BB%A9/">C++学生成绩</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/04/13/C-%E5%AD%A6%E7%94%9F%E6%88%90%E7%BB%A9/" class="article-date">
+	  <time datetime="2021-04-13T15:23:43.000Z" itemprop="datePublished">April 13, 2021</time>
+	</a>
+
+       
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+
+          
+          <div class="entry-summary">
+          代码
+
+        
+          <p class="article-more-link">
+            <a href="/2021/04/13/C-%E5%AD%A6%E7%94%9F%E6%88%90%E7%BB%A9/#more">Continue Reading →</a>
+          </p>
+        </div>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
       
     </footer>
     <hr class="entry-footer-hr">
@@ -1309,22 +720,13 @@ plumed（如果开启plumed）
 
     	<ul class="clearfix widget-social-icons">   
     	
-   			<li><a target="_blank" rel="noopener" href="https://github.com/iTimeTraveler" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
+   			<li><a target="_blank" rel="noopener" href="https://github.com/lhxone" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
 
    		
-   			<li><a href="" title="Weibo"><i class="fa fa-weibo" aria-hidden="true"></i></a></li> 
+   			<li><a href="mailto:lhxone@outlook.com" title="Envelope"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
 
    		
-   			<li><a href="" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li> 
-
-   		
-   			<li><a href="" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
-
-   		
-   			<li><a href="" title="Google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li> 
-
-   		
-   			<li><a href="" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li> 
+   			<li><a target="_blank" rel="noopener" href="https://t.me/miklosventura" title="paper-plane"><i class="fa fa-paper-plane" aria-hidden="true"></i></a></li> 
 
    		
    		</ul>
@@ -1349,7 +751,7 @@ plumed（如果开启plumed）
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ABACUS/" style="font-size: 10px;">ABACUS</a> <a href="/tags/C/" style="font-size: 13.33px;">C++</a> <a href="/tags/CMAQ/" style="font-size: 10px;">CMAQ</a> <a href="/tags/CaNS/" style="font-size: 10px;">CaNS</a> <a href="/tags/FVCOM/" style="font-size: 10px;">FVCOM</a> <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/MITgcm/" style="font-size: 10px;">MITgcm</a> <a href="/tags/Matlab/" style="font-size: 15px;">Matlab</a> <a href="/tags/demo/" style="font-size: 10px;">demo</a> <a href="/tags/gromacs/" style="font-size: 10px;">gromacs</a> <a href="/tags/ioapi/" style="font-size: 10px;">ioapi</a> <a href="/tags/parmetis/" style="font-size: 10px;">parmetis</a> <a href="/tags/presto-c/" style="font-size: 10px;">presto-c</a> <a href="/tags/sunplot/" style="font-size: 10px;">sunplot</a> <a href="/tags/suntans/" style="font-size: 10px;">suntans</a> <a href="/tags/swan/" style="font-size: 10px;">swan</a> <a href="/tags/vasp/" style="font-size: 10px;">vasp</a> <a href="/tags/%E5%88%86%E5%AD%90%E5%8A%A8%E5%8A%9B%E5%AD%A6/" style="font-size: 10px;">分子动力学</a> <a href="/tags/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8C%97/" style="font-size: 18.33px;">安装指北</a> <a href="/tags/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/" style="font-size: 20px;">实习日记</a> <a href="/tags/%E5%B7%A5%E4%B8%9A%E4%BB%BF%E7%9C%9F/" style="font-size: 10px;">工业仿真</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 11.67px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 10px;">日记</a> <a href="/tags/%E6%B0%94%E5%80%99%E6%B0%94%E8%B1%A1/" style="font-size: 10px;">气候气象</a> <a href="/tags/%E6%B5%81%E4%BD%93%E5%8A%9B%E5%AD%A6/" style="font-size: 10px;">流体力学</a> <a href="/tags/%E6%B5%B7%E6%B4%8B%E7%A7%91%E5%AD%A6/" style="font-size: 11.67px;">海洋科学</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E7%A7%91%E5%AD%A6/" style="font-size: 10px;">环境科学</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">虚拟机</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.67px;">计算机网络</a> <a href="/tags/%E8%AE%BA%E6%96%87/" style="font-size: 10px;">论文</a>
+      <a href="/tags/ABACUS/" style="font-size: 10px;">ABACUS</a> <a href="/tags/C/" style="font-size: 13.33px;">C++</a> <a href="/tags/CMAQ/" style="font-size: 10px;">CMAQ</a> <a href="/tags/CaNS/" style="font-size: 10px;">CaNS</a> <a href="/tags/FVCOM/" style="font-size: 10px;">FVCOM</a> <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/MITgcm/" style="font-size: 10px;">MITgcm</a> <a href="/tags/Matlab/" style="font-size: 15px;">Matlab</a> <a href="/tags/demo/" style="font-size: 10px;">demo</a> <a href="/tags/gromacs/" style="font-size: 10px;">gromacs</a> <a href="/tags/ioapi/" style="font-size: 10px;">ioapi</a> <a href="/tags/parmetis/" style="font-size: 10px;">parmetis</a> <a href="/tags/presto-c/" style="font-size: 10px;">presto-c</a> <a href="/tags/sunplot/" style="font-size: 10px;">sunplot</a> <a href="/tags/suntans/" style="font-size: 10px;">suntans</a> <a href="/tags/swan/" style="font-size: 10px;">swan</a> <a href="/tags/vasp/" style="font-size: 10px;">vasp</a> <a href="/tags/%E5%88%86%E5%AD%90%E5%8A%A8%E5%8A%9B%E5%AD%A6/" style="font-size: 10px;">分子动力学</a> <a href="/tags/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8C%97/" style="font-size: 18.33px;">安装指北</a> <a href="/tags/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/" style="font-size: 20px;">实习日记</a> <a href="/tags/%E5%B7%A5%E4%B8%9A%E4%BB%BF%E7%9C%9F/" style="font-size: 10px;">工业仿真</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 11.67px;">操作系统</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/%E6%B0%94%E5%80%99%E6%B0%94%E8%B1%A1/" style="font-size: 10px;">气候气象</a> <a href="/tags/%E6%B5%81%E4%BD%93%E5%8A%9B%E5%AD%A6/" style="font-size: 10px;">流体力学</a> <a href="/tags/%E6%B5%B7%E6%B4%8B%E7%A7%91%E5%AD%A6/" style="font-size: 11.67px;">海洋科学</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E7%A7%91%E5%AD%A6/" style="font-size: 10px;">环境科学</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">虚拟机</a>
     </div>
   </div>
 
@@ -1443,7 +845,7 @@ plumed（如果开启plumed）
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ABACUS/" rel="tag">ABACUS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMAQ/" rel="tag">CMAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CaNS/" rel="tag">CaNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FVCOM/" rel="tag">FVCOM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MITgcm/" rel="tag">MITgcm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/" rel="tag">Matlab</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/demo/" rel="tag">demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gromacs/" rel="tag">gromacs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ioapi/" rel="tag">ioapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/parmetis/" rel="tag">parmetis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/presto-c/" rel="tag">presto-c</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sunplot/" rel="tag">sunplot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/suntans/" rel="tag">suntans</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swan/" rel="tag">swan</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vasp/" rel="tag">vasp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E5%AD%90%E5%8A%A8%E5%8A%9B%E5%AD%A6/" rel="tag">分子动力学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8C%97/" rel="tag">安装指北</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/" rel="tag">实习日记</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E4%B8%9A%E4%BB%BF%E7%9C%9F/" rel="tag">工业仿真</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B0%94%E5%80%99%E6%B0%94%E8%B1%A1/" rel="tag">气候气象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%81%E4%BD%93%E5%8A%9B%E5%AD%A6/" rel="tag">流体力学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%B7%E6%B4%8B%E7%A7%91%E5%AD%A6/" rel="tag">海洋科学</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E7%A7%91%E5%AD%A6/" rel="tag">环境科学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">虚拟机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87/" rel="tag">论文</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ABACUS/" rel="tag">ABACUS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMAQ/" rel="tag">CMAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CaNS/" rel="tag">CaNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FVCOM/" rel="tag">FVCOM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MITgcm/" rel="tag">MITgcm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/" rel="tag">Matlab</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/demo/" rel="tag">demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gromacs/" rel="tag">gromacs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ioapi/" rel="tag">ioapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/parmetis/" rel="tag">parmetis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/presto-c/" rel="tag">presto-c</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sunplot/" rel="tag">sunplot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/suntans/" rel="tag">suntans</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swan/" rel="tag">swan</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vasp/" rel="tag">vasp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E5%AD%90%E5%8A%A8%E5%8A%9B%E5%AD%A6/" rel="tag">分子动力学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8C%97/" rel="tag">安装指北</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/" rel="tag">实习日记</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E4%B8%9A%E4%BB%BF%E7%9C%9F/" rel="tag">工业仿真</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B0%94%E5%80%99%E6%B0%94%E8%B1%A1/" rel="tag">气候气象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%81%E4%BD%93%E5%8A%9B%E5%AD%A6/" rel="tag">流体力学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%B7%E6%B4%8B%E7%A7%91%E5%AD%A6/" rel="tag">海洋科学</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E7%A7%91%E5%AD%A6/" rel="tag">环境科学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">虚拟机</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1454,7 +856,7 @@ plumed（如果开启plumed）
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

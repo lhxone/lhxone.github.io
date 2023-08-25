@@ -11,15 +11,15 @@
   
   
   
-  <meta name="description" content="项目结构1234567$ tree -C -L 3.└── top    └── lhxone        ├── Main.java        └── myRect  代码Main.java 12345678910111213141516package top.lhxone;import top.lhxone.myRect.PlainRect;public class Main &amp;#123">
+  <meta name="description" content="项目结构1234567$ tree -C -L 3.└── top    └── lhxone        ├── Main.java        └── myRect">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java矩形类">
 <meta property="og:url" content="http://example.com/2021/04/22/Java%E7%9F%A9%E5%BD%A2%E7%B1%BB/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="项目结构1234567$ tree -C -L 3.└── top    └── lhxone        ├── Main.java        └── myRect  代码Main.java 12345678910111213141516package top.lhxone;import top.lhxone.myRect.PlainRect;public class Main &amp;#123">
+<meta property="og:description" content="项目结构1234567$ tree -C -L 3.└── top    └── lhxone        ├── Main.java        └── myRect">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-22T09:23:06.000Z">
-<meta property="article:modified_time" content="2023-08-25T02:16:39.242Z">
+<meta property="article:modified_time" content="2023-08-25T03:26:59.307Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -143,7 +143,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ tree -C -L 3</span><br><span class="line">.</span><br><span class="line">└── top</span><br><span class="line">    └── lhxone</span><br><span class="line">        ├── Main.java</span><br><span class="line">        └── myRect</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+<span id="more"></span>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p><code>Main.java</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> top.lhxone;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> top.lhxone.myRect.PlainRect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        PlainRect r=<span class="keyword">new</span> <span class="title class_">PlainRect</span>(<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;面积为&quot;</span>+r.area());</span><br><span class="line">        <span class="keyword">if</span> (r.isInside(<span class="number">25.5</span>,<span class="number">13</span>))&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;在矩形内.&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;不在矩形内.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
