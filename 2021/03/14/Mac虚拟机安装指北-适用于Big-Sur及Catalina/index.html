@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Mac虚拟机安装指北(适用于Big Sur及Catalina) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="安装指北虚拟机" />
+  
+  
+  
+  
+  <meta name="description" content="Mac虚拟机安装指北(适用于Big Sur及Catalina)声明 本文部分内容转载自CSDN「红叶枫」的博文，遵循CC 4.0 BY-SA版权协议：原文地址 本文部分内容转载自CSDN「繁星蓝雨」的博文，遵循CC 4.0 BY-SA版权协议：原文地址 本文仅作学习交流参考，请支持正版   所需工具下载地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac虚拟机安装指北(适用于Big Sur及Catalina)">
+<meta property="og:url" content="http://example.com/2021/03/14/Mac%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E6%8C%87%E5%8C%97-%E9%80%82%E7%94%A8%E4%BA%8EBig-Sur%E5%8F%8ACatalina/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Mac虚拟机安装指北(适用于Big Sur及Catalina)声明 本文部分内容转载自CSDN「红叶枫」的博文，遵循CC 4.0 BY-SA版权协议：原文地址 本文部分内容转载自CSDN「繁星蓝雨」的博文，遵循CC 4.0 BY-SA版权协议：原文地址 本文仅作学习交流参考，请支持正版   所需工具下载地址">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201216234951650.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210308200012373.png">
+<meta property="article:published_time" content="2021-03-14T02:30:55.000Z">
+<meta property="article:modified_time" content="2023-08-25T02:16:39.243Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="安装指北">
+<meta property="article:tag" content="虚拟机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201216234951650.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Mac虚拟机安装指北-适用于Big-Sur及Catalina" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Mac虚拟机安装指北(适用于Big Sur及Catalina)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/03/14/Mac%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E6%8C%87%E5%8C%97-%E9%80%82%E7%94%A8%E4%BA%8EBig-Sur%E5%8F%8ACatalina/" class="article-date">
+	  <time datetime="2021-03-14T02:30:55.000Z" itemprop="datePublished">March 14, 2021</time>
+	</a>
+
+       
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Mac虚拟机安装指北-适用于Big-Sur及Catalina"><a href="#Mac虚拟机安装指北-适用于Big-Sur及Catalina" class="headerlink" title="Mac虚拟机安装指北(适用于Big Sur及Catalina)"></a>Mac虚拟机安装指北(适用于Big Sur及Catalina)</h1><h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><ul>
+<li>本文部分内容转载自CSDN「红叶枫」的博文，遵循CC 4.0 BY-SA版权协议：<a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_30732593/article/details/111305700"><i>原文地址</i></a></li>
+<li>本文部分内容转载自CSDN「繁星蓝雨」的博文，遵循CC 4.0 BY-SA版权协议：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33375598/article/details/114546699"><i>原文地址</i></a></li>
+<li>本文仅作学习交流参考，请支持正版</li>
+</ul>
+<hr>
+<h2 id="所需工具下载地址"><a href="#所需工具下载地址" class="headerlink" title="所需工具下载地址"></a>所需工具下载地址</h2><span id="more"></span>
+<ul>
+<li><h3 id="PD16：适用于M1以及安装了Big-Sur系统的Intel芯片Mac"><a href="#PD16：适用于M1以及安装了Big-Sur系统的Intel芯片Mac" class="headerlink" title="PD16：适用于M1以及安装了Big Sur系统的Intel芯片Mac"></a>PD16：适用于M1以及安装了Big Sur系统的Intel芯片Mac</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1H3jB9ZIwKJv-TXFRwL5XKQ">百度网盘下载</a>     提取码：4wod</p>
+</blockquote>
+</li>
+<li><h3 id="PD15：适用于未升级至Big-Sur的Intel芯片Mac"><a href="#PD15：适用于未升级至Big-Sur的Intel芯片Mac" class="headerlink" title="PD15：适用于未升级至Big Sur的Intel芯片Mac"></a>PD15：适用于未升级至Big Sur的Intel芯片Mac</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1fPiTG67VTgN5Xu-GRKzm6A">百度网盘下载</a>     提取码：e5bs</p>
+</blockquote>
+</li>
+<li><h3 id="Windows10-ISO下载"><a href="#Windows10-ISO下载" class="headerlink" title="Windows10 ISO下载"></a>Windows10 ISO下载</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/software-download/windows10ISO">官网下载</a></p>
+<p>ED2K下载(复制并打开迅雷，即可自动下载)<br><code>ed2k://|file|cn_windows_10_consumer_editions_version_20h2_updated_feb_2021_x64_dvd_8ddab99d.iso|6223781888|954B729026D6E420EE46FB2DC912F256|/</code></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="M1-Mac以及Big-Sur-Mac在安装PD16时可能遇到的问题"><a href="#M1-Mac以及Big-Sur-Mac在安装PD16时可能遇到的问题" class="headerlink" title="M1 Mac以及Big Sur Mac在安装PD16时可能遇到的问题"></a>M1 Mac以及Big Sur Mac在安装PD16时可能遇到的问题</h2><h3 id="网络初始化失败"><a href="#网络初始化失败" class="headerlink" title="网络初始化失败"></a>网络初始化失败</h3><img src="https://img-blog.csdnimg.cn/20201216234951650.png" alt="问题截图">
+
+<h4 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h4><ul>
+<li>前往 &#x2F;Library&#x2F;Preferences&#x2F;Parallels目录</li>
+<li>打开network.desktop.xml文件</li>
+<li>找到<code>&lt;UseKextless&gt;1&lt;/UseKextless&gt;</code>或<code>&lt;UseKextless&gt;-1&lt;/UseKextless&gt;</code>, 修改为<code>&lt;UseKextless&gt;0&lt;/UseKextless&gt;</code></li>
+<li>如果找不到这个标记，那么就在根标记下创建它，如下：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ParallelsNetworkConfig</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 新增 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">UseKextless</span>&gt;</span>0<span class="tag">&lt;/<span class="name">UseKextless</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ParallelsNetworkConfig</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="USB-问题"><a href="#USB-问题" class="headerlink" title="USB 问题"></a>USB 问题</h3><h4 id="解决办法：-1"><a href="#解决办法：-1" class="headerlink" title="解决办法："></a>解决办法：</h4><ul>
+<li>前往&#x2F;Library&#x2F;Preferences&#x2F;Parallels文件夹</li>
+<li>打开 dispatcher.desktop.xml文件</li>
+<li>找到<code>&lt;Usb&gt;0&lt;/Usb&gt;</code>，修改为<code>&lt;Usb&gt;1&lt;/Usb&gt;</code></li>
+</ul>
+<h3 id="弹窗问题"><a href="#弹窗问题" class="headerlink" title="弹窗问题"></a>弹窗问题</h3><blockquote>
+<p>进入Windows系统后，可能会出现下面的弹窗</p>
+</blockquote>
+<img src="https://img-blog.csdnimg.cn/20210308200012373.png">
+
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><ol>
+<li><p>下载配置文件：[<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1A9G3_yuHFjFqIzN2v-enzA">下载地址</a>]   提取码：<code>c7u0</code></p>
+</li>
+<li><p>打开任务管理器，在进程一栏下拉，找到<code>Parallels Control Center</code>，选中该进程，并结束任务</p>
+</li>
+<li><p>前往目录<code>C：\ Program Files（x86）\ Parallels \ Parallels Tools \ Plugins \</code>，并将下载的文件拖入到该文件夹中，在弹出的提示窗口中选择<code>替换</code></p>
+</li>
+<li><p>重启Windows</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8C%97/" rel="tag">安装指北</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">虚拟机</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/03/16/%E7%AC%AC%E5%9B%9B%E8%8A%82-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%B9%E5%BE%81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          第四节 操作系统的特征
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/12/%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AF%94%E8%BE%83/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">分时操作系统与实时操作系统的比较</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E6%8C%87%E5%8C%97-%E9%80%82%E7%94%A8%E4%BA%8EBig-Sur%E5%8F%8ACatalina"><span class="nav-number">1.</span> <span class="nav-text">Mac虚拟机安装指北(适用于Big Sur及Catalina)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E"><span class="nav-number">1.0.1.</span> <span class="nav-text">声明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%80%E9%9C%80%E5%B7%A5%E5%85%B7%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="nav-number">1.1.</span> <span class="nav-text">所需工具下载地址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PD16%EF%BC%9A%E9%80%82%E7%94%A8%E4%BA%8EM1%E4%BB%A5%E5%8F%8A%E5%AE%89%E8%A3%85%E4%BA%86Big-Sur%E7%B3%BB%E7%BB%9F%E7%9A%84Intel%E8%8A%AF%E7%89%87Mac"><span class="nav-number">1.1.1.</span> <span class="nav-text">PD16：适用于M1以及安装了Big Sur系统的Intel芯片Mac</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PD15%EF%BC%9A%E9%80%82%E7%94%A8%E4%BA%8E%E6%9C%AA%E5%8D%87%E7%BA%A7%E8%87%B3Big-Sur%E7%9A%84Intel%E8%8A%AF%E7%89%87Mac"><span class="nav-number">1.1.2.</span> <span class="nav-text">PD15：适用于未升级至Big Sur的Intel芯片Mac</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows10-ISO%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.1.3.</span> <span class="nav-text">Windows10 ISO下载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#M1-Mac%E4%BB%A5%E5%8F%8ABig-Sur-Mac%E5%9C%A8%E5%AE%89%E8%A3%85PD16%E6%97%B6%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">M1 Mac以及Big Sur Mac在安装PD16时可能遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%88%9D%E5%A7%8B%E5%8C%96%E5%A4%B1%E8%B4%A5"><span class="nav-number">1.2.1.</span> <span class="nav-text">网络初始化失败</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%EF%BC%9A"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">解决办法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USB-%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.2.</span> <span class="nav-text">USB 问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%EF%BC%9A-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">解决办法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%B9%E7%AA%97%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.3.</span> <span class="nav-text">弹窗问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2023 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

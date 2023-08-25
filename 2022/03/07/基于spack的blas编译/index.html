@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>基于spack的blas编译 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="实习日记" />
+  
+  
+  
+  
+  <meta name="description" content="直接编译blas首先从netlib官网下载源码,然后进入blas目录,修改make.inc文件最后一行,将其改为BLASLIB      &#x3D; libblas.a 1234wget http:&#x2F;&#x2F;www.netlib.org&#x2F;blas&#x2F;blas-3.10.0.tgztar xzvf blas-3.10.0.tgzcd BLAS-3.10.0vim make.inc  修改完成后,执行make all">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于spack的blas编译">
+<meta property="og:url" content="http://example.com/2022/03/07/%E5%9F%BA%E4%BA%8Espack%E7%9A%84blas%E7%BC%96%E8%AF%91/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="直接编译blas首先从netlib官网下载源码,然后进入blas目录,修改make.inc文件最后一行,将其改为BLASLIB      &#x3D; libblas.a 1234wget http:&#x2F;&#x2F;www.netlib.org&#x2F;blas&#x2F;blas-3.10.0.tgztar xzvf blas-3.10.0.tgzcd BLAS-3.10.0vim make.inc  修改完成后,执行make all">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-07T02:27:51.000Z">
+<meta property="article:modified_time" content="2023-08-25T02:16:39.249Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="实习日记">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-基于spack的blas编译" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      基于spack的blas编译
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2022/03/07/%E5%9F%BA%E4%BA%8Espack%E7%9A%84blas%E7%BC%96%E8%AF%91/" class="article-date">
+	  <time datetime="2022-03-07T02:27:51.000Z" itemprop="datePublished">March 7, 2022</time>
+	</a>
+
+       
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="直接编译blas"><a href="#直接编译blas" class="headerlink" title="直接编译blas"></a>直接编译blas</h1><p>首先从netlib官网下载源码,然后进入blas目录,修改make.inc文件最后一行,将其改为<code>BLASLIB      = libblas.a</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.netlib.org/blas/blas-3.10.0.tgz</span><br><span class="line">tar xzvf blas-3.10.0.tgz</span><br><span class="line">cd BLAS-3.10.0</span><br><span class="line">vim make.inc</span><br></pre></td></tr></table></figure>
+
+<p>修改完成后,执行<code>make all</code>即可在当前目录下编译生成<code>libblas.a</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make all</span><br><span class="line">find libblas.a</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">libblas.a</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="使用spack脚本编译blas"><a href="#使用spack脚本编译blas" class="headerlink" title="使用spack脚本编译blas"></a>使用spack脚本编译blas</h1><h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><ul>
+<li><p><code>spack create [-n name] [-t TEMPLATE, --template TEMPLATE] [url]</code></p>
+<p>创建一个以[template]为模版的包,并生成对应目录和package.py</p>
+</li>
+<li><p><code>spack info [name]</code></p>
+<p>显示一个包的信息</p>
+</li>
+<li><p><code>spack edit [name]</code></p>
+<p>快速编辑某个包目录下的package.py文件</p>
+</li>
+<li><pre><code class="spack">
+安装某个包,-v参数可以显示安装编译过程的详细日志
+</code></pre>
+</li>
+</ul>
+<h3 id="开始编译"><a href="#开始编译" class="headerlink" title="开始编译"></a>开始编译</h3><p>首先创建一个包,并编辑package.py文件.值得注意的是,包名不可以为blas,这会与现有规则冲突(<code>$spack/etc/spack/defaults/packages.yaml</code>)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 执行此命令会在创建完成后进入编辑package.py,加入--skip-editor以跳过</span><br><span class="line">spack create netlib-blas</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在package.py中修改以下内容</span></span><br><span class="line"><span class="keyword">from</span> spack <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># netlib-blas -&gt; NetlibBlas</span></span><br><span class="line"><span class="comment"># 3dm -&gt; _3dm</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NetlibBlas</span>(<span class="title class_ inherited__">MakefilePackage</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;FIXME: Put a proper description of your package here.&quot;&quot;&quot;</span></span><br><span class="line">    homepage = <span class="string">&quot;https://www.example.com&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 指定url、版本以及哈希值</span></span><br><span class="line">    url      = <span class="string">&quot;file:///es01/yeesuan/yeesuan003/mirror/blasblas-3.10.0.tgz&quot;</span></span><br><span class="line">    version(<span class="string">&#x27;3.10.0&#x27;</span>, sha256=<span class="string">&#x27;2e360d99c9bdc8407a61888c40aa853fb4219420ebb8264db486cb8860468ab3&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">edit</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">        <span class="comment"># 文件操作函数filter_file(regex, repl, *filenames, **kwargs)</span></span><br><span class="line">        <span class="comment"># 使用正则表达式修改编译生成的文件名称</span></span><br><span class="line">        makefile = FileFilter(<span class="string">&#x27;make.inc&#x27;</span>)</span><br><span class="line">        makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*BLASLIB\s*=.*&#x27;</span>,  <span class="string">&#x27;BLASLIB      = libblas.a&#x27;</span>)  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">install</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">        <span class="comment"># 生成lib目录</span></span><br><span class="line">        mkdir(prefix.lib)</span><br><span class="line">        install(<span class="string">&quot;libblas.a&quot;</span>,prefix.lib)</span><br></pre></td></tr></table></figure>
+
+<p>编辑完成后,执行<code>spack install netlib-blas</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[yeesuan003@spack ~]$ spack install netlib-blas</span><br><span class="line">==&gt; Installing netlib-blas-3.10.0-lvh47amv4vn23kti7cwdkbe4izugjsr4</span><br><span class="line">==&gt; No binary for netlib-blas-3.10.0-lvh47amv4vn23kti7cwdkbe4izugjsr4 found: installing from source</span><br><span class="line">==&gt; Using cached archive: /es01/yeesuan/yeesuan003/lhxone-test/spack/var/spack/cache/_source-cache/archive/2e/2e360d99c9bdc8407a61888c40aa853fb4219420ebb8264db486cb8860468ab3.tgz</span><br><span class="line">==&gt; No patches needed for netlib-blas</span><br><span class="line">==&gt; netlib-blas: Executing phase: &#x27;edit&#x27;</span><br><span class="line">==&gt; netlib-blas: Executing phase: &#x27;build&#x27;</span><br><span class="line">==&gt; netlib-blas: Executing phase: &#x27;install&#x27;</span><br><span class="line">==&gt; netlib-blas: Successfully installed netlib-blas-3.10.0-lvh47amv4vn23kti7cwdkbe4izugjsr4</span><br><span class="line">  Fetch: 0.00s.  Build: 1.08s.  Total: 1.09s.</span><br><span class="line">[+] /es01/yeesuan/yeesuan003/lhxone-test/spack/software/linux-centos7-haswell/gcc-4.8.5/netlib-blas-3.10.0-lvh47amv4vn23kti7cwdkbe4izugjsr4</span><br><span class="line">[yeesuan003@spack ~]$ tree /es01/yeesuan/yeesuan003/lhxone-test/spack/software/linux-centos7-haswell/gcc-4.8.5/netlib-blas-3.10.0-lvh47amv4vn23kti7cwdkbe4izugjsr4</span><br><span class="line">/es01/yeesuan/yeesuan003/lhxone-test/spack/software/linux-centos7-haswell/gcc-4.8.5/netlib-blas-3.10.0-lvh47amv4vn23kti7cwdkbe4izugjsr4</span><br><span class="line">└── lib</span><br><span class="line">    └── libblas.a</span><br><span class="line"></span><br><span class="line">1 directory, 1 file</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">depends_on(<span class="string">&#x27;gmake&#x27;</span>, <span class="built_in">type</span>=<span class="string">&#x27;build&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">edit</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">    env[<span class="string">&#x27;PREFIX&#x27;</span>] = prefix</span><br><span class="line">    env[<span class="string">&#x27;BLASLIB&#x27;</span>] = spec[<span class="string">&#x27;blas&#x27;</span>].libs.ld_flags</span><br></pre></td></tr></table></figure>
+
+<h4 id="编辑Makefile"><a href="#编辑Makefile" class="headerlink" title="编辑Makefile"></a>编辑Makefile</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">edit</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">    makefile = FileFilter(<span class="string">&#x27;Makefile&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*CC\s*=.*&#x27;</span>,  <span class="string">&#x27;CC = &#x27;</span>  + spack_cc)</span><br><span class="line">    makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*CXX\s*=.*&#x27;</span>, <span class="string">&#x27;CXX = &#x27;</span> + spack_cxx)</span><br><span class="line">    makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*F77\s*=.*&#x27;</span>, <span class="string">&#x27;F77 = &#x27;</span> + spack_f77)</span><br><span class="line">    makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*FC\s*=.*&#x27;</span>,  <span class="string">&#x27;FC = &#x27;</span>  + spack_fc)</span><br></pre></td></tr></table></figure>
+
+<h4 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">install</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">    mkdir(prefix.<span class="built_in">bin</span>)</span><br><span class="line">    install(<span class="string">&#x27;foo&#x27;</span>, prefix.<span class="built_in">bin</span>)</span><br><span class="line">    install_tree(<span class="string">&#x27;lib&#x27;</span>, prefix.lib)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/" rel="tag">实习日记</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/03/08/FVCOM%E7%BC%96%E8%AF%91-%E6%B5%8B%E8%AF%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          FVCOM编译&amp;测试
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/02/vasp%E7%BC%96%E8%AF%91-%E6%B5%8B%E8%AF%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vasp编译&amp;测试</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E7%BC%96%E8%AF%91blas"><span class="nav-number">1.</span> <span class="nav-text">直接编译blas</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8spack%E8%84%9A%E6%9C%AC%E7%BC%96%E8%AF%91blas"><span class="nav-number">2.</span> <span class="nav-text">使用spack脚本编译blas</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="nav-number">2.0.1.</span> <span class="nav-text">基本命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E7%BC%96%E8%AF%91"><span class="nav-number">2.0.2.</span> <span class="nav-text">开始编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%87%E6%B3%A8"><span class="nav-number">2.0.3.</span> <span class="nav-text">备注</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96"><span class="nav-number">2.0.3.1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.0.3.2.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%BE%91Makefile"><span class="nav-number">2.0.3.3.</span> <span class="nav-text">编辑Makefile</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85"><span class="nav-number">2.0.3.4.</span> <span class="nav-text">手动安装</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2023 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

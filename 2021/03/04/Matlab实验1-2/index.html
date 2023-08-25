@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Matlab实验1-2 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Matlab" />
+  
+  
+  
+  
+  <meta name="description" content="Matlab实验1-2 测试矩阵的:操作，要求把测试的过程和结果放入实验报告.  123456A &#x3D; randi(5, 3, 4)A(5)A(2, 3)%row&#x3D;2,col&#x3D;3A(3, :)%row&#x3D;3A(:, 1) &#x3D; [ ]%delet first col  运算结果  1234567891011121314151617181920212223242526272829&gt;&gt; Test">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matlab实验1-2">
+<meta property="og:url" content="http://example.com/2021/03/04/Matlab%E5%AE%9E%E9%AA%8C1-2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Matlab实验1-2 测试矩阵的:操作，要求把测试的过程和结果放入实验报告.  123456A &#x3D; randi(5, 3, 4)A(5)A(2, 3)%row&#x3D;2,col&#x3D;3A(3, :)%row&#x3D;3A(:, 1) &#x3D; [ ]%delet first col  运算结果  1234567891011121314151617181920212223242526272829&gt;&gt; Test">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-04T06:32:58.000Z">
+<meta property="article:modified_time" content="2023-08-25T02:16:39.243Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Matlab">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Matlab实验1-2" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Matlab实验1-2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/03/04/Matlab%E5%AE%9E%E9%AA%8C1-2/" class="article-date">
+	  <time datetime="2021-03-04T06:32:58.000Z" itemprop="datePublished">March 4, 2021</time>
+	</a>
+
+       
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Matlab实验1-2"><a href="#Matlab实验1-2" class="headerlink" title="Matlab实验1-2"></a>Matlab实验1-2</h2><ol start="8">
+<li>测试矩阵的<code>:</code>操作，要求把测试的过程和结果放入实验报告.</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A = randi(<span class="number">5</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">A(<span class="number">5</span>)</span><br><span class="line">A(<span class="number">2</span>, <span class="number">3</span>)<span class="comment">%row=2,col=3</span></span><br><span class="line">A(<span class="number">3</span>, :)<span class="comment">%row=3</span></span><br><span class="line">A(:, <span class="number">1</span>) = [ ]<span class="comment">%delet first col</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>运算结果</p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; TestColon    </span><br><span class="line"></span><br><span class="line">A =</span><br><span class="line"></span><br><span class="line">     <span class="number">4</span>     <span class="number">1</span>     <span class="number">4</span>     <span class="number">3</span></span><br><span class="line">     <span class="number">2</span>     <span class="number">3</span>     <span class="number">4</span>     <span class="number">3</span></span><br><span class="line">     <span class="number">5</span>     <span class="number">2</span>     <span class="number">1</span>     <span class="number">4</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">ans</span> =</span><br><span class="line"></span><br><span class="line">     <span class="number">3</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">ans</span> =</span><br><span class="line"></span><br><span class="line">     <span class="number">4</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">ans</span> =</span><br><span class="line"></span><br><span class="line">     <span class="number">5</span>     <span class="number">2</span>     <span class="number">1</span>     <span class="number">4</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">A =</span><br><span class="line"></span><br><span class="line">     <span class="number">1</span>     <span class="number">4</span>     <span class="number">3</span></span><br><span class="line">     <span class="number">3</span>     <span class="number">4</span>     <span class="number">3</span></span><br><span class="line">     <span class="number">2</span>     <span class="number">1</span>     <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<ol start="9">
+<li>测试字符串操作.</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">&#x27;a+b,c+d,&#x27;</span></span><br><span class="line">n = findstr(str, <span class="string">&#x27;,&#x27;</span>)<span class="comment">%n1是第一个&quot;,&quot;(4),n2是第二个&quot;, &quot;(8)</span></span><br><span class="line">str1 = str(<span class="number">1</span>:n(<span class="number">1</span>))</span><br><span class="line">str2 = str(n(<span class="number">1</span>) + <span class="number">1</span>:n(<span class="number">2</span>))</span><br><span class="line">str3 = strrep(str1, <span class="string">&#x27;,&#x27;</span>, <span class="string">&#x27;*2&#x27;</span>)<span class="comment">%str replace</span></span><br><span class="line">a = <span class="number">5</span></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line">c = <span class="number">3</span></span><br><span class="line">d = <span class="number">4</span></span><br><span class="line">eval(str1)<span class="comment">%计算str1的值</span></span><br><span class="line">eval(str3)<span class="comment">%计算str3的值</span></span><br><span class="line">str2 = upper(str2)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>运算结果</p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; TestStr  </span><br><span class="line"></span><br><span class="line">str =</span><br><span class="line"></span><br><span class="line">    <span class="string">&#x27;a+b,c+d,&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">n =</span><br><span class="line"></span><br><span class="line">     <span class="number">4</span>     <span class="number">8</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">str1 =</span><br><span class="line"></span><br><span class="line">    <span class="string">&#x27;a+b,&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">str2 =</span><br><span class="line"></span><br><span class="line">    <span class="string">&#x27;c+d,&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">str3 =</span><br><span class="line"></span><br><span class="line">    <span class="string">&#x27;a+b*2&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a =</span><br><span class="line"></span><br><span class="line">     <span class="number">5</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">b =</span><br><span class="line"></span><br><span class="line">     <span class="number">2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">c =</span><br><span class="line"></span><br><span class="line">     <span class="number">3</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">d =</span><br><span class="line"></span><br><span class="line">     <span class="number">4</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">ans</span> =</span><br><span class="line"></span><br><span class="line">     <span class="number">7</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">ans</span> =</span><br><span class="line"></span><br><span class="line">     <span class="number">9</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">str2 =</span><br><span class="line"></span><br><span class="line">    <span class="string">&#x27;C+D,&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>已知<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>+</mo><mfrac><mn>1</mn><mn>3</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>5</mn></mfrac><mo>+</mo><mo separator="true">⋅</mo><mo separator="true">⋅</mo><mo separator="true">⋅</mo><mo>+</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">f(n)=1+\frac{1}{3}+\frac{1}{5}+···+\frac{1}{2n-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.2484389999999999em;vertical-align:-0.403331em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord">+</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">+</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>分别用<code>for</code>循环和<code>while</code>循环编写两个函数，并计算<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mn>50</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(50)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord">5</span><span class="mord">0</span><span class="mclose">)</span></span></span></span>,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mn>100</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(100)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mclose">)</span></span></span></span>,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mn>200</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(200)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span><span class="mclose">)</span></span></span></span>的值.</li>
+</ol>
+<p><code>CalFunc.m</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">y</span>=<span class="title">F</span><span class="params">(x)</span></span></span><br><span class="line">    y=<span class="number">1</span>/(<span class="number">2</span>*x);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Cal.m</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index = <span class="number">1</span>:<span class="number">50</span></span><br><span class="line">    sum = sum + CalFunc(index);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">disp</span>(<span class="string">&#x27;f(50)=&#x27;</span>)</span><br><span class="line">sum</span><br><span class="line">sum=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index = <span class="number">1</span>:<span class="number">100</span></span><br><span class="line">    sum = sum + CalFunc(index);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">disp</span>(<span class="string">&#x27;f(100)=&#x27;</span>)</span><br><span class="line">sum</span><br><span class="line">sum=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index = <span class="number">1</span>:<span class="number">200</span></span><br><span class="line">    sum = sum + CalFunc(index);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">disp</span>(<span class="string">&#x27;f(200)=&#x27;</span>)</span><br><span class="line">sum</span><br><span class="line">sum=<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运算结果</p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; Cal</span><br><span class="line">f(<span class="number">50</span>)=</span><br><span class="line"></span><br><span class="line">sum =</span><br><span class="line"></span><br><span class="line">   <span class="number">2.249602669164712</span></span><br><span class="line"></span><br><span class="line">f(<span class="number">100</span>)=</span><br><span class="line"></span><br><span class="line">sum =</span><br><span class="line"></span><br><span class="line">   <span class="number">2.593688758819810</span></span><br><span class="line"></span><br><span class="line">f(<span class="number">200</span>)=</span><br><span class="line"></span><br><span class="line">sum =</span><br><span class="line"></span><br><span class="line">   <span class="number">2.939015474060723</span></span><br></pre></td></tr></table></figure>
+
+<ol start="11">
+<li>查阅测试excel文件的读取和写入函数xlsread,xlswrite，要求把测试的过程和结果放入实验报告.</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num=xlsread(<span class="string">&quot;Book1.xls&quot;</span>)</span><br><span class="line">num(:,<span class="number">1</span>)=[ ]</span><br><span class="line">xlswrite(<span class="string">&quot;Book1.xls&quot;</span>,num,<span class="string">&#x27;A5&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; Testxls</span><br><span class="line"></span><br><span class="line">num =</span><br><span class="line"></span><br><span class="line">     <span class="number">3</span>     <span class="number">4</span>     <span class="number">6</span>     <span class="number">3</span>     <span class="number">2</span></span><br><span class="line">     <span class="number">5</span>     <span class="number">9</span>     <span class="number">7</span>     <span class="number">5</span>     <span class="number">3</span></span><br><span class="line">     <span class="number">4</span>     <span class="number">0</span>     <span class="number">6</span>     <span class="number">4</span>     <span class="number">3</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">num =</span><br><span class="line"></span><br><span class="line">     <span class="number">4</span>     <span class="number">6</span>     <span class="number">3</span>     <span class="number">2</span></span><br><span class="line">     <span class="number">9</span>     <span class="number">7</span>     <span class="number">5</span>     <span class="number">3</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">6</span>     <span class="number">4</span>     <span class="number">3</span></span><br><span class="line"></span><br><span class="line">Warning: Could not start Excel server <span class="keyword">for</span> export.</span><br><span class="line">XLSWRITE will attempt to write file in CSV format. </span><br><span class="line">&gt; In xlswrite (line <span class="number">181</span>)</span><br><span class="line">  In Testxls (line <span class="number">3</span>) </span><br></pre></td></tr></table></figure>
+
+<table><tr><td bgcolor=yellow>出现了无法写入的问题，num被写入到了新建的Book1.csv，而非原有的Book1.xls。此问题仅存在于macOS，原因为macOS上的Office目前不支持COM接口，目前无解。</td></tr></table>
+
+<ol start="12">
+<li>自己编写矩阵左右翻转、上下翻转函数，不得使用Matlab已经编写好的左右翻转和上下翻转函数。给一个具体的矩阵并做测试翻转.</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="built_in">magic</span>(<span class="number">4</span>)</span><br><span class="line">MatrixReserveFunc1(A)</span><br><span class="line">MatrixReserveFunc2(A)</span><br></pre></td></tr></table></figure>
+
+<p><code>MatrixReserveFunc1.m</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MatrixReserveFunc1</span><span class="params">(A)</span></span></span><br><span class="line">    [m, n] = <span class="built_in">size</span>(A);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> row = <span class="number">1</span>:m / <span class="number">2</span></span><br><span class="line">        temp = A(row, :);</span><br><span class="line">        A(row, :) = A(m - row + <span class="number">1</span>, :);</span><br><span class="line">        A(m - row + <span class="number">1</span>, :) = temp;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    A</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p><code>MatrixReserveFunc2.m</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MatrixReserveFunc2</span><span class="params">(A)</span></span></span><br><span class="line">    [m, n] = <span class="built_in">size</span>(A);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> col = <span class="number">1</span>:n / <span class="number">2</span></span><br><span class="line">        temp = A(:, col);</span><br><span class="line">        A(:, col) = A(:, n - col + <span class="number">1</span>);</span><br><span class="line">        A(:, n - col + <span class="number">1</span>) = temp;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    A</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; MatrixReserve</span><br><span class="line"></span><br><span class="line">A =</span><br><span class="line"></span><br><span class="line">    <span class="number">16</span>     <span class="number">2</span>     <span class="number">3</span>    <span class="number">13</span></span><br><span class="line">     <span class="number">5</span>    <span class="number">11</span>    <span class="number">10</span>     <span class="number">8</span></span><br><span class="line">     <span class="number">9</span>     <span class="number">7</span>     <span class="number">6</span>    <span class="number">12</span></span><br><span class="line">     <span class="number">4</span>    <span class="number">14</span>    <span class="number">15</span>     <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">A =</span><br><span class="line"></span><br><span class="line">     <span class="number">4</span>    <span class="number">14</span>    <span class="number">15</span>     <span class="number">1</span></span><br><span class="line">     <span class="number">9</span>     <span class="number">7</span>     <span class="number">6</span>    <span class="number">12</span></span><br><span class="line">     <span class="number">5</span>    <span class="number">11</span>    <span class="number">10</span>     <span class="number">8</span></span><br><span class="line">    <span class="number">16</span>     <span class="number">2</span>     <span class="number">3</span>    <span class="number">13</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">A =</span><br><span class="line"></span><br><span class="line">    <span class="number">13</span>     <span class="number">3</span>     <span class="number">2</span>    <span class="number">16</span></span><br><span class="line">     <span class="number">8</span>    <span class="number">10</span>    <span class="number">11</span>     <span class="number">5</span></span><br><span class="line">    <span class="number">12</span>     <span class="number">6</span>     <span class="number">7</span>     <span class="number">9</span></span><br><span class="line">     <span class="number">1</span>    <span class="number">15</span>    <span class="number">14</span>     <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<ol start="13">
+<li>编写函数，计算<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo stretchy="false">!</mo><mo>+</mo><mn>2</mn><mo stretchy="false">!</mo><mo>+</mo><mo separator="true">⋅</mo><mo separator="true">⋅</mo><mo separator="true">⋅</mo><mo>+</mo><mn>20</mn><mo stretchy="false">!</mo></mrow><annotation encoding="application/x-tex">1!+2!+···+20!</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mclose">!</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mclose">!</span><span class="mord">+</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">+</span><span class="mord">2</span><span class="mord">0</span><span class="mclose">!</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo stretchy="false">!</mo><mo>+</mo><mn>2</mn><mo stretchy="false">!</mo><mo>+</mo><mo separator="true">⋅</mo><mo separator="true">⋅</mo><mo separator="true">⋅</mo><mo>+</mo><mn>30</mn><mo stretchy="false">!</mo></mrow><annotation encoding="application/x-tex">1!+2!+···+30!</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mclose">!</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mclose">!</span><span class="mord">+</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">+</span><span class="mord">3</span><span class="mord">0</span><span class="mclose">!</span></span></span></span></li>
+</ol>
+<p><code>TestFactorFunc.m</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">y</span> = <span class="title">TestFactorFunc</span><span class="params">(n)</span></span></span><br><span class="line">    fac = <span class="number">1</span>;</span><br><span class="line">    s = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> index1 = <span class="number">1</span>:n</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> index2 = <span class="number">1</span>:index1</span><br><span class="line">            fac = fac * index2;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">        s = s + fac;</span><br><span class="line">        fac = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    y = s;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p><code>TestFactor.m</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">disp</span>(<span class="string">&#x27;Factor(20)=&#x27;</span>)</span><br><span class="line">sum=TestFactorFunc(<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">disp</span>(<span class="string">&#x27;Factor(30)=&#x27;</span>)</span><br><span class="line">sum=TestFactorFunc(<span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; TestFactor</span><br><span class="line">Factor(<span class="number">20</span>)=</span><br><span class="line"></span><br><span class="line">sum =</span><br><span class="line"></span><br><span class="line">   <span class="number">2.5613e+18</span></span><br><span class="line"></span><br><span class="line">Factor(<span class="number">30</span>)=</span><br><span class="line"></span><br><span class="line">sum =</span><br><span class="line"></span><br><span class="line">   <span class="number">2.7441e+32</span></span><br></pre></td></tr></table></figure>
+
+<ol start="14">
+<li>编写斐波那契（Fibonacci）数列的函数，列出数列前40个数.提示：可以递归调用，也可以把数列的数放入数组中存储.</li>
+</ol>
+<p><code>TestFib.m</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A=[ ]</span><br><span class="line"><span class="keyword">for</span> index = <span class="number">1</span>:<span class="number">40</span></span><br><span class="line">    A=[A,TestFibFunc(index)];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">A</span><br></pre></td></tr></table></figure>
+
+<p><code>TestFibFunc.m</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">y</span> = <span class="title">Fib</span><span class="params">(n)</span></span></span><br><span class="line">    A(<span class="number">1</span>) = <span class="number">1</span>;</span><br><span class="line">    A(<span class="number">2</span>) = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">3</span>:n</span><br><span class="line">        A(<span class="built_in">i</span>) = A(<span class="built_in">i</span> - <span class="number">1</span>) + A(<span class="built_in">i</span> - <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    y = A(n);</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; TestFib</span><br><span class="line"></span><br><span class="line">A =</span><br><span class="line"></span><br><span class="line">     [ ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">A =</span><br><span class="line"></span><br><span class="line">  Columns <span class="number">1</span> through <span class="number">9</span></span><br><span class="line"></span><br><span class="line">           <span class="number">1</span>           <span class="number">1</span>           <span class="number">2</span>           <span class="number">3</span>           <span class="number">5</span>           <span class="number">8</span>          <span class="number">13</span>          <span class="number">21</span>          <span class="number">34</span></span><br><span class="line"></span><br><span class="line">  Columns <span class="number">10</span> through <span class="number">18</span></span><br><span class="line"></span><br><span class="line">          <span class="number">55</span>          <span class="number">89</span>         <span class="number">144</span>         <span class="number">233</span>         <span class="number">377</span>         <span class="number">610</span>         <span class="number">987</span>        <span class="number">1597</span>        <span class="number">2584</span></span><br><span class="line"></span><br><span class="line">  Columns <span class="number">19</span> through <span class="number">27</span></span><br><span class="line"></span><br><span class="line">        <span class="number">4181</span>        <span class="number">6765</span>       <span class="number">10946</span>       <span class="number">17711</span>       <span class="number">28657</span>       <span class="number">46368</span>       <span class="number">75025</span>      <span class="number">121393</span>      <span class="number">196418</span></span><br><span class="line"></span><br><span class="line">  Columns <span class="number">28</span> through <span class="number">36</span></span><br><span class="line"></span><br><span class="line">      <span class="number">317811</span>      <span class="number">514229</span>      <span class="number">832040</span>     <span class="number">1346269</span>     <span class="number">2178309</span>     <span class="number">3524578</span>     <span class="number">5702887</span>     <span class="number">9227465</span>    <span class="number">14930352</span></span><br><span class="line"></span><br><span class="line">  Columns <span class="number">37</span> through <span class="number">40</span></span><br><span class="line"></span><br><span class="line">    <span class="number">24157817</span>    <span class="number">39088169</span>    <span class="number">63245986</span>   <span class="number">102334155</span></span><br></pre></td></tr></table></figure>
+
+<ol start="15">
+<li>编写课件中的猜数游戏，并做测试. 首先由计算机随机产生一个<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mn>100</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[1,100]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mclose">]</span></span></span></span>之间的一个整数，然后由用户猜测所产生的这个数。根据用户猜测的情况给出不同的提示，如果猜测的数大于产生的数，则显示<code>High</code>，小于则显示<code>Low</code>，等于则显示<code>You won!</code>，同时退出游戏。用户最多有 10 次机会.</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">fprintf(<span class="string">&quot;游戏开始！\n请输入你猜的数\n&quot;</span>)</span><br><span class="line">num=randi(<span class="number">100</span>)</span><br><span class="line">t=<span class="number">10</span>;</span><br><span class="line"><span class="keyword">while</span> t&gt;<span class="number">0</span></span><br><span class="line">    t=t<span class="number">-1</span>;</span><br><span class="line">    x=input(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> num==x</span><br><span class="line">        fprintf(<span class="string">&quot;You won!\n&quot;</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">if</span> x&gt;num</span><br><span class="line">            fprintf(<span class="string">&quot;High!&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            fprintf(<span class="string">&quot;Low!&quot;</span>)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        fprintf(<span class="string">&quot;还剩%d次机会，请再次输入：&quot;</span>,t);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> t==<span class="number">0</span></span><br><span class="line">    fprintf(<span class="string">&quot;机会为0，游戏结束!\n&quot;</span>);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Next⬇️"><a href="#Next⬇️" class="headerlink" title="Next⬇️"></a><center>Next⬇️</center></h3><center><a target="_blank" rel="noopener" href="http://lhxone.top/2021/03/07/Matlab实验1-3/">Matlab练习1-3 🍺</a></center>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matlab/" rel="tag">Matlab</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/03/07/Matlab%E5%AE%9E%E9%AA%8C1-3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Matlab实验1-3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/03/Matlab%E5%AE%9E%E9%AA%8C1-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Matlab实验1-1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Matlab%E5%AE%9E%E9%AA%8C1-2"><span class="nav-number">1.</span> <span class="nav-text">Matlab实验1-2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Next%E2%AC%87%EF%B8%8F"><span class="nav-number">1.1.</span> <span class="nav-text">Next⬇️</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2023 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

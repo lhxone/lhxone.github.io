@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>分时操作系统与实时操作系统的比较 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="操作系统" />
+  
+  
+  
+  
+  <meta name="description" content="3.19操作系统作业分时操作系统与实时操作系统的比较简介 计算机操作系统从20世纪50年代中期第二代计算机的单道批处理系统到20世纪60年代中期第三代计算机的多道批处理系统（IBM公司研发的OS&#x2F;360系统是第一个能运行多道程序的批处理系统），都主要致力于提高资源利用率和系统吞吐量。但人们对人机交互的需求却一直未能得到有效解决，因此一种新型OS——分时OS就应运而生了，紧接着实时OS也在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分时操作系统与实时操作系统的比较">
+<meta property="og:url" content="http://example.com/2021/03/12/%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AF%94%E8%BE%83/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="3.19操作系统作业分时操作系统与实时操作系统的比较简介 计算机操作系统从20世纪50年代中期第二代计算机的单道批处理系统到20世纪60年代中期第三代计算机的多道批处理系统（IBM公司研发的OS&#x2F;360系统是第一个能运行多道程序的批处理系统），都主要致力于提高资源利用率和系统吞吐量。但人们对人机交互的需求却一直未能得到有效解决，因此一种新型OS——分时OS就应运而生了，紧接着实时OS也在">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-12T06:47:05.000Z">
+<meta property="article:modified_time" content="2023-08-25T02:16:39.249Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-分时操作系统与实时操作系统的比较" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      分时操作系统与实时操作系统的比较
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/03/12/%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AF%94%E8%BE%83/" class="article-date">
+	  <time datetime="2021-03-12T06:47:05.000Z" itemprop="datePublished">March 12, 2021</time>
+	</a>
+
+       
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="3-19操作系统作业"><a href="#3-19操作系统作业" class="headerlink" title="3.19操作系统作业"></a>3.19操作系统作业</h2><h3 id="分时操作系统与实时操作系统的比较"><a href="#分时操作系统与实时操作系统的比较" class="headerlink" title="分时操作系统与实时操作系统的比较"></a>分时操作系统与实时操作系统的比较</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><blockquote>
+<p>计算机操作系统从20世纪50年代中期第二代计算机的单道批处理系统到20世纪60年代中期第三代计算机的多道批处理系统（IBM公司研发的OS&#x2F;360系统是第一个能运行多道程序的批处理系统），都主要致力于提高资源利用率和系统吞吐量。但人们对人机交互的需求却一直未能得到有效解决，因此一种新型OS——分时OS就应运而生了，紧接着实时OS也在工业、军事等领域的需求下也随之诞生。现在我们所使用的操作系统都属于这两类。</p>
+</blockquote>
+<hr>
+<span id="more"></span>
+<h1 id="分时操作系统"><a href="#分时操作系统" class="headerlink" title="分时操作系统"></a>分时操作系统</h1><h4 id="为解决批处理系统中无交互手段、调试程序困难等缺点，出现了分时操作系统。"><a href="#为解决批处理系统中无交互手段、调试程序困难等缺点，出现了分时操作系统。" class="headerlink" title="为解决批处理系统中无交互手段、调试程序困难等缺点，出现了分时操作系统。"></a>为解决批处理系统中无交互手段、调试程序困难等缺点，出现了分时操作系统。</h4><h3 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h3><ul>
+<li>一台主机连接了若干个终端</li>
+<li>每个终端（近程或远程）有一个用户在使用</li>
+<li>每个用户交互式地向系统提出命令请求</li>
+<li>系统接收每个用户的命令</li>
+<li>采用<code>时间片轮转</code>方式处理各用户的服务请求</li>
+<li>通过交互方式在终端上向用户显示结果</li>
+<li>用户根据上步结果发出下道命令</li>
+</ul>
+<h3 id="分时操作系统实现（条件）"><a href="#分时操作系统实现（条件）" class="headerlink" title="分时操作系统实现（条件）"></a>分时操作系统实现（条件）</h3><p>关键：及时接受、及时处理</p>
+<ul>
+<li>系统中配置多路卡，以便主机及时接收各用户输入的命令或数据</li>
+<li>每个终端配备缓存，以便暂存用户数据</li>
+<li>用户作业直接输入内存，可确保系统及时响应用户要求</li>
+<li>采用时间片轮转法，使一台主机同时为多个用户服务，且保证足够快的响应时间</li>
+</ul>
+<h3 id="时间片"><a href="#时间片" class="headerlink" title="时间片"></a>时间片</h3><p>操作系统将CPU的时间划分成若干各片段，称为时间片</p>
+<h3 id="时间片轮转法"><a href="#时间片轮转法" class="headerlink" title="时间片轮转法"></a>时间片轮转法</h3><p>操作系统以时间片为单位，轮流为每个终端用户服务，每次服务一个时间片。其特点是利用人的错觉，使人感觉不到。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>多路性</li>
+<li>交互性</li>
+<li>独立性</li>
+<li>及时性</li>
+</ul>
+<blockquote>
+<p>典型的分时系统是MUTICS和UNIX</p>
+</blockquote>
+<hr>
+<h1 id="实时操作系统"><a href="#实时操作系统" class="headerlink" title="实时操作系统"></a>实时操作系统</h1><h4 id="能及时响应外部事件的请求，在规定时限内完成对该事件的处理。"><a href="#能及时响应外部事件的请求，在规定时限内完成对该事件的处理。" class="headerlink" title="能及时响应外部事件的请求，在规定时限内完成对该事件的处理。"></a>能及时响应外部事件的请求，在规定时限内完成对该事件的处理。</h4><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol>
+<li>第一类：实施过程控制系统<blockquote>
+<p>工业控制、军事控制</p>
+</blockquote>
+</li>
+<li>第二类：实时通信（信息）处理系统<blockquote>
+<p>电讯、银行、飞机订票、股市行情</p>
+</blockquote>
+</li>
+<li>多媒体系统<blockquote>
+<p>将文本、图像、音频、视频等信息集中在一个文件中，形成多媒体文件。多媒体播放系统必须为实时处理系统。</p>
+</blockquote>
+</li>
+<li>嵌入式系统<blockquote>
+<p>嵌入在各智能仪器和设备中的芯片，可对设备进行控制或对其中信息做处理，需要实时控制或处理。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="主要追求目标"><a href="#主要追求目标" class="headerlink" title="主要追求目标"></a>主要追求目标</h3><ul>
+<li>对外部请求在严格时间范围内作出反应（及时响应）</li>
+<li>高可靠性（采用双工制：两台完全相同的计算机）</li>
+<li>安全性</li>
+<li>完整性</li>
+</ul>
+<h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>多路性</li>
+<li>交互性</li>
+<li>独立性</li>
+<li>及时性</li>
+<li>可靠性</li>
+</ul>
+<hr>
+<h1 id="分时系统与实时系统比较"><a href="#分时系统与实时系统比较" class="headerlink" title="分时系统与实时系统比较"></a>分时系统与实时系统比较</h1><ul>
+<li><p>多路性：两者都具有多路性。软实时与分时系统中的多路性表现为系统按分时原则为多个任务终端用户服务；硬实时则指系统周期性地对多路现场信息进行采集以及对多个对象或多个执行机构进行控制。</p>
+</li>
+<li><p>独立性：两者都具有独立性。每个终端用户在向分时系统提出服务请求时，是彼此独立的操作，互不干扰；而在实时控制系统中信息的采集和对对象的控制，也彼此互不干扰。</p>
+</li>
+<li><p>及时性：实时信息系统对实时性的要求与分时系统类似，都是以人所能接受的等待时间来确定；而实时控制系统的及时性，则是以控制对象所要求的开始截止时间或完成截止时间来确定的，一般为秒级、百毫秒级直至毫秒级，甚至有的要低于100微秒。</p>
+</li>
+<li><p>交互性：实时信息处理系统具有交互性，但这里人与系统的交互，仅限于访问系统中某些特定的专用服务程序。它不像分时系统那样能向终端用户提供数据处理服务、资源共享等服务。</p>
+</li>
+<li><p>可靠性：分时系统要求系统可靠，相比之下，实时系统则要求系统高度可靠。因为任何差错都可能带来巨大的经济损失甚至无法预料的灾难性后果。因此，在实时系统中，采取了多级容错措施来保证系统的安全及数据的安全。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/03/14/Mac%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E6%8C%87%E5%8C%97-%E9%80%82%E7%94%A8%E4%BA%8EBig-Sur%E5%8F%8ACatalina/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Mac虚拟机安装指北(适用于Big Sur及Catalina)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/11/Java%E6%8C%87%E5%8C%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java指北</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-19%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A"><span class="nav-number">1.</span> <span class="nav-text">3.19操作系统作业</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">1.1.</span> <span class="nav-text">分时操作系统与实时操作系统的比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">简介</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number"></span> <span class="nav-text">分时操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E8%A7%A3%E5%86%B3%E6%89%B9%E5%A4%84%E7%90%86%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%97%A0%E4%BA%A4%E4%BA%92%E6%89%8B%E6%AE%B5%E3%80%81%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E5%9B%B0%E9%9A%BE%E7%AD%89%E7%BC%BA%E7%82%B9%EF%BC%8C%E5%87%BA%E7%8E%B0%E4%BA%86%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%82"><span class="nav-number">0.0.1.</span> <span class="nav-text">为解决批处理系统中无交互手段、调试程序困难等缺点，出现了分时操作系统。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="nav-number">0.1.</span> <span class="nav-text">工作方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0%EF%BC%88%E6%9D%A1%E4%BB%B6%EF%BC%89"><span class="nav-number">0.2.</span> <span class="nav-text">分时操作系统实现（条件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E7%89%87"><span class="nav-number">0.3.</span> <span class="nav-text">时间片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E6%B3%95"><span class="nav-number">0.4.</span> <span class="nav-text">时间片轮转法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">0.5.</span> <span class="nav-text">特点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number"></span> <span class="nav-text">实时操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%BD%E5%8F%8A%E6%97%B6%E5%93%8D%E5%BA%94%E5%A4%96%E9%83%A8%E4%BA%8B%E4%BB%B6%E7%9A%84%E8%AF%B7%E6%B1%82%EF%BC%8C%E5%9C%A8%E8%A7%84%E5%AE%9A%E6%97%B6%E9%99%90%E5%86%85%E5%AE%8C%E6%88%90%E5%AF%B9%E8%AF%A5%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%A4%84%E7%90%86%E3%80%82"><span class="nav-number">0.0.1.</span> <span class="nav-text">能及时响应外部事件的请求，在规定时限内完成对该事件的处理。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">0.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E8%BF%BD%E6%B1%82%E7%9B%AE%E6%A0%87"><span class="nav-number">0.2.</span> <span class="nav-text">主要追求目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9-1"><span class="nav-number">0.3.</span> <span class="nav-text">特点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%97%B6%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AE%9E%E6%97%B6%E7%B3%BB%E7%BB%9F%E6%AF%94%E8%BE%83"><span class="nav-number"></span> <span class="nav-text">分时系统与实时系统比较</span></a>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2023 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

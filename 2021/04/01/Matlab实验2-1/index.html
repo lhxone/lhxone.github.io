@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Matlab实验2-1 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Matlab" />
+  
+  
+  
+  
+  <meta name="description" content="Matlab实验2-1 Matlab图形操作实验   第4讲例题：4-1，4-2，4-5，4-6，4-7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matlab实验2-1">
+<meta property="og:url" content="http://example.com/2021/04/01/Matlab%E5%AE%9E%E9%AA%8C2-1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Matlab实验2-1 Matlab图形操作实验   第4讲例题：4-1，4-2，4-5，4-6，4-7">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/05/cM8hVJ.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/05/cM84a9.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/05/cM855R.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/05/cM8Wb4.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/05/cMJwhn.jpg">
+<meta property="article:published_time" content="2021-04-01T03:32:28.000Z">
+<meta property="article:modified_time" content="2023-08-25T03:14:14.713Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Matlab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/04/05/cM8hVJ.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Matlab实验2-1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Matlab实验2-1
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/04/01/Matlab%E5%AE%9E%E9%AA%8C2-1/" class="article-date">
+	  <time datetime="2021-04-01T03:32:28.000Z" itemprop="datePublished">April 1, 2021</time>
+	</a>
+
+       
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Matlab实验2-1"><a href="#Matlab实验2-1" class="headerlink" title="Matlab实验2-1"></a>Matlab实验2-1</h2><blockquote>
+<p>Matlab图形操作实验</p>
+</blockquote>
+<hr>
+<h2 id="第4讲例题：4-1，4-2，4-5，4-6，4-7"><a href="#第4讲例题：4-1，4-2，4-5，4-6，4-7" class="headerlink" title="第4讲例题：4-1，4-2，4-5，4-6，4-7"></a>第4讲例题：4-1，4-2，4-5，4-6，4-7</h2><span id="more"></span>
+<h3 id="4-1：画和的图像"><a href="#4-1：画和的图像" class="headerlink" title="4-1：画和的图像."></a>4-1：画<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>3</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y=sin(x+3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3</span><span class="mclose">)</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false">(</mo><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y=exp(sin(x))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>的图像.</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">-2</span> * <span class="built_in">pi</span>:<span class="number">0.1</span>:<span class="number">2</span> * <span class="built_in">pi</span>;</span><br><span class="line">y1 = <span class="built_in">sin</span>(x + <span class="number">3</span>);</span><br><span class="line">y2 = <span class="built_in">exp</span>(<span class="built_in">sin</span>(x));</span><br><span class="line"><span class="built_in">plot</span>(x, y1, <span class="string">&#x27;-*&#x27;</span>, x, y2, <span class="string">&#x27;:o&#x27;</span>)  <span class="comment">%&#x27;-&#x27;表示实线，&#x27;*&#x27;表示以*标注；&#x27;：&#x27;表示点线，&#x27;o&#x27;表示用圆圈标出数据点</span></span><br></pre></td></tr></table></figure>
+
+<center><img src="https://z3.ax1x.com/2021/04/05/cM8hVJ.png" width="50%"></center>
+
+
+<h3 id="4-2：用不同标度在同一坐标绘制曲线和"><a href="#4-2：用不同标度在同一坐标绘制曲线和" class="headerlink" title="4-2：用不同标度在同一坐标绘制曲线和"></a>4-2：用不同标度在同一坐标绘制曲线<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mn>1</mn></msub><mo>=</mo><mn>200</mn><msup><mi>e</mi><mrow><mo>−</mo><mn>0.05</mn><mi>x</mi></mrow></msup><mi>s</mi><mi>i</mi><mi>n</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">y_{1}=200e^{-0.05x}sinx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">0</span><span class="mord mtight">.</span><span class="mord mtight">0</span><span class="mord mtight">5</span><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mord mathnormal">x</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mn>2</mn></msub><mo>=</mo><mn>0.8</mn><msup><mi>e</mi><mrow><mo>−</mo><mn>0.5</mn><mi>x</mi></mrow></msup><mi>s</mi><mi>i</mi><mi>n</mi><mn>10</mn><mi>x</mi></mrow><annotation encoding="application/x-tex">y_{2}=0.8e^{-0.5x}sin10x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">8</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">0</span><span class="mord mtight">.</span><span class="mord mtight">5</span><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mord">1</span><span class="mord">0</span><span class="mord mathnormal">x</span></span></span></span></h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">0</span>:<span class="number">0.1</span>:<span class="number">20</span>;</span><br><span class="line">y1 = <span class="number">200</span> * <span class="built_in">exp</span>(<span class="number">-0.05</span> * x) .* <span class="built_in">sin</span>(x); <span class="comment">%要用.*</span></span><br><span class="line">y2 = <span class="number">0.8</span> * <span class="built_in">exp</span>(<span class="number">-0.5</span> * x) .* <span class="built_in">sin</span>(<span class="number">10</span> * x);</span><br><span class="line"><span class="built_in">plot</span>(x, y1, x, y2); <span class="comment">%plot只有一个坐标轴，plotyy则有两个坐标轴</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;y_1=200e^&#123;-0.05x&#125;sinx&#x27;</span>, <span class="string">&#x27;y_2=0.8e^&#123;-0.5x&#125;sin10x&#x27;</span>); <span class="comment">%LaTex</span></span><br></pre></td></tr></table></figure>
+
+<center><img src="https://z3.ax1x.com/2021/04/05/cM84a9.png" width="50%"></center>
+
+<h3 id="4-5：绘制的极坐标图"><a href="#4-5：绘制的极坐标图" class="headerlink" title="4-5：绘制的极坐标图."></a>4-5：绘制<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mi>s</mi><mi>i</mi><mi>n</mi><mi>t</mi><mo>∗</mo><mi>c</mi><mi>o</mi><mi>s</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">r=sint*cost</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mord mathnormal">o</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span></span></span></span>的极坐标图.</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t = <span class="number">0</span>:<span class="built_in">pi</span> / <span class="number">50</span>:<span class="number">2</span> * <span class="built_in">pi</span>;</span><br><span class="line">r = <span class="built_in">sin</span>(t) .* <span class="built_in">cos</span>(t);</span><br><span class="line">polar(t, r, <span class="string">&#x27;dc&#x27;</span>);      <span class="comment">%d表示菱形，c表示青色</span></span><br></pre></td></tr></table></figure>
+
+<center><img src="https://z3.ax1x.com/2021/04/05/cM855R.png" width="50%"></center>
+
+<h3 id="4-6：subplot划分画图区域"><a href="#4-6：subplot划分画图区域" class="headerlink" title="4-6：subplot划分画图区域"></a>4-6：subplot划分画图区域</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%将一个绘图窗口分割成m*n个子区域，并按行从左至右依次编号.p表示第p个绘图子区域.</span></span><br><span class="line"><span class="comment">%subplot(&#x27;Position&#x27;,[left,bottom,width,height])</span></span><br><span class="line">x = <span class="number">-2</span>:<span class="number">0.2</span>:<span class="number">2</span>;</span><br><span class="line">y1 = x + <span class="built_in">sin</span>(x);</span><br><span class="line">y2 = <span class="built_in">sin</span>(x) ./ x;</span><br><span class="line">y3 = (x.^<span class="number">2</span>);</span><br><span class="line">subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>), <span class="built_in">plot</span>(x, y1, <span class="string">&#x27;m.&#x27;</span>); <span class="comment">%&#x27;m&#x27;表示洋红，&#x27;.&#x27;表示用点标出数据点</span></span><br><span class="line">subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>), <span class="built_in">plot</span>(x, y2, <span class="string">&#x27;rp&#x27;</span>); <span class="comment">%&#x27;r&#x27;表示红色，&#x27;p&#x27;表示五角星</span></span><br><span class="line">subplot(<span class="string">&#x27;position&#x27;</span>, [<span class="number">0.2</span>, <span class="number">0.05</span>, <span class="number">0.6</span>, <span class="number">0.45</span>]), <span class="built_in">plot</span>(x, y3)</span><br></pre></td></tr></table></figure>
+
+<center><img src="https://z3.ax1x.com/2021/04/05/cM8Wb4.png" width="50%"></center>
+
+<h3 id="4-7：legend-添加图例"><a href="#4-7：legend-添加图例" class="headerlink" title="4-7：legend 添加图例"></a>4-7：legend 添加图例</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">0</span>:<span class="number">0.2</span>:<span class="number">2</span> * <span class="built_in">pi</span>;</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(x, <span class="built_in">cos</span>(x), <span class="string">&#x27;r+:&#x27;</span>);</span><br><span class="line"><span class="built_in">plot</span>(x, <span class="built_in">sin</span>(x), <span class="string">&#x27;bd-.&#x27;</span>);</span><br><span class="line"><span class="built_in">plot</span>(x, <span class="number">2</span> * <span class="built_in">cos</span>(x), <span class="string">&#x27;kh-&#x27;</span>);</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;cos(x)&#x27;</span>, <span class="string">&#x27;sin(x)&#x27;</span>, <span class="string">&#x27;2cos(x)&#x27;</span>)</span><br><span class="line">xlabel(<span class="string">&#x27;x&#x27;</span>);</span><br><span class="line">ylabel(<span class="string">&#x27;y&#x27;</span>);</span><br><span class="line">title(<span class="string">&#x27;几种三角函数图像比较&#x27;</span>)</span><br><span class="line">text(<span class="number">0.7</span>, <span class="number">1.7</span>, <span class="string">&#x27;\leftarrow 2cos(x)&#x27;</span>);</span><br><span class="line">text(<span class="number">2.7</span>, <span class="number">0.6</span>, <span class="string">&#x27;\leftarrow sin(x)&#x27;</span>);</span><br><span class="line">text(<span class="number">2.2</span>, <span class="number">-0.5</span>, <span class="string">&#x27;\leftarrow cos(x)&#x27;</span>)</span><br><span class="line"><span class="built_in">hold</span> off</span><br><span class="line">gtext(<span class="string">&#x27;真好!&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<center><img src="https://z3.ax1x.com/2021/04/05/cMJwhn.jpg" width="50%"></center>
+
+<hr>
+<h3 id="Next⬇️"><a href="#Next⬇️" class="headerlink" title="Next⬇️"></a><center>Next⬇️</center></h3><center><a target="_blank" rel="noopener" href="http://lhxone.top/2021/04/05/Matlab实验2-2/">Matlab练习2-2 🍺</a></center>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matlab/" rel="tag">Matlab</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/04/01/Java%E4%B8%89%E8%A7%92%E5%BD%A2%E7%B1%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java三角形类
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/31/Java%E2%80%94abstract%E7%B1%BB%E4%B8%8E%E7%BB%A7%E6%89%BF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java—abstract类与继承</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Matlab%E5%AE%9E%E9%AA%8C2-1"><span class="nav-number">1.</span> <span class="nav-text">Matlab实验2-1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC4%E8%AE%B2%E4%BE%8B%E9%A2%98%EF%BC%9A4-1%EF%BC%8C4-2%EF%BC%8C4-5%EF%BC%8C4-6%EF%BC%8C4-7"><span class="nav-number">2.</span> <span class="nav-text">第4讲例题：4-1，4-2，4-5，4-6，4-7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1%EF%BC%9A%E7%94%BB%E5%92%8C%E7%9A%84%E5%9B%BE%E5%83%8F"><span class="nav-number">2.1.</span> <span class="nav-text">4-1：画y&#x3D;sin(x+3)y&#x3D;sin(x+3)y&#x3D;sin(x+3)和y&#x3D;exp(sin(x))y&#x3D;exp(sin(x))y&#x3D;exp(sin(x))的图像.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2%EF%BC%9A%E7%94%A8%E4%B8%8D%E5%90%8C%E6%A0%87%E5%BA%A6%E5%9C%A8%E5%90%8C%E4%B8%80%E5%9D%90%E6%A0%87%E7%BB%98%E5%88%B6%E6%9B%B2%E7%BA%BF%E5%92%8C"><span class="nav-number">2.2.</span> <span class="nav-text">4-2：用不同标度在同一坐标绘制曲线y1&#x3D;200e−0.05xsinxy_{1}&#x3D;200e^{-0.05x}sinxy1​&#x3D;200e−0.05xsinx和y2&#x3D;0.8e−0.5xsin10xy_{2}&#x3D;0.8e^{-0.5x}sin10xy2​&#x3D;0.8e−0.5xsin10x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5%EF%BC%9A%E7%BB%98%E5%88%B6%E7%9A%84%E6%9E%81%E5%9D%90%E6%A0%87%E5%9B%BE"><span class="nav-number">2.3.</span> <span class="nav-text">4-5：绘制r&#x3D;sint∗costr&#x3D;sint*costr&#x3D;sint∗cost的极坐标图.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6%EF%BC%9Asubplot%E5%88%92%E5%88%86%E7%94%BB%E5%9B%BE%E5%8C%BA%E5%9F%9F"><span class="nav-number">2.4.</span> <span class="nav-text">4-6：subplot划分画图区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7%EF%BC%9Alegend-%E6%B7%BB%E5%8A%A0%E5%9B%BE%E4%BE%8B"><span class="nav-number">2.5.</span> <span class="nav-text">4-7：legend 添加图例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Next%E2%AC%87%EF%B8%8F"><span class="nav-number">2.6.</span> <span class="nav-text">Next⬇️</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2023 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

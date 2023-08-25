@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>spack-Makefile使用手册 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="实习日记" />
+  
+  
+  
+  
+  <meta name="description" content="原文档链接：https:&#x2F;&#x2F;spack.readthedocs.io&#x2F;en&#x2F;latest&#x2F;spack.build_systems.html#module-spack.build_systems.makefile">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spack-Makefile使用手册">
+<meta property="og:url" content="http://example.com/2022/04/01/spack-Makefile%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="原文档链接：https:&#x2F;&#x2F;spack.readthedocs.io&#x2F;en&#x2F;latest&#x2F;spack.build_systems.html#module-spack.build_systems.makefile">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-01T01:55:44.000Z">
+<meta property="article:modified_time" content="2023-08-25T03:18:11.237Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="实习日记">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-spack-Makefile使用手册" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      spack-Makefile使用手册
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2022/04/01/spack-Makefile%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" class="article-date">
+	  <time datetime="2022-04-01T01:55:44.000Z" itemprop="datePublished">April 1, 2022</time>
+	</a>
+
+       
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文档链接：<a target="_blank" rel="noopener" href="https://spack.readthedocs.io/en/latest/spack.build_systems.html#module-spack.build_systems.makefile">https://spack.readthedocs.io/en/latest/spack.build_systems.html#module-spack.build_systems.makefile</a></p>
+<span id="more"></span>
+
+
+<h1 id="spack-build-systems-makefile-模块介绍"><a href="#spack-build-systems-makefile-模块介绍" class="headerlink" title="spack.build_systems.makefile 模块介绍"></a>spack.build_systems.makefile 模块介绍</h1><p>使用可编辑 <code>Makefile</code> 构建的包的专用类</p>
+<p>这个类提供了三个可以被覆盖的方法：</p>
+<ol>
+<li><code>edit</code></li>
+<li><code>build</code></li>
+<li><code>install</code></li>
+</ol>
+<p>通常来说<code>edit</code>方法需要被覆盖，而<code>build</code>，<code>install</code>方法并不需要覆盖（bushi）</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>build_targets</code></td>
+<td>指定<code>build</code>阶段的<code>make</code>目标</td>
+</tr>
+<tr>
+<td><code>install_targets</code></td>
+<td>指定<code>install</code>阶段的<code>make</code>目标</td>
+</tr>
+<tr>
+<td><code>build_directory()</code></td>
+<td><code>Makefile</code>所在的位置（build阶段所在的目录）</td>
+</tr>
+</tbody></table>
+<h1 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h1><h3 id="edit-self-spec-prefix"><a href="#edit-self-spec-prefix" class="headerlink" title="edit(self, spec, prefix)"></a><code>edit(self, spec, prefix)</code></h3><p>主要作用为在执行<code>build</code>之前编辑<code>Makefile</code>，例如修改各类依赖库的位置</p>
+<p>经常用到的操作：</p>
+<p>需要引用源码中的某些文件，因此要获取安装过程中源码位置</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pwd = os.getcwd()</span><br></pre></td></tr></table></figure>
+
+<p>需要编辑<code>Makefile</code>的某一项，示例地址：<a target="_blank" rel="noopener" href="https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/stream/package.py">stream</a></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用FileFilter正则表达式替换</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">edit</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">    makefile = FileFilter(<span class="string">&#x27;Makefile&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*CC\s*=.*&#x27;</span>,  <span class="string">&#x27;CC = &#x27;</span>  + spack_cc)</span><br><span class="line">    makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*CXX\s*=.*&#x27;</span>, <span class="string">&#x27;CXX = &#x27;</span> + spack_cxx)</span><br><span class="line">    makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*F77\s*=.*&#x27;</span>, <span class="string">&#x27;F77 = &#x27;</span> + spack_f77)</span><br><span class="line">    makefile.<span class="built_in">filter</span>(<span class="string">r&#x27;^\s*FC\s*=.*&#x27;</span>,  <span class="string">&#x27;FC = &#x27;</span>  + spack_fc)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>或编辑类似<code>make.inc</code>的文件，示例地址：<a target="_blank" rel="noopener" href="https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/elk/package.py">elk</a></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">edit</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">    config = &#123;</span><br><span class="line">        <span class="string">&#x27;CC&#x27;</span>: <span class="string">&#x27;cc&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;MAKE&#x27;</span>: <span class="string">&#x27;make&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;+blas&#x27;</span> <span class="keyword">in</span> spec:</span><br><span class="line">        config[<span class="string">&#x27;BLAS_LIBS&#x27;</span>] = spec[<span class="string">&#x27;blas&#x27;</span>].libs.joined()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;make.inc&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> inc:</span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> config:</span><br><span class="line">            inc.write(<span class="string">&#x27;&#123;0&#125; = &#123;1&#125;\n&#x27;</span>.<span class="built_in">format</span>(key, config[key]))</span><br></pre></td></tr></table></figure>
+
+<p>编辑环境变量，示例地址：<a target="_blank" rel="noopener" href="https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/cbench/package.py">cebench</a>，<a target="_blank" rel="noopener" href="https://github.com/spack/spack/blob/develop/var/spack/repos/builtin/packages/esmf/package.py">esmf</a>(较复杂)</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">edit</span>(<span class="params">self, spec, prefix</span>):</span><br><span class="line">    env[<span class="string">&#x27;PREFIX&#x27;</span>] = prefix</span><br><span class="line">    env[<span class="string">&#x27;BLASLIB&#x27;</span>] = spec[<span class="string">&#x27;blas&#x27;</span>].libs.ld_flags</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或是</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">setup_build_environment</span>(<span class="params">self, env</span>):</span><br><span class="line">        <span class="comment"># The location of the PRESTO source tree</span></span><br><span class="line">        env.<span class="built_in">set</span>(<span class="string">&#x27;PRESTO&#x27;</span>, self.stage.source_path)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="build-self-spec-prefix"><a href="#build-self-spec-prefix" class="headerlink" title="build(self, spec,prefix)"></a><code>build(self, spec,prefix)</code></h3><p>通过传递的<code>build_targets</code>参数，调用<code>make</code></p>
+<p>常用操作：</p>
+<p>修改<code>build</code>目录(更喜欢用<code>with working_dir(&#39;src&#39;):</code>)</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">build_directory = <span class="string">&#x27;src&#x27;</span></span><br><span class="line">make(<span class="string">&#x27;target&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="setup-build-environment-self-env"><a href="#setup-build-environment-self-env" class="headerlink" title="setup_build_environment(self, env)"></a><code>setup_build_environment(self, env)</code></h3><p>设置<code>build</code>阶段的环境变量，示例如下：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">setup_build_environment</span>(<span class="params">self, env</span>):</span><br><span class="line">    env.append_path(<span class="string">&#x27;LD_LIBRARY_PATH&#x27;</span>, self.stage.source_path + <span class="string">&#x27;/lib&#x27;</span>)</span><br><span class="line">    env.<span class="built_in">set</span>(<span class="string">&#x27;PRESTO&#x27;</span>, self.stage.source_path)</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="其余方法"><a href="#其余方法" class="headerlink" title="其余方法"></a>其余方法</h1><p>build(spec, prefix)[source]<br>Calls make, passing build_targets as targets.</p>
+<p>propertybuild_directory<br>Returns the directory containing the main Makefile</p>
+<p>Returns<br>build directory</p>
+<p>build_system_class&#x3D; ‘MakefilePackage’<br>This attribute is used in UI queries that need to know the build system base class</p>
+<p>build_targets&#x3D; []<br>Targets for make during the build() phase</p>
+<p>build_time_test_callbacks&#x3D; [‘check’]<br>Callback names for build-time test</p>
+<p>check()[source]<br>Searches the Makefile for targets test and check and runs them if found.</p>
+<p>edit(spec, prefix)[source]<br>Edits the Makefile before calling make. This phase cannot be defaulted.</p>
+<p>install(spec, prefix)[source]<br>Calls make, passing install_targets as targets.</p>
+<p>install_targets&#x3D; [‘install’]<br>Targets for make during the install() phase</p>
+<p>install_time_test_callbacks&#x3D; [‘installcheck’]<br>Callback names for install-time test</p>
+<p>installcheck()[source]<br>Searches the Makefile for an installcheck target and runs it if found.</p>
+<p>phases&#x3D; [‘edit’, ‘build’, ‘install’]<br>Phases of a package that is built with an hand-written Makefile</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/" rel="tag">实习日记</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/04/11/swan%E7%A7%BB%E6%A4%8D%E6%8C%87%E5%8D%97/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          swan移植指南
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/31/presto%E7%B3%BB%E5%88%97%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">presto系列软件的安装与使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#spack-build-systems-makefile-%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">spack.build_systems.makefile 模块介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#edit-self-spec-prefix"><span class="nav-number">2.0.1.</span> <span class="nav-text">edit(self, spec, prefix)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#build-self-spec-prefix"><span class="nav-number">2.0.2.</span> <span class="nav-text">build(self, spec,prefix)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setup-build-environment-self-env"><span class="nav-number">2.0.3.</span> <span class="nav-text">setup_build_environment(self, env)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BD%99%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">其余方法</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2023 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

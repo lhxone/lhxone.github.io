@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>计算机网络作业2 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="计算机网络" />
+  
+  
+  
+  
+  <meta name="description" content="运输层运输协议描述进程通信 运输层为应用层进程之间的逻辑通信  屏蔽作用  可靠信道  全双工TCP   不可靠信道  无连接UDP    主要协议 TCP  提供可靠的、面向连接的运输服务。 不提供广播或多播服务。 开销较多。   UDP  传送数据之前不需要先建立连接。 收到 UDP 报后，不需要给出任何确认。 不提供可靠交付，但是一种最有效的工作方式。   用户数据报协议 UDP (User">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络作业2">
+<meta property="og:url" content="http://example.com/2021/12/14/%E8%BF%90%E8%BE%93%E5%B1%82/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="运输层运输协议描述进程通信 运输层为应用层进程之间的逻辑通信  屏蔽作用  可靠信道  全双工TCP   不可靠信道  无连接UDP    主要协议 TCP  提供可靠的、面向连接的运输服务。 不提供广播或多播服务。 开销较多。   UDP  传送数据之前不需要先建立连接。 收到 UDP 报后，不需要给出任何确认。 不提供可靠交付，但是一种最有效的工作方式。   用户数据报协议 UDP (User">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-12-14T05:10:53.000Z">
+<meta property="article:modified_time" content="2023-08-25T02:16:39.252Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-运输层" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      计算机网络作业2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/12/14/%E8%BF%90%E8%BE%93%E5%B1%82/" class="article-date">
+	  <time datetime="2021-12-14T05:10:53.000Z" itemprop="datePublished">December 14, 2021</time>
+	</a>
+
+       
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h1><h2 id="运输协议描述"><a href="#运输协议描述" class="headerlink" title="运输协议描述"></a>运输协议描述</h2><h3 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h3><ul>
+<li><p>运输层为应用层进程之间的逻辑通信</p>
+</li>
+<li><p>屏蔽作用</p>
+</li>
+<li><p>可靠信道</p>
+<ul>
+<li>全双工TCP</li>
+</ul>
+</li>
+<li><p>不可靠信道</p>
+<ul>
+<li>无连接UDP</li>
+</ul>
+</li>
+</ul>
+<h3 id="主要协议"><a href="#主要协议" class="headerlink" title="主要协议"></a>主要协议</h3><ul>
+<li><p>TCP</p>
+<ul>
+<li>提供可靠的、面向连接的运输服务。</li>
+<li>不提供广播或多播服务。</li>
+<li>开销较多。</li>
+</ul>
+</li>
+<li><p>UDP</p>
+<ul>
+<li>传送数据之前不需要先建立连接。</li>
+<li>收到 UDP 报后，不需要给出任何确认。</li>
+<li>不提供可靠交付，但是一种最有效的工作方式。</li>
+</ul>
+</li>
+<li><p>用户数据报协议 UDP (User Datagram Protocol)</p>
+</li>
+<li><p>传输控制协议 TCP (Transmission Control Protocol)</p>
+</li>
+<li><p>TPDU</p>
+<ul>
+<li>两个对等运输实体在通信时传送的数据单位叫作运输协议数据单元 TPDU (Transport Protocol Data Unit)。</li>
+<li>TCP 传送的数据单位协议是 TCP 报文段 (segment)。</li>
+<li>UDP 传送的数据单位协议是 UDP 报文或用户数据报。</li>
+</ul>
+</li>
+</ul>
+<h3 id="运输层端口"><a href="#运输层端口" class="headerlink" title="运输层端口"></a>运输层端口</h3><ul>
+<li><p>运输层从 IP 层收到发送给应用进程的数据后，必须分别交付给指明的各应用进程。</p>
+</li>
+<li><p>应用进程都可以通过运输层再传送到 IP 层（网络层</p>
+</li>
+<li><p>解决方法：在运输层使用协议端口号 (protocol port number)，或通常简称为端口 (port)。把端口设为通信的抽象终点</p>
+<ul>
+<li>端口用一个 16 位端口号进行标志，允许有 65,535 个不同的端口号。</li>
+<li>端口号只具有本地意义，只是为了标志本计算机应用层中的各进程。</li>
+<li>在互联网中，不同计算机的相同端口号没有联系。</li>
+</ul>
+</li>
+</ul>
+<h2 id="用户数协议UDP"><a href="#用户数协议UDP" class="headerlink" title="用户数协议UDP"></a>用户数协议UDP</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><ul>
+<li>UDP 只在 IP 的数据报服务之上增加了一些功能：</li>
+<li>复用和分用</li>
+<li>差错检测</li>
+</ul>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>无连接。发送数据之前不需要建立连接。</li>
+<li>使用尽最大努力交付。即不保证可靠交付。</li>
+<li>面向报文。UDP 一次传送和交付一个完整的报文。 </li>
+<li>没有拥塞控制。网络出现的拥塞不会使源主机的发送速率降低。很适合多媒体通信的要求。 </li>
+<li>支持一对一、一对多、多对一、多对多等交互通信。</li>
+<li>首部开销小，只有 8 个字节。</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><ul>
+<li>UDP 通信的特点：简单方便，但不可靠。</li>
+</ul>
+<h3 id="面向报文"><a href="#面向报文" class="headerlink" title="面向报文"></a>面向报文</h3><ul>
+<li><p>发送方 UDP 对应用层交下来的报文，既不合并，也不拆分，按照样发送。</p>
+<ul>
+<li>接收方 UDP 对 IP 层交上来的 UDP 用户数据报，去除首部后就原封不动地交付上层的应用进程，一次交付一个完整的报文。</li>
+</ul>
+</li>
+<li><p>应用程序必须选择合适大小的报文。</p>
+<ul>
+<li>若报文太长，IP 层在传送时可能要进行分片，降低 IP 层的效率。</li>
+<li>若报文太短，会使 IP 数据报的首部的相对长度太大，降低 IP 层的效率。</li>
+</ul>
+</li>
+<li><p>复用：将 UDP 用户数据报组装成不同的 IP 数据报，发送到互联网。</p>
+</li>
+<li><p>分用：根据 UDP 用户数据报首部中的目的端口号，将数据报分别传送到相应的端口，以便应用进程到端口读取数据。</p>
+</li>
+</ul>
+<h3 id="首部格式"><a href="#首部格式" class="headerlink" title="首部格式"></a>首部格式</h3><ul>
+<li>伪首部</li>
+</ul>
+<h2 id="传输控制协议TCP"><a href="#传输控制协议TCP" class="headerlink" title="传输控制协议TCP"></a>传输控制协议TCP</h2><h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><ul>
+<li><p>TCP 是面向连接的运输层协议，在无连接的、不可靠的 IP 网络服务基础之上提供可靠交付的服务。为此，在 IP 的数据报服务基础之上，增加了保证可靠性的一系列措施。</p>
+</li>
+<li><p>TCP 是面向连接的运输层协议。</p>
+<ul>
+<li>每一条 TCP 连接只能有两个端点 (endpoint)，每一条 TCP 连接只能是点对点的（一对一）。 </li>
+<li>TCP 提供可靠交付的服务。</li>
+<li>TCP 提供全双工通信。</li>
+</ul>
+</li>
+<li><p>面向字节流</p>
+<ul>
+<li><p>TCP 中的“流”(stream) 指的是流入或流出进程的字节序列。</p>
+</li>
+<li><p>面向字节流：虽然应用程序和 TCP 的交互是一次一个数据块，但 TCP 把应用程序交下来的数据看成仅仅是一连串无结构的字节流。</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li>TCP 不保证接收方应用程序所收到的数据块和发送方应用程序所发出的数据块具有对应大小的关系。</li>
+<li>但接收方应用程序收到的字节流必须和发送方应用程序发出的字节流完全一样。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><ul>
+<li><p>连接端点</p>
+<ul>
+<li><p>套接字socket</p>
+<ul>
+<li><p>（IP地址：端口号）</p>
+</li>
+<li><p>（192.169.1.20:2028）例子</p>
+</li>
+<li><p>每一条 TCP 连接唯一地被通信两端的两个端点（即两个套接字）所确定</p>
+<ul>
+<li>TCP 连接 ::&#x3D; {socket1, socket2} &#x3D; {(IP1: port1)，(IP2: port2)}</li>
+</ul>
+</li>
+<li><p>实现API</p>
+<ul>
+<li>应用编程接口  API  称为 socket API, 简称为 socket。</li>
+<li>socket API 中使用的一个函数名也叫作 socket。</li>
+<li>调用 socket 函数的端点称为 socket。</li>
+<li>调用 socket 函数时其返回值称为 socket 描述符，可简称为 socket。</li>
+<li>在操作系统内核中连网协议的 Berkeley 实现，称为 socket 实现</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>插口</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP首部格式"><a href="#TCP首部格式" class="headerlink" title="TCP首部格式"></a>TCP首部格式</h3><h3 id="TCP可靠传输实现"><a href="#TCP可靠传输实现" class="headerlink" title="TCP可靠传输实现"></a>TCP可靠传输实现</h3><ul>
+<li><p>超时重传</p>
+<ul>
+<li><p>RTO (Retransmission Time-Out) 应略大于加权平均往返时间 RTTS 。</p>
+</li>
+<li><p>RFC 6298 建议 RTO：</p>
+<ul>
+<li>其中：RTTD 是 RTT 偏差的加权平均值。</li>
+<li>RTO &#x3D; RTTS + 4  RTTD</li>
+</ul>
+</li>
+<li><p>RFC 6298 建议 RTTD ：</p>
+<ul>
+<li>其中： 是个小于 1 的系数，其推荐值是 1&#x2F;4，即 0.25。</li>
+<li>新的 RTTD &#x3D; (1   )  (旧的 RTTD)  +    RTTS  新的 RTT 样本</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>选择确认SACK</p>
+</li>
+</ul>
+<h3 id="TCP流量控制"><a href="#TCP流量控制" class="headerlink" title="TCP流量控制"></a>TCP流量控制</h3><h3 id="TCP拥塞控制"><a href="#TCP拥塞控制" class="headerlink" title="TCP拥塞控制"></a>TCP拥塞控制</h3><ul>
+<li><p>算法</p>
+<ul>
+<li><p>慢开始 (slow-start)</p>
+<ul>
+<li><p>目的：探测网络的负载能力或拥塞程度。</p>
+</li>
+<li><p>算法：由小到大逐渐增大注入到网络中的数据字节，即：由小到大逐渐增大拥塞窗口数值。</p>
+</li>
+<li><p>2 个控制变量：</p>
+<ul>
+<li>拥塞窗口cwnd</li>
+<li>慢开始门限ssthresh</li>
+</ul>
+</li>
+<li><p>拥塞窗口 cwnd 增大：在每收到一个对新的报文段的确认，就把拥塞窗口增加最多一个发送方的最大报文段 SMSS  (Sender Maximum Segment Size) 的数值。</p>
+</li>
+<li><pre><code>  其中 N 是原先未被确认的、但现在被刚收到的确认报文段所确认的字节数
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>拥塞避免 (congestion avoidance)</p>
+</li>
+<li><p>快重传 (fast retransmit)</p>
+</li>
+<li><p>快恢复 (fast recovery)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP运输连接管理"><a href="#TCP运输连接管理" class="headerlink" title="TCP运输连接管理"></a>TCP运输连接管理</h3><ul>
+<li><p>过程</p>
+<ul>
+<li><p>建立</p>
+</li>
+<li><p>连接释放</p>
+<ul>
+<li><p>第一，保证发送的最后一个 ACK 报文段能够到达 B。</p>
+</li>
+<li><p>第二，防止“已失效的连接请求报文段”出现在本连接中。</p>
+</li>
+<li><p>保活计时器</p>
+<ul>
+<li>用来防止在 TCP 连接出现长时期空闲。</li>
+<li>通常设置为 2 小时 。</li>
+<li>若服务器过了 2 小时还没有收到客户的信息，它就发送探测报文段。</li>
+<li>若发送了 10 个探测报文段（每一个相隔 75 秒）还没有响应，就假定客户出了故障，因而就终止该连接。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>有限状态机</p>
+</li>
+</ul>
+</li>
+<li><p>模式</p>
+<ul>
+<li>TCP 连接的建立采用客户服务器方式。</li>
+<li>主动发起连接建立的应用进程叫做客户 (client)。</li>
+<li>被动等待连接建立的应用进程叫做服务器 (server)。</li>
+</ul>
+</li>
+<li><p>握手</p>
+<ul>
+<li>TCP 建立连接的过程叫做握手。</li>
+<li>采用三报文握手：在客户和服务器之间交换三个 TCP 报文段，以防止已失效的连接请求报文段突然又传送到了，因而产生 TCP 连接建立错误。</li>
+</ul>
+</li>
+</ul>
+<h2 id="可靠运输的工作原理"><a href="#可靠运输的工作原理" class="headerlink" title="可靠运输的工作原理"></a>可靠运输的工作原理</h2><h3 id="停止等待协议"><a href="#停止等待协议" class="headerlink" title="停止等待协议"></a>停止等待协议</h3><ul>
+<li><p>概念</p>
+<ul>
+<li>每发送完一个分组就停止发送，等待对方的确认。在收到确认后再发送下一个分组。</li>
+<li>全双工通信的双方既是发送方也是接收方。</li>
+<li>假设仅考虑 A 发送数据，而 B 接收数据并发送确认。因此 A 叫做发送方，而 B 叫做接收方。</li>
+</ul>
+</li>
+<li><p>状态情况</p>
+<ul>
+<li><p>无差错</p>
+</li>
+<li><p>有差错</p>
+<ul>
+<li>两种情况：</li>
+<li>B 接收 M1 时检测出了差错，就丢弃 M1，其他什么也不做（不通知 A 收到有差错的分组）。</li>
+<li>M1 在传输过程中丢失了，这时 B 当然什么都不知道，也什么都不做。</li>
+</ul>
+</li>
+<li><p>解决办法</p>
+<ul>
+<li><p>超时重传</p>
+<ul>
+<li>A 为每一个已发送的分组设置一个超时计时器。</li>
+<li>A 只要在超时计时器到期之前收到了相应的确认，就撤销该超时计时器，继续发送下一个分组 M2 。</li>
+<li>若 A 在超时计时器规定时间内没有收到 B 的确认，就认为分组错误或丢失，就重发该分组。</li>
+</ul>
+</li>
+<li><p>确认丢失</p>
+<ul>
+<li><p>若 B 所发送的对 M1 的确认丢失了，那么 A 在设定的超时重传时间内将不会收到确认，因此 A 在超时计时器到期后重传 M1。</p>
+</li>
+<li><p>假定 B 正确收到了 A 重传的分组 M1。这时 B 应采取两个行动：</p>
+<ul>
+<li>(1) 丢弃这个重复的分组 M1，不向上层交付。</li>
+<li>(2) 向 A 发送确认。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>确认迟到</p>
+<ul>
+<li>B 对分组 M1 的确认迟到了，因此 A 在超时计时器到期后重传 M1。</li>
+<li>B 会收到重复的 M1，丢弃重复的 M1，并重传确认分组。</li>
+<li>A 会收到重复的确认。对重复的确认的处理：丢弃。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>信道利用率</p>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>要点</p>
+<ul>
+<li>停止等待。发送方每次只发送一个分组。在收到确认后再发送下一个分组。</li>
+<li>暂存：在发送完一个分组后，发送方必须暂存已发送的分组的副本，以备重发。</li>
+<li>编号。对发送的每个分组和确认都进行编号。</li>
+<li>超时重传。发送方为发送的每个分组设置一个超时计时器。若超时计时器超时位收到确认，发送方会自动超时重传分组。</li>
+<li>超时计时器的重传时间应当比数据在分组传输的平均往返时间更长一些，防止不必要的重传。</li>
+</ul>
+</li>
+<li><p>进化，流水线传输</p>
+</li>
+</ul>
+<h3 id="连续ARQ协议"><a href="#连续ARQ协议" class="headerlink" title="连续ARQ协议"></a>连续ARQ协议</h3><ul>
+<li><p>概念结构</p>
+<ul>
+<li>发送窗口：发送方维持一个发送窗口，位于发送窗口内的分组都可被连续发送出去，而不需要等待对方的确认。</li>
+<li>发送窗口滑动：发送方每收到一个确认，就把发送窗口向前滑动一个分组的位置。</li>
+<li>累积确认：接收方对按序到达的最后一个分组发送确认，表示：到这个分组为止的所有分组都已正确收到了。</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/02/21/spack%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          spack配置与使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/26/%E6%97%A0%E7%BA%BF%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E8%AF%BB%E4%B9%A6%E6%8A%A5%E5%91%8A/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">无线局域网技术读书报告</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E8%BE%93%E5%B1%82"><span class="nav-number">1.</span> <span class="nav-text">运输层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%BE%93%E5%8D%8F%E8%AE%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">运输协议描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">1.1.1.</span> <span class="nav-text">进程通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.1.2.</span> <span class="nav-text">主要协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%BE%93%E5%B1%82%E7%AB%AF%E5%8F%A3"><span class="nav-number">1.1.3.</span> <span class="nav-text">运输层端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%95%B0%E5%8D%8F%E8%AE%AEUDP"><span class="nav-number">1.2.</span> <span class="nav-text">用户数协议UDP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.2.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.3.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E6%8A%A5%E6%96%87"><span class="nav-number">1.2.4.</span> <span class="nav-text">面向报文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A6%96%E9%83%A8%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.5.</span> <span class="nav-text">首部格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AETCP"><span class="nav-number">1.3.</span> <span class="nav-text">传输控制协议TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.3.2.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP%E9%A6%96%E9%83%A8%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.3.3.</span> <span class="nav-text">TCP首部格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.4.</span> <span class="nav-text">TCP可靠传输实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="nav-number">1.3.5.</span> <span class="nav-text">TCP流量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="nav-number">1.3.6.</span> <span class="nav-text">TCP拥塞控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP%E8%BF%90%E8%BE%93%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86"><span class="nav-number">1.3.7.</span> <span class="nav-text">TCP运输连接管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E9%9D%A0%E8%BF%90%E8%BE%93%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">可靠运输的工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.4.1.</span> <span class="nav-text">停止等待协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E7%BB%ADARQ%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.4.2.</span> <span class="nav-text">连续ARQ协议</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2023 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

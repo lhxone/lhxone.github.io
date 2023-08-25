@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>spack配置与使用 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="实习日记" />
+  
+  
+  
+  
+  <meta name="description" content="安装spack123git clone -c feature.manyFiles&#x3D;true https:&#x2F;&#x2F;github.com&#x2F;spack&#x2F;spack.gitcd spack&#x2F;bin.&#x2F;spack install zlib  常用命令常用命令如下：    命令 功能 例子    spack list 列出可用spack安装的全部软件    spack info 查询可安装软件的基本信息 spac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spack配置与使用">
+<meta property="og:url" content="http://example.com/2022/02/21/spack%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="安装spack123git clone -c feature.manyFiles&#x3D;true https:&#x2F;&#x2F;github.com&#x2F;spack&#x2F;spack.gitcd spack&#x2F;bin.&#x2F;spack install zlib  常用命令常用命令如下：    命令 功能 例子    spack list 列出可用spack安装的全部软件    spack info 查询可安装软件的基本信息 spac">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-21T08:42:47.000Z">
+<meta property="article:modified_time" content="2023-08-25T02:16:39.247Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="实习日记">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-spack配置与使用" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      spack配置与使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2022/02/21/spack%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
+	  <time datetime="2022-02-21T08:42:47.000Z" itemprop="datePublished">February 21, 2022</time>
+	</a>
+
+       
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="安装spack"><a href="#安装spack" class="headerlink" title="安装spack"></a>安装spack</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone -c feature.manyFiles=true https://github.com/spack/spack.git</span><br><span class="line">cd spack/bin</span><br><span class="line">./spack install zlib</span><br></pre></td></tr></table></figure>
+
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p>常用命令如下：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>spack list</td>
+<td>列出可用spack安装的全部软件</td>
+<td></td>
+</tr>
+<tr>
+<td>spack info</td>
+<td>查询可安装软件的基本信息</td>
+<td>spack info vasp</td>
+</tr>
+<tr>
+<td>spack find</td>
+<td>查询已安装的软件</td>
+<td>spack find gcc</td>
+</tr>
+<tr>
+<td>spack load</td>
+<td>加载已安装软件的环境变量</td>
+<td>spack load cmake</td>
+</tr>
+<tr>
+<td>spack unload</td>
+<td>卸载加载的软件的环境变量</td>
+<td>spack unload cmake</td>
+</tr>
+<tr>
+<td>spack install</td>
+<td>安装软件</td>
+<td>spack install gromacs</td>
+</tr>
+</tbody></table>
+<h3 id="加载spack包管理器环境变量"><a href="#加载spack包管理器环境变量" class="headerlink" title="加载spack包管理器环境变量"></a>加载spack包管理器环境变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source spack/share/spack/setup-env.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="将编译器加入spack编译器配置"><a href="#将编译器加入spack编译器配置" class="headerlink" title="将编译器加入spack编译器配置"></a>将编译器加入spack编译器配置</h3><p>执行<code>spack compiler find</code>可以将当前环境变量的编译器加载到spack编译器配置中,默认的配置文件在 <code>$HOME/.spack/linux/compilers.yaml</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spack find gcc</span><br><span class="line">spack load gcc@8.5.0</span><br><span class="line">spack compiler find</span><br></pre></td></tr></table></figure>
+
+<h3 id="纳入已安装的软件到spack"><a href="#纳入已安装的软件到spack" class="headerlink" title="纳入已安装的软件到spack"></a>纳入已安装的软件到spack</h3><p>执行<code>spack exteranl find</code>可以将当前环境变量中包含bin目录的软件纳入spack管理，默认的配 置文件在<code>$HOME/.spack/packages.yaml</code></p>
+<h3 id="添加软件源码镜像仓库"><a href="#添加软件源码镜像仓库" class="headerlink" title="添加软件源码镜像仓库"></a>添加软件源码镜像仓库</h3><p>执行<code>spack mirror add &lt;name&gt; &lt;path&gt;</code>,例如添加软件源码镜像仓库<code>spack mirror add local /es01/jnist/mirror</code>,我们默认添加了这个镜像仓库</p>
+<h3 id="其他基础配置"><a href="#其他基础配置" class="headerlink" title="其他基础配置"></a>其他基础配置</h3><p>通过<code>spack config get config &gt; config.yaml</code>生成一份spack基础配置到<code>$HOME/.spack</code>下</p>
+<h1 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h1><h3 id="查询可安装软件"><a href="#查询可安装软件" class="headerlink" title="查询可安装软件"></a>查询可安装软件</h3><p>执行<code>spack list</code>可以查询可由spack安装的全部软件.有的时候,所需的软件的名字可能在spack软件列表不同,比如数学库blas、lapack、scalapack的实现会有好多种,下面我们展示下所有lapack的实现, 只需要在<code>list</code>后加<code>-d</code>参数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spack list -d lapack</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询可安装软件的基本信息"><a href="#查询可安装软件的基本信息" class="headerlink" title="查询可安装软件的基本信息"></a>查询可安装软件的基本信息</h3><p>执行<code>spack info &lt;package&gt;</code>可以查询可安装软件的基本信息.例如,查询<code>vasp</code>的基本信息:<code>spack info vasp</code>这样会打印出：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">spack info vasp</span><br><span class="line">MakefilePackage:   vasp</span><br><span class="line"></span><br><span class="line">Description:</span><br><span class="line">     The Vienna Ab initio Simulation Package (VASP) is a computer program</span><br><span class="line">    for atomic scale materials modelling, e.g. electronic structure</span><br><span class="line">    calculations and quantum-mechanical molecular dynamics, from first</span><br><span class="line">    principles.</span><br><span class="line"></span><br><span class="line">Homepage: https://vasp.at</span><br><span class="line"></span><br><span class="line">Externally Detectable: </span><br><span class="line">    False</span><br><span class="line"></span><br><span class="line">Tags: </span><br><span class="line">    None</span><br><span class="line"></span><br><span class="line">Preferred version:  </span><br><span class="line">    6.1.1        file:///es01/yeesuan/yeesuan003/vasp.6.1.1.tgz</span><br><span class="line"></span><br><span class="line">Safe versions:  </span><br><span class="line">    6.1.1        file:///es01/yeesuan/yeesuan003/vasp.6.1.1.tgz</span><br><span class="line">    5.4.4.pl2    file:///es01/yeesuan/yeesuan003/vasp.5.4.4.pl2.tgz</span><br><span class="line">    5.4.4        file:///es01/yeesuan/yeesuan003/vasp.5.4.4.tgz</span><br><span class="line"></span><br><span class="line">Deprecated versions:  </span><br><span class="line">    None</span><br><span class="line"></span><br><span class="line">Variants:</span><br><span class="line">    Name [Default]     When    Allowed values    Description</span><br><span class="line">    ===============    ====    ==============    =============================================================</span><br><span class="line"></span><br><span class="line">    cuda [off]         --      on, off           Enables running on Nvidia GPUs</span><br><span class="line">    scalapack [off]    --      on, off           Enables build with SCALAPACK</span><br><span class="line">    vaspsol [off]      --      on, off           Enable VASPsol implicit solvation model</span><br><span class="line">                                                 https://github.com/henniggroup/VASPsol</span><br><span class="line"></span><br><span class="line">Installation Phases:</span><br><span class="line">    edit    build    install</span><br><span class="line"></span><br><span class="line">Build Dependencies:</span><br><span class="line">    blas  cuda  fftw  lapack  mpi  netlib-scalapack  qd  rsync</span><br><span class="line"></span><br><span class="line">Link Dependencies:</span><br><span class="line">    blas  cuda  fftw  lapack  mpi  netlib-scalapack  qd</span><br><span class="line"></span><br><span class="line">Run Dependencies:</span><br><span class="line">    mpi</span><br><span class="line"></span><br><span class="line">Virtual Packages: </span><br><span class="line">    None</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询已安装软件"><a href="#查询已安装软件" class="headerlink" title="查询已安装软件"></a>查询已安装软件</h3><p>执行<code>spack find</code>可以查询使用spack安装好的全部软件</p>
+<p>在<code>find</code>后加入<code>-d</code>(取依赖的英语单词dependencies的首字母)参数可以查看软件使用的依赖,例 如查看<code>vasp6.1.0</code>使用的依赖</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[yeesuan003@spack ~]$ spack find -d vasp@6.1.0</span><br><span class="line">==&gt; 1 installed package</span><br><span class="line">-- linux-centos7-cascadelake / intel@19.0.5.281 -----------------</span><br><span class="line">vasp@6.1.0</span><br><span class="line">    fftw@3.3.10</span><br><span class="line">        intel-mpi@2019.5.281</span><br><span class="line">    intel-mkl@2019.5.281</span><br><span class="line">    netlib-scalapack@2.1.0</span><br></pre></td></tr></table></figure>
+
+<h1 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h1><h3 id="加载软件的环境变量"><a href="#加载软件的环境变量" class="headerlink" title="加载软件的环境变量"></a>加载软件的环境变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spack load &lt;package&gt;</span><br></pre></td></tr></table></figure>
+
+<p>有时候我们需要加载多个软件的环境变量，我们可以使用<code>spack load &lt;package1&gt; &lt;package2&gt; ...</code>例如加载<code>intel2019</code>和<code>gcc6.5.0</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spack load intel-parallel-studio@cluster.2019.5 gcc@6.5.0</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用hash值加载软件的环境变量"><a href="#使用hash值加载软件的环境变量" class="headerlink" title="使用hash值加载软件的环境变量"></a>使用hash值加载软件的环境变量</h3><p>有时候我们想加载某个软件，但它存在多个同名的软件时直接加载会报错,可以使用<code>spack load /&lt;hash&gt;</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">spack load gcc</span><br><span class="line">==&gt; Error: gcc matches multiple packages.</span><br><span class="line">  Matching packages:</span><br><span class="line">    io5n6ud gcc@6.5.0%gcc@4.8.5 arch=linux-centos7-haswell</span><br><span class="line">    x4guukb gcc@7.5.0%gcc@4.8.5 arch=linux-centos7-haswell</span><br><span class="line">    k63wbs4 gcc@8.5.0%gcc@4.8.5 arch=linux-centos7-haswell</span><br><span class="line">    6icy7ve gcc@10.2.0%gcc@4.8.5 arch=linux-centos7-haswell</span><br><span class="line">  Use a more specific spec.</span><br><span class="line">spack load /k63wbs4</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看加载的环境变量"><a href="#查看加载的环境变量" class="headerlink" title="查看加载的环境变量"></a>查看加载的环境变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spack load --sh &lt;package&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取软件安装位置和可执行文件名字"><a href="#获取软件安装位置和可执行文件名字" class="headerlink" title="获取软件安装位置和可执行文件名字"></a>获取软件安装位置和可执行文件名字</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spack location -i &lt;package&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当然也可以使用hash值获取,</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spack location -i /&lt;hash&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spack install &lt;package&gt;</span><br></pre></td></tr></table></figure>
+<p>通常,我们需要指定编译软件所需要的编译器,使用<code>spack compilers</code>可以查看spack可以使用的编译器</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/" rel="tag">实习日记</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/02/23/gromacs%E7%BC%96%E8%AF%91&%E6%B5%8B%E8%AF%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          gromacs编译&amp;测试
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/12/14/%E8%BF%90%E8%BE%93%E5%B1%82/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">计算机网络作业2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85spack"><span class="nav-number">1.</span> <span class="nav-text">安装spack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BDspack%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.0.1.</span> <span class="nav-text">加载spack包管理器环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86%E7%BC%96%E8%AF%91%E5%99%A8%E5%8A%A0%E5%85%A5spack%E7%BC%96%E8%AF%91%E5%99%A8%E9%85%8D%E7%BD%AE"><span class="nav-number">2.0.2.</span> <span class="nav-text">将编译器加入spack编译器配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%B3%E5%85%A5%E5%B7%B2%E5%AE%89%E8%A3%85%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%88%B0spack"><span class="nav-number">2.0.3.</span> <span class="nav-text">纳入已安装的软件到spack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%BD%AF%E4%BB%B6%E6%BA%90%E7%A0%81%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93"><span class="nav-number">2.0.4.</span> <span class="nav-text">添加软件源码镜像仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">2.0.5.</span> <span class="nav-text">其他基础配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">命令详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%8F%AF%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.0.1.</span> <span class="nav-text">查询可安装软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%8F%AF%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">3.0.2.</span> <span class="nav-text">查询可安装软件的基本信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%B7%B2%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.0.3.</span> <span class="nav-text">查询已安装软件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">4.</span> <span class="nav-text">环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">4.0.1.</span> <span class="nav-text">加载软件的环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8hash%E5%80%BC%E5%8A%A0%E8%BD%BD%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">4.0.2.</span> <span class="nav-text">使用hash值加载软件的环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%8A%A0%E8%BD%BD%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">4.0.3.</span> <span class="nav-text">查看加载的环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE%E5%92%8C%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E5%90%8D%E5%AD%97"><span class="nav-number">4.0.4.</span> <span class="nav-text">获取软件安装位置和可执行文件名字</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">安装软件</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2023 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

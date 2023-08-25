@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ABACUS编译&amp;测试 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="实习日记安装指北ABACUS" />
+  
+  
+  
+  
+  <meta name="description" content="安装安装依赖需要载入intel-parallel-studio@cluster.2019.5、intel-mpi以及intel&#x3D;oneapi-mpi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ABACUS编译&amp;测试">
+<meta property="og:url" content="http://example.com/2022/02/28/ABACUS%E7%BC%96%E8%AF%91-%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="安装安装依赖需要载入intel-parallel-studio@cluster.2019.5、intel-mpi以及intel&#x3D;oneapi-mpi">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-28T01:04:07.000Z">
+<meta property="article:modified_time" content="2023-08-25T03:13:00.817Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="实习日记">
+<meta property="article:tag" content="安装指北">
+<meta property="article:tag" content="ABACUS">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-ABACUS编译-测试" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      ABACUS编译&amp;测试
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2022/02/28/ABACUS%E7%BC%96%E8%AF%91-%E6%B5%8B%E8%AF%95/" class="article-date">
+	  <time datetime="2022-02-28T01:04:07.000Z" itemprop="datePublished">February 28, 2022</time>
+	</a>
+
+       
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>需要载入<code>intel-parallel-studio@cluster.2019.5</code>、<code>intel-mpi</code>以及<code>intel=oneapi-mpi</code></p>
+<span id="more"></span>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/code/intel</span><br><span class="line">cd ~/code/intel</span><br><span class="line">ROOT=$PWD</span><br><span class="line">mkdir $ROOT/source</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">##fftw3</span></span></span><br><span class="line">cd $ROOT/source</span><br><span class="line">wget https://cndaqiang.gitee.io/packages//mirrors/fftw/fftw-3.3.4.tar.gz</span><br><span class="line">tar xzvf fftw-3.3.4.tar.gz</span><br><span class="line">cd fftw-3.3.4</span><br><span class="line">./configure --prefix=$ROOT/fftw-3.3.4 CC=icc  MPICC=mpiicc --enable-mpi</span><br><span class="line">make  install -j20</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">##boost</span></span></span><br><span class="line">cd $ROOT/source</span><br><span class="line">wget https://cndaqiang.gitee.io/packages//mirrors/boost/boost_1_66_0.tar.bz2</span><br><span class="line">tar --bzip2 -xf boost_1_66_0.tar.bz2</span><br><span class="line">cd boost_1_66_0/</span><br><span class="line">./bootstrap.sh --prefix=$ROOT/boost_1_66_0 --with-toolset=intel-linux</span><br><span class="line">./b2 install -j20</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">##elpa</span></span></span><br><span class="line">TAG=2016.05.004</span><br><span class="line">ROOT=~/code/intel</span><br><span class="line">cd $ROOT/source</span><br><span class="line">if [ ! -f elpa-$TAG.tar.gz ]</span><br><span class="line">then</span><br><span class="line">    wget https://elpa.mpcdf.mpg.de/software/tarball-archive/Releases/$TAG/elpa-$TAG.tar.gz</span><br><span class="line">fi</span><br><span class="line">rm -rf elpa-$TAG</span><br><span class="line">rm -rf $ROOT/elpa-$TAG</span><br><span class="line">tar xzvf elpa-$TAG.tar.gz</span><br><span class="line">cd elpa-$TAG</span><br><span class="line">MKL_HOME=$MKLROOT</span><br><span class="line">if [ ! -f configure ]</span><br><span class="line">then</span><br><span class="line">    ./autogen.sh</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">rm -rf build</span><br><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line"></span><br><span class="line">../configure --prefix=$ROOT/elpa-$TAG  CC=mpiicc CXX=mpiicpc FC=mpiifort   FCFLAGS=&quot;-mkl=cluster&quot;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用 FCFLAGS=<span class="string">&quot;-mkl=cluster&quot;</span> 或者下面的方式定义SCALAPACK都是可以的</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"> SCALAPACK_LDFLAGS=<span class="string">&quot;-L<span class="variable">$MKL_HOME</span>/lib/intel64 -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lmkl_blacs_intelmpi_lp64 -lpthread -lm -Wl,-rpath,<span class="variable">$MKL_HOME</span>/lib/intel64&quot;</span> \</span></span><br><span class="line"><span class="language-bash"><span class="comment">#  SCALAPACK_FCFLAGS=&quot;-L$MKL_HOME/lib/intel64 -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_sequential  -lmkl_core -lmkl_blacs_intelmpi_lp64 -lpthread -lm -I$MKL_HOME/include/intel64/lp64&quot; \</span></span></span><br><span class="line"><span class="language-bash"><span class="comment">#--enable-openmp</span></span></span><br><span class="line">make install -j20   #多线程加速编译</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">cd</span> ~/code/abacus/ABACUS_v2.1.0/source/</span></span><br><span class="line"></span><br><span class="line">cd $ROOT</span><br><span class="line">if [ ! -f ABACUS_v2.1.0.tar.gz ]</span><br><span class="line">then</span><br><span class="line">wget https://abacus.ustc.edu.cn/uploadfile/ABACUS_v2.1.0.tar.gz</span><br><span class="line">fi</span><br><span class="line">rm -rf ABACUS_v2.1.0</span><br><span class="line">tar xzvf ABACUS_v2.1.0.tar.gz</span><br><span class="line">cd ABACUS/source</span><br><span class="line"></span><br><span class="line">cat &gt; Makefile.vars &lt;&lt; EOF</span><br><span class="line">CPLUSPLUS      = icpc</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">C++ compiler</span></span><br><span class="line">CPLUSPLUS_MPI  = mpiicpc</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">intel mpi or mpich</span></span><br><span class="line">FORTRAN       = ifort</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Fortran compiler</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果报错先检查是否正确导入模块</span></span><br><span class="line">LAPACK_DIR = $MKLROOT</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">intel mkl</span></span><br><span class="line">FFTW_DIR       = $ROOT/fftw-3.3.4</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">lib fftw</span></span><br><span class="line">BOOST_DIR      = $ROOT/boost_1_66_0</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">lib boost</span></span><br><span class="line">ELPA_DIR = $ROOT/elpa-$TAG</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">lib elpa</span></span><br><span class="line">EOF</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<h1 id="测试运行"><a href="#测试运行" class="headerlink" title="测试运行"></a>测试运行</h1><p>在<code>ABACUS/example</code>下有几个测试样例,选取第一个测试样例</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">mpirun -np 10 ABACUS.mpi.2.1.0 | <span class="built_in">tee</span> result</span></span><br><span class="line"> *********************************************************</span><br><span class="line"> *                                                       *</span><br><span class="line"> *                  WELCOME TO ABACUS                    *</span><br><span class="line"> *                                                       *</span><br><span class="line"> *            &#x27;Atomic-orbital Based Ab-initio            *</span><br><span class="line"> *                  Computation at UStc&#x27;                 *</span><br><span class="line"> *                                                       *</span><br><span class="line"> *          Website: http://abacus.ustc.edu.cn/          *</span><br><span class="line"> *                                                       *</span><br><span class="line"> *********************************************************</span><br><span class="line"> Mon Feb 28 09:37:29 2022</span><br><span class="line"> MAKE THE DIR         : OUT.ABACUS/</span><br><span class="line"> DONE(0.0481156  SEC) : SETUP UNITCELL</span><br><span class="line"> DONE(0.0736459  SEC) : SYMMETRY</span><br><span class="line"> DONE(0.0949633  SEC) : INIT K-POINTS</span><br><span class="line"> ---------------------------------------------------------</span><br><span class="line"> This calculation is self-consistent</span><br><span class="line"> ---------------------------------------------------------</span><br><span class="line"> SPIN    KPOINTS         PROCESSORS  </span><br><span class="line"> 1       8               10          </span><br><span class="line"> ---------------------------------------------------------</span><br><span class="line"> Use plane wave basis</span><br><span class="line"> ---------------------------------------------------------</span><br><span class="line"> ELEMENT NATOM       XC          </span><br><span class="line"> Si      2           PZ-LDA</span><br><span class="line"> ---------------------------------------------------------</span><br><span class="line"> Initial plane wave basis and FFT box</span><br><span class="line"> ---------------------------------------------------------</span><br><span class="line"> DONE(0.116594   SEC) : INIT PLANEWAVE</span><br><span class="line"> UNIFORM GRID DIM     : 36 * 36 * 36</span><br><span class="line"> UNIFORM GRID DIM(BIG): 36 * 36 * 36</span><br><span class="line"> MEMORY FOR PSI (MB)  : 0.0820312</span><br><span class="line"> DONE(0.120233   SEC) : LOCAL POTENTIAL</span><br><span class="line"> DONE(0.129086   SEC) : NON-LOCAL POTENTIAL</span><br><span class="line"> START POTENTIAL      : atomic</span><br><span class="line"> DONE(0.135346   SEC) : INIT POTENTIAL</span><br><span class="line"> DONE(0.17863    SEC) : INIT BASIS</span><br><span class="line"> -------------------------------------------</span><br><span class="line"> SELF-CONSISTENT : </span><br><span class="line"> -------------------------------------------</span><br><span class="line"> ITER   ETOT(eV)       EDIFF(eV)      DRHO2      CG_ITER    TIME(S)    </span><br><span class="line"> CG1    -2.192279e+02  0.000000e+00   6.928e-02  3.000e+00  4.000e-02  </span><br><span class="line"> CG2    -2.154958e+02  3.732172e+00   5.745e-03  2.750e+00  3.000e-02  </span><br><span class="line"> CG3    -2.155043e+02  -8.536782e-03  2.622e-05  2.406e+00  2.000e-02  </span><br><span class="line"> CG4    -2.155047e+02  -3.698259e-04  5.403e-07  3.875e+00  3.000e-02  </span><br><span class="line"> CG5    -2.155047e+02  -1.855886e-06  1.931e-08  2.875e+00  3.000e-02  </span><br><span class="line"> CG6    -2.155047e+02  -7.198581e-08  1.776e-10  2.969e+00  2.000e-02  </span><br><span class="line"></span><br><span class="line">  |CLASS_NAME---------|NAME---------------|TIME(Sec)-----|CALLS----|AVG------|PER%-------</span><br><span class="line"> A DC_Driv             solve_eachf         0.24           1         0.24      68        %</span><br><span class="line"> B Run_Frag            frag_pw_line        0.24           1         0.24      68        %</span><br><span class="line"> X FFT                 FFT3D               0.13           1876      7.1e-05   37        %</span><br><span class="line"> H Hamilt_PW           h_psi               0.14           828       0.00017   38        %</span><br><span class="line"> C Ions                opt_ions_pw         0.18           1         0.18      50        %</span><br><span class="line"> D electrons           self_consistent     0.18           1         0.18      50        %</span><br><span class="line"> E electrons           c_bands             0.14           6         0.023     38        %</span><br><span class="line"> F Hamilt              diago               0.13           48        0.0028    37        %</span><br><span class="line"> ----------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"> START  Time  : Mon Feb 28 09:37:29 2022</span><br><span class="line"> FINISH Time  : Mon Feb 28 09:37:30 2022</span><br><span class="line"> TOTAL  Time  : 1</span><br><span class="line"> SEE INFORMATION IN : OUT.ABACUS/</span><br></pre></td></tr></table></figure>
+
+<h2 id="输入与输出"><a href="#输入与输出" class="headerlink" title="输入与输出"></a>输入与输出</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">tree</span></span><br><span class="line">.</span><br><span class="line">├── INPUT           #控制参数</span><br><span class="line">├── KPT             #k个点</span><br><span class="line">├── OUT.ABACUS      #输出结果</span><br><span class="line">│   ├── INPUT</span><br><span class="line">│   ├── istate.info</span><br><span class="line">│   ├── running_scf.log</span><br><span class="line">│   ├── Si</span><br><span class="line">│   │   ├── Si.NONLOCAL</span><br><span class="line">│   │   ├── Si-P.ORBITAL</span><br><span class="line">│   │   ├── Si-S.ORBITAL</span><br><span class="line">│   │   └── v_loc_g.dat</span><br><span class="line">│   ├── STRU_READIN_ADJUST.cif</span><br><span class="line">│   └── warning.log</span><br><span class="line">├── README          #说明文档</span><br><span class="line">├── result</span><br><span class="line">├── Si.pz-vbc.UPF</span><br><span class="line">└── STRU            #结构</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ABACUS/" rel="tag">ABACUS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8C%97/" rel="tag">安装指北</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/" rel="tag">实习日记</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/03/02/vasp%E7%BC%96%E8%AF%91-%E6%B5%8B%E8%AF%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vasp编译&amp;测试
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/02/23/gromacs%E7%BC%96%E8%AF%91&%E6%B5%8B%E8%AF%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">gromacs编译&amp;测试</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="nav-number">1.1.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-1"><span class="nav-number">1.2.</span> <span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E8%BF%90%E8%A1%8C"><span class="nav-number">2.</span> <span class="nav-text">测试运行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA"><span class="nav-number">2.1.</span> <span class="nav-text">输入与输出</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2023 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

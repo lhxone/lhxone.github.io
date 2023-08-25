@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>gromacs编译&amp;测试 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="实习日记安装指北gromacs" />
+  
+  
+  
+  
+  <meta name="description" content="编译gromacs(单精度版本)需要的编译环境为：  串行编译器：Intel Compiler &#x2F; GNU Compiler MPI编译器：mpich &#x2F; openmpi（如果是MPI版本） cmake fftw CUDA（如果是GPU版本） plumed（如果开启plumed）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gromacs编译&amp;测试">
+<meta property="og:url" content="http://example.com/2022/02/23/gromacs%E7%BC%96%E8%AF%91&%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="编译gromacs(单精度版本)需要的编译环境为：  串行编译器：Intel Compiler &#x2F; GNU Compiler MPI编译器：mpich &#x2F; openmpi（如果是MPI版本） cmake fftw CUDA（如果是GPU版本） plumed（如果开启plumed）">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-23T06:12:12.000Z">
+<meta property="article:modified_time" content="2023-08-25T03:13:35.110Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="实习日记">
+<meta property="article:tag" content="安装指北">
+<meta property="article:tag" content="gromacs">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-gromacs编译&amp;测试" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      gromacs编译&amp;测试
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2022/02/23/gromacs%E7%BC%96%E8%AF%91&%E6%B5%8B%E8%AF%95/" class="article-date">
+	  <time datetime="2022-02-23T06:12:12.000Z" itemprop="datePublished">February 23, 2022</time>
+	</a>
+
+       
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="编译gromacs-单精度版本"><a href="#编译gromacs-单精度版本" class="headerlink" title="编译gromacs(单精度版本)"></a>编译gromacs(单精度版本)</h2><p>需要的编译环境为：</p>
+<ul>
+<li>串行编译器：Intel Compiler &#x2F; GNU Compiler</li>
+<li>MPI编译器：mpich &#x2F; openmpi（如果是MPI版本）</li>
+<li>cmake</li>
+<li>fftw</li>
+<li>CUDA（如果是GPU版本）</li>
+<li>plumed（如果开启plumed）<span id="more"></span>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf gromacs-5.1.4.tar.gz # 以5.1.4版本为例</span><br><span class="line">cd gromacs-5.1.4 </span><br><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/software/gromacs-5.1.4 \</span><br><span class="line">  -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc \</span><br><span class="line">  -DGMX_DOUBLE=off \</span><br><span class="line">  -DGMX_FFT_LIBRARY=fftw3 \</span><br><span class="line">  -DFFTWF_LIBRARY=&quot;$HOME/fftw/lib/libfftw3f.a&quot; \</span><br><span class="line">  -DFFTWF_INCLUDE_DIR=&quot;$HOME/fftw/include/&quot;  \</span><br><span class="line">  -DGMX_MPI=on \</span><br><span class="line">  -DGMX_GPU=off \</span><br><span class="line"><span class="meta prompt_">  2&gt;</span><span class="language-bash">&amp;1 | <span class="built_in">tee</span> cm.log</span></span><br><span class="line">make -j12 2&gt;&amp;1 | tee m.log</span><br><span class="line">make install 2&gt;&amp;1 | tee mi.log</span><br></pre></td></tr></table></figure></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-DCMAKE_INSTALL_PREFIX</td>
+<td>安装目录</td>
+</tr>
+<tr>
+<td>-DCMAKE_C_COMPILER&#x3D;icc</td>
+<td>使用 icc 编译 c</td>
+</tr>
+<tr>
+<td>-DCMAKE_CXX_COMPILER&#x3D;icpc</td>
+<td>使用 icpc 编译 cpp</td>
+</tr>
+<tr>
+<td>-DGMX_DOUBLE&#x3D;off</td>
+<td>关闭double，编译单精度版本</td>
+</tr>
+<tr>
+<td>-DGMX_FFT_LIBRARY&#x3D;fftw3</td>
+<td>使用 fftw3</td>
+</tr>
+<tr>
+<td>-DFFTWF_LIBRARY&#x3D;”$HOME&#x2F;fftw&#x2F;lib&#x2F;libfftw3f.a”</td>
+<td>fftw库,请改为自己的安装目录</td>
+</tr>
+<tr>
+<td>-DFFTWF_INCLUDE_DIR&#x3D;”$HOME&#x2F;fftw&#x2F;include”</td>
+<td>fftw的头文件目录,请改为自己的安装目录</td>
+</tr>
+<tr>
+<td>-DGMX_MPI&#x3D;on</td>
+<td>开启 MPI 支持</td>
+</tr>
+<tr>
+<td>-DGMX_GPU&#x3D;off</td>
+<td>关闭 GPU 支持</td>
+</tr>
+</tbody></table>
+<p>在安装完成后,运行以下脚本以配置环境:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">source</span> <span class="variable">$HOME</span>/software/gromacs-5.1.4/bin/GMXRC</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">gmx_mpi --version <span class="comment">#输出版本信息</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="gromacs测试样例"><a href="#gromacs测试样例" class="headerlink" title="gromacs测试样例"></a>gromacs测试样例</h2><p>测试样例为~&#x2F;gromacs. </p>
+<p>首先执行以下命令生成可执行.tpr 文件:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">gmx_mpi grompp -f md0.mdp -c pr.gro -p SYS.top -o md.tpr</span></span><br></pre></td></tr></table></figure>
+
+<p>grompp参数列表:   </p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-f[&lt;.mdp&gt;] (grompp.mdp)</td>
+<td>带有 MD 参数的 grompp 输入文件</td>
+</tr>
+<tr>
+<td>-c[&lt;.gro&#x2F;.g96&#x2F;…&gt;] (conf.gro)</td>
+<td>结构文件:gro g96 pdb brk ent esp tpr</td>
+</tr>
+<tr>
+<td>-p[&lt;.top&gt;] (topol.top)</td>
+<td>拓扑文件</td>
+</tr>
+<tr>
+<td>-o[&lt;.tpr&gt;] (topol.tpr)</td>
+<td>便携式 xdr 运行输入文件</td>
+</tr>
+<tr>
+<td>-po[&lt;.mdp&gt;] (mdout.mdp)</td>
+<td>带有 MD 参数的 grompp 输入文件</td>
+</tr>
+</tbody></table>
+<p>然后执行以下命令进行计算:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">gmx_mpi mdrun -deffnm md</span></span><br></pre></td></tr></table></figure>
+
+
+<p>mdrun 参数列表:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-deffnm &lt;字符串&gt;</td>
+<td>为所有文件选项设置默认文件名</td>
+</tr>
+<tr>
+<td>-s [&lt;.tpr&gt;] (topol.tpr)</td>
+<td>便携式 xdr 运行输入文件</td>
+</tr>
+<tr>
+<td>-g [&lt;.log&gt;] (md.log)</td>
+<td>日志文件</td>
+</tr>
+</tbody></table>
+<h2 id="mpicxx-mpirun"><a href="#mpicxx-mpirun" class="headerlink" title="mpicxx&#x2F;mpirun"></a>mpicxx&#x2F;mpirun</h2><h3 id="mpicxx"><a href="#mpicxx" class="headerlink" title="mpicxx"></a>mpicxx</h3><p><code>mpicxx</code>可用于编译和链接用 C++ 编写的 MPI 程序,在使用前需载入 <code>inteloneapi-mpi</code></p>
+<p>hello.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mpi.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化 MPI 环境 </span></span><br><span class="line">    MPI_Init(<span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过调用以下方法来得到所有可以工作的进程数量 </span></span><br><span class="line">    <span class="type">int</span> world_size;</span><br><span class="line">    MPI_Comm_size(MPI_COMM_WORLD, &amp;world_size);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 得到当前进程的秩 </span></span><br><span class="line">    <span class="type">int</span> world_rank;</span><br><span class="line">    MPI_Comm_rank(MPI_COMM_WORLD, &amp;world_rank);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 得到当前进程的名字 </span></span><br><span class="line">    <span class="type">char</span> processor_name[MPI_MAX_PROCESSOR_NAME];</span><br><span class="line">    <span class="type">int</span> name_len;</span><br><span class="line">    MPI_Get_processor_name(processor_name, &amp;name_len);</span><br><span class="line">    <span class="comment">// 打印一条带有当前进程名字,秩以及 </span></span><br><span class="line">    <span class="comment">// 整个 communicator 的大小的 hello world 消息。 </span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello world from processor %s, rank %d out of %d processors\n&quot;</span>, processor_name, world_rank, world_size);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 释放 MPI 的一些资源 </span></span><br><span class="line">    MPI_Finalize();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>编译 hello.c 文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">mpicxx -c hello.c</span></span><br></pre></td></tr></table></figure>
+
+<p>链接</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">mpicxx -o hello hello.o</span></span><br></pre></td></tr></table></figure>
+
+<p>组合编译和链接</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">mpicxx -o hello hello.c</span></span><br></pre></td></tr></table></figure>
+
+
+<p>mpicxx 参数列表:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-show</td>
+<td>在不运行的情况下展示使用的指令</td>
+</tr>
+<tr>
+<td>-c [&lt;.c&#x2F;.cxx&#x2F;.cpp&gt;] (hello.c)</td>
+<td>编译</td>
+</tr>
+<tr>
+<td>-o [&lt;.o&gt;] (hello.o)</td>
+<td>链接</td>
+</tr>
+</tbody></table>
+<h3 id="mpirun"><a href="#mpirun" class="headerlink" title="mpirun"></a>mpirun</h3><p>orterun、mpirun、mpiexec 在 Open MPI 中执行串行和并行作业。 oshrun, shmemrun 在 Open SHMEM 中执行串行和并行作业。</p>
+<p>mpirun 参数列表:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-q, –quiet</td>
+<td>在应用程序执行期间减少来自orterun的信息</td>
+</tr>
+<tr>
+<td>-v, –verbose</td>
+<td>显示更多信息</td>
+</tr>
+<tr>
+<td>-N <num></td>
+<td>在每个分配的node上启动num个进程(与npernode 相同)</td>
+</tr>
+</tbody></table>
+<p>在本地直接执行 hello</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./hello</span> </span><br><span class="line">Hello world from processor master1, rank 0 out of 1 processors</span><br></pre></td></tr></table></figure>
+
+<p>使用 mpirun 执行 hello</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">mpirun -n 4 ./hello</span> </span><br><span class="line">Hello world from processor master1, rank 1 out of 4 processors </span><br><span class="line">Hello world from processor master1, rank 3 out of 4 processors </span><br><span class="line">Hello world from processor master1, rank 0 out of 4 processors </span><br><span class="line">Hello world from processor master1, rank 2 out of 4 processors</span><br></pre></td></tr></table></figure>
+
+<h2 id="slurm"><a href="#slurm" class="headerlink" title="slurm"></a>slurm</h2><p>Slurm(Simple Linux Utility for Resource Management，<a target="_blank" rel="noopener" href="http://slurm.schedmd.com/">http://slurm.schedmd.com/</a>) 是开源的、具有容错性和高度可扩展大型和小型 Linux 集群资源管 理和作业调度系统。超级计算系统可利用 Slurm 进行资源和作业管理，以避免 相互干扰，提高运行效率。</p>
+<h3 id="三种基本模式"><a href="#三种基本模式" class="headerlink" title="三种基本模式"></a>三种基本模式</h3><h4 id="批处理作业-采用-sbatch-命令提交，最常用方式"><a href="#批处理作业-采用-sbatch-命令提交，最常用方式" class="headerlink" title="批处理作业(采用 sbatch 命令提交，最常用方式)"></a>批处理作业(采用 sbatch 命令提交，最常用方式)</h4><ul>
+<li>使用 sbatch 命令提交作业脚本 </li>
+<li>提交后立即返回该命令行终端，用户可进行其它操作 </li>
+<li>在作业脚本中也可使用 srun 命令加载作业任务</li>
+</ul>
+<h4 id="交互式作业提交-采用-srun-命令提交"><a href="#交互式作业提交-采用-srun-命令提交" class="headerlink" title="交互式作业提交(采用 srun 命令提交)"></a>交互式作业提交(采用 srun 命令提交)</h4><ul>
+<li>资源分配与任务加载两步均通过 srun 命令进行 </li>
+<li>用户在该终端需等待任务结束才能继续其它操作</li>
+<li>如果提交时的命令行终端断开，则任务终止</li>
+</ul>
+<h4 id="实时分配模式作业-采用-salloc-命令提交"><a href="#实时分配模式作业-采用-salloc-命令提交" class="headerlink" title="实时分配模式作业(采用 salloc 命令提交)"></a>实时分配模式作业(采用 salloc 命令提交)</h4><ul>
+<li>分配作业模式类似于交互式作业模式和批处理作业模式的融合 </li>
+<li>请求资源-&gt;队列等待-&gt;在提交节点执行指定命令-&gt;资源释放 </li>
+<li>在作业结束前，如果提交时的命令行终端断开，则任务终止。</li>
+</ul>
+<p>提交作业</p>
+<h3 id="使用-srun-命令提交作业"><a href="#使用-srun-命令提交作业" class="headerlink" title="使用 srun 命令提交作业"></a>使用 srun 命令提交作业</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">srun -n 4 ./hello</span> </span><br><span class="line">Hello world from processor node1, rank 3 out of 4 processors </span><br><span class="line">Hello world from processor node1, rank 0 out of 4 processors </span><br><span class="line">Hello world from processor node1, rank 1 out of 4 processors </span><br><span class="line">Hello world from processor node1, rank 2 out of 4 processors</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-sbatch-命令提交作业"><a href="#使用-sbatch-命令提交作业" class="headerlink" title="使用 sbatch 命令提交作业"></a>使用 sbatch 命令提交作业</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> myscript.sh</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/sh</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">SBATCH --nodes=1</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">SBATCH --ntasks-per-node=1</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">SBATCH -o job.hello%j.out</span> </span><br><span class="line">srun -n 1 ./hello</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sbatch myscript.sh</span> </span><br><span class="line">Submitted batch job 375 </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> job.hello375.out</span> </span><br><span class="line">Hello world from processor node1, rank 0 out of 1 processors</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gromacs/" rel="tag">gromacs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8C%97/" rel="tag">安装指北</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/" rel="tag">实习日记</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/02/28/ABACUS%E7%BC%96%E8%AF%91-%E6%B5%8B%E8%AF%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ABACUS编译&amp;测试
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/02/21/spack%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">spack配置与使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91gromacs-%E5%8D%95%E7%B2%BE%E5%BA%A6%E7%89%88%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">编译gromacs(单精度版本)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gromacs%E6%B5%8B%E8%AF%95%E6%A0%B7%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">gromacs测试样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mpicxx-mpirun"><span class="nav-number">3.</span> <span class="nav-text">mpicxx&#x2F;mpirun</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mpicxx"><span class="nav-number">3.1.</span> <span class="nav-text">mpicxx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mpirun"><span class="nav-number">3.2.</span> <span class="nav-text">mpirun</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slurm"><span class="nav-number">4.</span> <span class="nav-text">slurm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.1.</span> <span class="nav-text">三种基本模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%B9%E5%A4%84%E7%90%86%E4%BD%9C%E4%B8%9A-%E9%87%87%E7%94%A8-sbatch-%E5%91%BD%E4%BB%A4%E6%8F%90%E4%BA%A4%EF%BC%8C%E6%9C%80%E5%B8%B8%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">4.1.1.</span> <span class="nav-text">批处理作业(采用 sbatch 命令提交，最常用方式)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%BD%9C%E4%B8%9A%E6%8F%90%E4%BA%A4-%E9%87%87%E7%94%A8-srun-%E5%91%BD%E4%BB%A4%E6%8F%90%E4%BA%A4"><span class="nav-number">4.1.2.</span> <span class="nav-text">交互式作业提交(采用 srun 命令提交)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E6%97%B6%E5%88%86%E9%85%8D%E6%A8%A1%E5%BC%8F%E4%BD%9C%E4%B8%9A-%E9%87%87%E7%94%A8-salloc-%E5%91%BD%E4%BB%A4%E6%8F%90%E4%BA%A4"><span class="nav-number">4.1.3.</span> <span class="nav-text">实时分配模式作业(采用 salloc 命令提交)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-srun-%E5%91%BD%E4%BB%A4%E6%8F%90%E4%BA%A4%E4%BD%9C%E4%B8%9A"><span class="nav-number">4.2.</span> <span class="nav-text">使用 srun 命令提交作业</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-sbatch-%E5%91%BD%E4%BB%A4%E6%8F%90%E4%BA%A4%E4%BD%9C%E4%B8%9A"><span class="nav-number">4.3.</span> <span class="nav-text">使用 sbatch 命令提交作业</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2023 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java银行系统 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Java" />
+  
+  
+  
+  
+  <meta name="description" content="Java银行系统实现的功能 继承抽象类people，创建customer类 使用构造函数对信息初始化 重载customer的toString方法 实现存款、取款、注册新卡和删除卡片等操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java银行系统">
+<meta property="og:url" content="http://example.com/2021/04/10/Java%E9%93%B6%E8%A1%8C%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java银行系统实现的功能 继承抽象类people，创建customer类 使用构造函数对信息初始化 重载customer的toString方法 实现存款、取款、注册新卡和删除卡片等操作">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-10T04:25:15.000Z">
+<meta property="article:modified_time" content="2023-08-25T02:16:39.242Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Java银行系统" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Java银行系统
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/04/10/Java%E9%93%B6%E8%A1%8C%E7%B3%BB%E7%BB%9F/" class="article-date">
+	  <time datetime="2021-04-10T04:25:15.000Z" itemprop="datePublished">April 10, 2021</time>
+	</a>
+
+       
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Java银行系统"><a href="#Java银行系统" class="headerlink" title="Java银行系统"></a>Java银行系统</h2><h3 id="实现的功能"><a href="#实现的功能" class="headerlink" title="实现的功能"></a>实现的功能</h3><ul>
+<li>继承抽象类<code>people</code>，创建<code>customer</code>类</li>
+<li>使用构造函数对信息初始化</li>
+<li>重载customer的toString方法</li>
+<li>实现存款、取款、注册新卡和删除卡片等操作</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">people</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> String name;</span><br><span class="line">    <span class="keyword">protected</span> String gender;</span><br><span class="line">    <span class="keyword">protected</span> String uid;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    people(String name, String gender, <span class="type">int</span> age, String uid) &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.gender = gender;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">        <span class="built_in">this</span>.uid = uid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">customer</span> <span class="keyword">extends</span> <span class="title class_">people</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> String[] CardID = <span class="keyword">new</span> <span class="title class_">String</span>[<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">protected</span> String[] password = <span class="keyword">new</span> <span class="title class_">String</span>[<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">double</span>[] remain = <span class="keyword">new</span> <span class="title class_">double</span>[<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> <span class="variable">CardNum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    customer(String name, String gender, <span class="type">int</span> age, String uid) &#123;</span><br><span class="line">        <span class="built_in">super</span>(name, gender, age, uid);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//<span class="doctag">TODO:</span>USER Operation</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;客户名字为：&quot;</span> + <span class="built_in">super</span>.name + <span class="string">&quot;，身份证为：&quot;</span> + <span class="built_in">super</span>.uid + <span class="string">&quot;，卡片数量为：&quot;</span> + <span class="built_in">this</span>.CardNum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">showUSERinfo</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.printf(<span class="string">&quot;客户名字为：%s，性别为：%s，身份证为：%s，卡片数量为：%d\n&quot;</span>, <span class="built_in">super</span>.name, <span class="built_in">super</span>.gender, <span class="built_in">super</span>.uid, <span class="built_in">this</span>.CardNum);</span><br><span class="line">        <span class="keyword">if</span> (CardNum != <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;--编号--CardID--Password------------Remain&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; CardNum; i++) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;\t&quot;</span> + i + <span class="string">&quot;\t&quot;</span> + CardID[i] + <span class="string">&quot;\t&quot;</span> + password[i] + <span class="string">&quot;\t\t&quot;</span> + remain[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//<span class="doctag">TODO:</span>Card Operation</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">NewCard</span><span class="params">(String ID, String password, <span class="type">int</span> remain)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.CardNum &lt; <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="built_in">this</span>.CardID[CardNum] = ID;</span><br><span class="line">            <span class="built_in">this</span>.password[CardNum] = password;</span><br><span class="line">            <span class="built_in">this</span>.remain[CardNum] = remain;</span><br><span class="line">            System.out.printf(<span class="string">&quot;卡片创建成功！\n卡号为：%s，密码为%s。\n&quot;</span>, <span class="built_in">this</span>.CardID[CardNum], <span class="built_in">this</span>.password[CardNum]);</span><br><span class="line">            CardNum++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;卡片数量已满，无法申请新卡片！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">DelCard</span><span class="params">(String ID, String password)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (CardNum == <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;没有可用的卡！&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; CardNum; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (CardID[i] == ID) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">this</span>.password[i] == password) &#123;</span><br><span class="line">                        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i; j &lt; CardNum - <span class="number">1</span>; j++) &#123;</span><br><span class="line">                            CardID[j] = CardID[j + <span class="number">1</span>];</span><br><span class="line">                            <span class="built_in">this</span>.password[j] = <span class="built_in">this</span>.password[j + <span class="number">1</span>];</span><br><span class="line">                            remain[j] = remain[j + <span class="number">1</span>];</span><br><span class="line">                        &#125;</span><br><span class="line">                        CardNum--;</span><br><span class="line">                        System.out.println(<span class="string">&quot;卡片删除成功！&quot;</span>);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        System.out.println(<span class="string">&quot;密码不正确！&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">getMoney</span><span class="params">(String ID, String password, <span class="type">double</span> moneyNum)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; CardNum; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (CardID[i] == ID) &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">this</span>.password[i] == password) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (moneyNum &lt;= remain[i]) &#123;</span><br><span class="line">                        remain[i] -= moneyNum;</span><br><span class="line">                        System.out.println(<span class="string">&quot;取款成功！已在&quot;</span> + CardID[i] + <span class="string">&quot;取出&quot;</span> + moneyNum + <span class="string">&quot;，账户还剩：&quot;</span> + remain[i]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;密码不正确！&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;未找到此卡片，请检查输入的卡号！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">saveMoney</span><span class="params">(String ID, <span class="type">int</span> moneyNum)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (moneyNum &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;无效操作！&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; CardNum; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (CardID[i] == ID) &#123;</span><br><span class="line">                remain[i] += moneyNum;</span><br><span class="line">                System.out.println(<span class="string">&quot;存款成功！已在&quot;</span> + CardID[i] + <span class="string">&quot;存入&quot;</span> + moneyNum + <span class="string">&quot;，账户还剩：&quot;</span> + remain[i]);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;未找到此卡片，请检查输入的卡号！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        customer cust;</span><br><span class="line">        cust = <span class="keyword">new</span> <span class="title class_">customer</span>(<span class="string">&quot;张三&quot;</span>, <span class="string">&quot;男&quot;</span>, <span class="number">23</span>, <span class="string">&quot;12134&quot;</span>);</span><br><span class="line">        cust.NewCard(<span class="string">&quot;0001&quot;</span>, <span class="string">&quot;thisisapassword&quot;</span>, <span class="number">1000</span>);</span><br><span class="line">        cust.NewCard(<span class="string">&quot;0002&quot;</span>, <span class="string">&quot;anotherpassword&quot;</span>, <span class="number">1200</span>);</span><br><span class="line">        cust.NewCard(<span class="string">&quot;0003&quot;</span>, <span class="string">&quot;isthirdpassword&quot;</span>, <span class="number">4200</span>);</span><br><span class="line">        cust.NewCard(<span class="string">&quot;0004&quot;</span>, <span class="string">&quot;isatestpassword&quot;</span>, <span class="number">3600</span>);</span><br><span class="line"><span class="comment">//        System.out.println(cust.toString());</span></span><br><span class="line">        cust.showUSERinfo();</span><br><span class="line">        cust.getMoney(<span class="string">&quot;0001&quot;</span>, <span class="string">&quot;thisisapassword&quot;</span>, <span class="number">300</span>);</span><br><span class="line">        cust.showUSERinfo();</span><br><span class="line">        cust.DelCard(<span class="string">&quot;0002&quot;</span>, <span class="string">&quot;anotherpassword&quot;</span>);</span><br><span class="line">        cust.showUSERinfo();</span><br><span class="line">        cust.saveMoney(<span class="string">&quot;0001&quot;</span>, <span class="number">200</span>);</span><br><span class="line">        cust.showUSERinfo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/04/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%BA%8C%E7%AB%A0%E4%BD%9C%E4%B8%9A/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          操作系统第二章作业
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/04/06/Matlab%E5%AE%9E%E9%AA%8C2-3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Matlab实验2-3</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E9%93%B6%E8%A1%8C%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.</span> <span class="nav-text">Java银行系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.</span> <span class="nav-text">实现的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.2.</span> <span class="nav-text">代码实例</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2023 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
